@@ -1,0 +1,2972 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Học Tương Tác: Phòng Tránh Đuối Nước</title>
+    <!-- Outfit Google Font for a sleek modern design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0A0E1A;
+            --card-bg: rgba(20, 26, 46, 0.75);
+            --navy-medium: #1C2541;
+            --cyan-accent: #00E5FF;
+            --coral-warning: #FF3B30;
+            --teal-success: #00E676;
+            --text-light: #F8FAFC;
+            --text-muted: #A0AEC0;
+            --border-glow: rgba(0, 229, 255, 0.2);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* --- Presentation Container & Backgrounds --- */
+        #presentation-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease;
+        }
+
+        #presentation-wrapper.dark-slide-bg {
+            background-image: 
+                linear-gradient(rgba(11, 19, 43, 0.88), rgba(11, 19, 43, 0.88)),
+                url('images/newsroom_dark_bg.png');
+        }
+
+        #presentation-wrapper.light-slide-bg {
+            background-image: 
+                linear-gradient(rgba(248, 250, 252, 0.93), rgba(248, 250, 252, 0.93)),
+                url('images/newsroom_light_bg.png');
+            color: var(--navy-medium);
+        }
+
+        /* --- Header / Top Banner --- */
+        header {
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(11, 19, 43, 0.9);
+            color: var(--text-light);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, var(--cyan-accent), #0077B6);
+            color: var(--bg-dark);
+            font-weight: 800;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.25);
+        }
+
+        .logo-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            color: var(--cyan-accent);
+        }
+
+        .stage-indicator {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            background-color: rgba(255, 255, 255, 0.08);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        /* --- Slide Workspace --- */
+        #slide-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide-content-layout {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 480px;
+            animation: fadeIn 0.3s ease-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- Navigation Controller at Bottom --- */
+        #nav-controls {
+            background-color: rgba(11, 19, 43, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            color: var(--text-light);
+        }
+
+        .nav-btn {
+            background-color: var(--navy-medium);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: rgba(0, 229, 255, 0.2);
+            border-color: var(--cyan-accent);
+            color: var(--cyan-accent);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.primary-action {
+            background-color: var(--cyan-accent);
+            color: var(--bg-dark);
+            border-color: var(--cyan-accent);
+            font-weight: 700;
+        }
+
+        .nav-btn.primary-action:hover {
+            background-color: #00B4D8;
+            color: var(--text-light);
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .progress-text span {
+            color: var(--cyan-accent);
+        }
+
+        /* --- Sidebar Slide Selector Menu --- */
+        #slide-menu {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 320px;
+            height: 100vh;
+            background-color: rgba(11, 19, 43, 0.98);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            z-index: 200;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            color: var(--text-light);
+        }
+
+        #slide-menu.open {
+            left: 0;
+        }
+
+        .menu-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .menu-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .menu-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .menu-item {
+            padding: 0.7rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.4rem;
+            border: 1px solid transparent;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255,255,255,0.04);
+            color: var(--cyan-accent);
+        }
+
+        .menu-item.active {
+            background-color: rgba(0, 229, 255, 0.1);
+            color: var(--cyan-accent);
+            border-color: rgba(0, 229, 255, 0.2);
+            font-weight: 600;
+        }
+
+        #menu-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 150;
+            display: none;
+        }
+
+        #menu-backdrop.open {
+            display: block;
+        }
+
+        /* --- UI Components for General Slide Layouts --- */
+        .slide-title-bar {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .light-slide-bg .slide-title-bar {
+            border-bottom-color: rgba(28, 37, 65, 0.15);
+        }
+
+        /* welcome / role-intro split style */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .right-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .visual-img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,255,255,0.06);
+        }
+
+        .light-slide-bg .visual-img {
+            box-shadow: 0 8px 25px rgba(28, 37, 65, 0.15);
+            border-color: rgba(28, 37, 65, 0.05);
+        }
+
+        /* Cards styles */
+        .content-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .light-slide-bg .content-card {
+            background-color: white;
+            border-color: rgba(28, 37, 65, 0.1);
+            color: var(--navy-medium);
+        }
+
+        .card-header {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--cyan-accent);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .light-slide-bg .card-header {
+            color: #0077B6;
+        }
+
+        /* Bullet lists styles */
+        .bullet-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .bullet-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        /* Dynamic Grid layouts */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* How to Steps layout */
+        .step-card {
+            background-color: white;
+            border: 2px solid var(--cyan-accent);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--cyan-accent);
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .step-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy-medium);
+            line-height: 1.5;
+        }
+
+        /* Transition Slide styles */
+        .transition-layout {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .explored-box {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .explored-box span {
+            color: var(--text-light);
+            font-weight: 700;
+            display: block;
+            font-size: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .next-question-box {
+            font-size: 1.3rem;
+            color: var(--coral-warning);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.5rem;
+            width: 100%;
+        }
+
+        .next-question-box span {
+            color: var(--cyan-accent);
+            font-weight: 700;
+            display: block;
+            font-size: 2.2rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Debrief Slide styles */
+        .debrief-layout {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 2rem;
+        }
+
+        .debrief-callout {
+            background-color: #E0FBC0;
+            border: 2px solid var(--teal-success);
+            border-radius: 12px;
+            padding: 1.8rem;
+            color: var(--navy-medium);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .debrief-callout-header {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--teal-success);
+            letter-spacing: 0.5px;
+        }
+
+        .debrief-callout-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        /* Workspace General Layout */
+        .workspace-layout {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 2rem;
+        }
+
+        .workspace-right-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .time-badge {
+            background-color: var(--coral-warning);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* --- Native Table Overlays --- */
+        .slide-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-top: 1rem;
+        }
+
+        .slide-table th {
+            background-color: var(--navy-medium);
+            color: white;
+            padding: 0.8rem 1rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .slide-table td {
+            background-color: white;
+            color: var(--navy-medium);
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* --- Custom Interactive Widget Styles Inside Slides --- */
+        .interactive-widget-box {
+            width: 100%;
+            min-height: 380px;
+        }
+
+        /* Tin Nóng Clue Hunt */
+        .news-hunt-screen {
+            background-color: rgba(11, 19, 43, 0.05);
+            border: 1px solid rgba(28, 37, 65, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+        }
+        .clickable-word {
+            display: inline-block;
+            cursor: pointer;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            border-bottom: none;
+        }
+        .clickable-word:hover {
+            background-color: rgba(0, 229, 255, 0.15);
+            color: #0077B6;
+        }
+        .clickable-word.selected {
+            background-color: rgba(255, 90, 95, 0.25);
+            color: var(--coral-warning);
+            border-bottom: 2px solid var(--coral-warning);
+            font-weight: 700;
+        }
+        .clue-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            background-color: rgba(28, 37, 65, 0.05);
+            border: 1px solid rgba(28, 37, 65, 0.1);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .clue-badge.found {
+            background-color: rgba(0, 230, 118, 0.15);
+            border-color: var(--teal-success);
+            color: #008f3a;
+        }
+
+        /* Witness Matching Widget */
+        .witness-deck {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .dossier-paper {
+            background-color: white;
+            color: var(--navy-medium);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--cyan-accent);
+        }
+        .dossier-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+            color: var(--navy-medium);
+        }
+        .dossier-quote {
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .witness-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .folder-tab-btn {
+            background-color: rgba(28, 37, 65, 0.04);
+            border: 1px solid rgba(28, 37, 65, 0.1);
+            padding: 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .folder-tab-btn:hover, .folder-tab-btn.active {
+            background-color: var(--navy-medium);
+            color: white;
+            border-color: var(--navy-medium);
+        }
+
+        /* Buoyancy Lab */
+        .lab-panel-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 1.5rem;
+            height: 380px;
+        }
+        .aquarium {
+            background: linear-gradient(to bottom, #1C2541 0%, #0077B6 100%);
+            border: 2px solid var(--cyan-accent);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+        }
+        .aquarium-water {
+            height: 60%;
+            background: rgba(0, 180, 216, 0.35);
+            border-top: 3px solid var(--cyan-accent);
+            position: relative;
+        }
+        .draggable-lab-item {
+            background-color: white;
+            border: 1px solid rgba(28, 37, 65, 0.1);
+            padding: 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .draggable-lab-item:hover {
+            border-color: var(--cyan-accent);
+            transform: translateY(-1px);
+        }
+        .draggable-lab-item.tested {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .lab-sprite {
+            position: absolute;
+            font-size: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 15;
+            transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .lab-sprite span.label {
+            font-size: 0.65rem;
+            background-color: var(--bg-dark);
+            color: white;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .lab-sprite.float {
+            animation: floatBob 3s ease-in-out infinite;
+        }
+
+        /* Certificate Widget */
+        .interactive-cert-box {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 1.5rem;
+        }
+        .interactive-cert-paper {
+            background-color: white;
+            color: var(--navy-medium);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 5px double var(--navy-medium);
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Keyboard help banner */
+        .keyboard-hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Story-driven navigation buttons */
+        .story-nav-btn {
+            background: linear-gradient(135deg, var(--cyan-accent), #0077B6);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            align-self: flex-start;
+            text-transform: uppercase;
+        }
+
+        .story-nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4);
+            background: linear-gradient(135deg, #00B4D8, var(--cyan-accent));
+        }
+
+        .story-nav-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .story-nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Light slide overrides for high contrast readability */
+        .light-slide-bg {
+            color: var(--navy-medium) !important;
+        }
+        .light-slide-bg .slide-title-bar {
+            color: var(--navy-medium) !important;
+            border-bottom-color: rgba(28, 37, 65, 0.15) !important;
+        }
+        .light-slide-bg .slide-title-bar span {
+            color: #0077B6 !important;
+        }
+        .light-slide-bg .content-card {
+            background-color: #FFFFFF !important;
+            border-color: rgba(28, 37, 65, 0.12) !important;
+            color: var(--navy-medium) !important;
+            box-shadow: 0 4px 15px rgba(28, 37, 65, 0.08) !important;
+        }
+        .light-slide-bg .card-header {
+            color: #0077B6 !important;
+        }
+        .light-slide-bg .bullet-list li {
+            color: var(--navy-medium) !important;
+        }
+        .light-slide-bg p {
+            color: var(--navy-medium) !important;
+        }
+        .light-slide-bg th {
+            background-color: var(--navy-medium) !important;
+            color: #FFFFFF !important;
+        }
+        .light-slide-bg td {
+            background-color: #FFFFFF !important;
+            color: var(--navy-medium) !important;
+            border-bottom: 1px solid rgba(28, 37, 65, 0.08) !important;
+        }
+        .light-slide-bg .clue-badge {
+            background-color: rgba(28, 37, 65, 0.04) !important;
+            border-color: rgba(28, 37, 65, 0.1) !important;
+            color: var(--navy-medium) !important;
+        }
+        .light-slide-bg .clue-badge.found {
+            background-color: rgba(0, 230, 118, 0.15) !important;
+            border-color: var(--teal-success) !important;
+            color: #008f3a !important;
+        }
+
+        /* Form Controls Text Contrast */
+        select, textarea, input[type="text"] {
+            color: var(--navy-medium) !important;
+            background-color: #FFFFFF !important;
+            border: 1px solid rgba(28, 37, 65, 0.2) !important;
+            border-radius: 6px;
+            padding: 0.5rem;
+            font-family: inherit;
+        }
+
+        .dark-slide-bg textarea, .dark-slide-bg input[type="text"], .dark-slide-bg select {
+            color: var(--navy-medium) !important;
+            background-color: #FFFFFF !important;
+        }
+
+        /* Custom Alert Dialog Modal Styles */
+        #custom-alert-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        #custom-alert-backdrop.show {
+            display: block;
+            opacity: 1;
+        }
+
+        #custom-alert-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 500px;
+            background: linear-gradient(135deg, #1C2541, #0B132B);
+            border: 2px solid var(--cyan-accent);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.35);
+            z-index: 10000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.2rem;
+            color: var(--text-light);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+            opacity: 0;
+        }
+
+        #custom-alert-box.show {
+            display: flex;
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        #custom-alert-box .alert-icon {
+            font-size: 3.2rem;
+            animation: pulseGlow 2s infinite;
+        }
+
+        #custom-alert-box .alert-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--cyan-accent);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        #custom-alert-box .alert-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        #custom-alert-box .alert-close-btn {
+            background: linear-gradient(135deg, var(--cyan-accent), #0077B6);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0.7rem 2.8rem;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #custom-alert-box .alert-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4);
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0,229,255,0.4)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 8px rgba(0,229,255,0.7)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0,229,255,0.4)); }
+        }
+
+        html {
+            font-size: 115% !important;
+        }
+
+        /* --- Typography scaling for back of class readability --- */
+        body {
+            font-size: 1.35rem !important;
+        }
+        p, li, td, th {
+            font-size: 1.35rem !important;
+        }
+        .logo-text { font-size: 1.25rem !important; }
+        .logo-badge { font-size: 1.25rem !important; }
+        .stage-indicator { font-size: 1.2rem !important; }
+        .nav-btn { font-size: 1.2rem !important; }
+        .progress-text { font-size: 1.25rem !important; }
+        .menu-item { font-size: 1.2rem !important; }
+        .slide-title-bar { font-size: 2.6rem !important; }
+        .card-header { font-size: 1.45rem !important; }
+        .bullet-list li { font-size: 1.45rem !important; }
+        .step-number { font-size: 1.7rem !important; }
+        .step-text { font-size: 1.55rem !important; }
+        .explored-box { font-size: 1.75rem !important; }
+        .explored-box span { font-size: 2.4rem !important; }
+        .next-question-box { font-size: 1.75rem !important; }
+        .next-question-box span { font-size: 2.8rem !important; }
+        .debrief-callout-header { font-size: 1.5rem !important; }
+        .debrief-callout-text { font-size: 1.7rem !important; }
+        .time-badge { font-size: 1.3rem !important; }
+        .slide-table th { font-size: 1.35rem !important; }
+        .slide-table td { font-size: 1.3rem !important; }
+        .clue-badge { font-size: 1.25rem !important; }
+        .dossier-title { font-size: 1.45rem !important; }
+        .dossier-quote { font-size: 1.35rem !important; }
+        .folder-tab-btn { font-size: 1.35rem !important; }
+        .draggable-lab-item { font-size: 1.35rem !important; }
+        .lab-sprite span.label { font-size: 1.15rem !important; }
+        .keyboard-hint { font-size: 1.1rem !important; }
+        .story-nav-btn { font-size: 1.4rem !important; }
+        select, textarea, input[type="text"] { font-size: 1.25rem !important; }
+        
+        /* Slide 54 - Cursive checklist font adjustment */
+        .cert-form label, 
+        .cert-form input, 
+        .interactive-cert-paper {
+            font-family: 'Itim', cursive !important;
+        }
+        .cert-form label {
+            font-size: 1.35rem !important;
+        }
+        .cert-form input[type="checkbox"] {
+            transform: scale(1.3);
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-wrapper" class="dark-slide-bg">
+        <header>
+            <div class="logo-container">
+                <button class="nav-btn" style="padding: 0.4rem 0.8rem;" onclick="toggleMenu()">☰ Slide Menu</button>
+                <div class="logo-badge">NOVA</div>
+                <div class="logo-text">NEWS <span>STUDIO</span></div>
+            </div>
+            <div class="stage-indicator" id="slide-stage-indicator">PRE-LESSON</div>
+        </header>
+
+        <div id="slide-container">
+            <!-- Slide contents will be dynamically injected here -->
+        </div>
+
+        <div id="nav-controls">
+            <div class="keyboard-hint">
+                <span>💡 Dùng phím <b>←</b> và <b>→</b> trên bàn phím để chuyển slide</span>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <button class="nav-btn" id="btn-prev" onclick="goToPrevSlide()">◀ TRƯỚC</button>
+                <div class="progress-text">Slide <span id="current-slide-num">1</span> / 61</div>
+                <button class="nav-btn primary-action" id="btn-next" onclick="goToNextSlide()">SAU ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Backdrop & Slide Selector Drawer -->
+    <div id="menu-backdrop" onclick="toggleMenu()"></div>
+    <div id="slide-menu">
+        <div class="menu-header">
+            <span>DANH SÁCH SLIDE DECK</span>
+            <button class="menu-close-btn" onclick="toggleMenu()">×</button>
+        </div>
+        <div class="menu-list" id="menu-list-items">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+
+    <!-- Custom Modal Popup Dialog -->
+    <div id="custom-alert-backdrop"></div>
+    <div id="custom-alert-box">
+        <div class="alert-icon">💡</div>
+        <h3 class="alert-title">Thông báo</h3>
+        <p class="alert-message">Nội dung thông báo ở đây.</p>
+        <button class="alert-close-btn">ĐÓNG</button>
+    </div>
+
+    <script>
+        // --- HELPER FUNCTION: MAP ICONS TO TEXT ---
+        function map_icon_to_text(text) {
+            if (!text) return '';
+            let cleaned = text.trim();
+            const icons = ["🎯", "📋", "🌿", "🛡️", "🦺", "🏊", "🌀", "🛶", "🔍", "💡", "📢", "📓", "✔", "⭐", "💭", "📜", "👁️", "🚣", "🗣️", "❓", "📚", "🛠️", "⏱️", "🚨", "📺", "👉", "⚡", "🎤", "🔬", "🧪", "🏆", "❌", "✍️", "📡", "🎉", "🎖️", "📂"];
+            if (icons.some(icon => cleaned.startsWith(icon))) {
+                return cleaned;
+            }
+            
+            let lower = cleaned.toLowerCase();
+            // Remove starting bullets if they are present in content text
+            if (cleaned.startsWith("•") || cleaned.startsWith("-")) {
+                cleaned = cleaned.substring(1).trim();
+                lower = cleaned.toLowerCase();
+            }
+            
+            if (lower.includes("kiến thức") || lower.includes("học tập")) return "📚 " + cleaned;
+            if (lower.includes("kỹ năng") || lower.includes("thực hành")) return "🛠️ " + cleaned;
+            if (lower.includes("thái độ") || lower.includes("ý thức")) return "🌿 " + cleaned;
+            if (lower.includes("nguy cơ") || lower.includes("tai nạn") || lower.includes("nguy hiểm")) return "🚨 " + cleaned;
+            if (lower.includes("phòng tránh") || lower.includes("bảo vệ") || lower.includes("an toàn")) return "🛡️ " + cleaned;
+            if (lower.includes("vật nổi") || lower.includes("phao")) return "🦺 " + cleaned;
+            if (lower.includes("nhiệm vụ")) return "📋 " + cleaned;
+            if (lower.includes("nhân chứng") || lower.includes("phỏng vấn")) return "🎤 " + cleaned;
+            if (lower.includes("khảo sát") || lower.includes("điều tra") || lower.includes("tìm hiểu")) return "🔍 " + cleaned;
+            if (lower.includes("kết luận") || lower.includes("thông điệp") || lower.includes("báo cáo")) return "📢 " + cleaned;
+            
+            return "🔹 " + cleaned;
+        }
+
+        // --- CUSTOM ALERT DIALOG POPUP ---
+        function showCustomAlert(message, title = "Thông báo từ Tòa soạn", icon = "💡", onCloseCallback = null) {
+            const backdrop = document.getElementById('custom-alert-backdrop');
+            const alertBox = document.getElementById('custom-alert-box');
+            
+            alertBox.querySelector('.alert-title').innerText = title;
+            alertBox.querySelector('.alert-message').innerHTML = message;
+            alertBox.querySelector('.alert-icon').innerText = icon;
+            
+            backdrop.style.display = 'block';
+            setTimeout(() => backdrop.classList.add('show'), 10);
+            
+            alertBox.style.display = 'flex';
+            setTimeout(() => alertBox.classList.add('show'), 10);
+            
+            alertBox.querySelector('.alert-close-btn').onclick = function() {
+                closeCustomAlert();
+                if (onCloseCallback) onCloseCallback();
+            };
+        }
+
+        // Add key listener for closing custom alert modal on Enter/Escape
+        document.addEventListener('keydown', function(e) {
+            const alertBox = document.getElementById('custom-alert-box');
+            if (alertBox && alertBox.style.display === 'flex' && (e.key === 'Enter' || e.key === 'Escape')) {
+                const btn = alertBox.querySelector('.alert-close-btn');
+                if (btn) btn.click();
+            }
+        });
+
+        function closeCustomAlert() {
+            const backdrop = document.getElementById('custom-alert-backdrop');
+            const alertBox = document.getElementById('custom-alert-box');
+            
+            backdrop.classList.remove('show');
+            alertBox.classList.remove('show');
+            
+            setTimeout(() => {
+                backdrop.style.display = 'none';
+                alertBox.style.display = 'none';
+            }, 250);
+        }
+
+        // ---------------------------------------------------------------------
+        // 61 SLIDE DATA DEFINITIONS
+        // ---------------------------------------------------------------------
+        const slides = [
+            // --- PRE-LESSON (0 to 2) ---
+            {
+                type: 'welcome',
+                stage: 'PRE-LESSON',
+                title: 'Chào mừng phóng viên Nova News!',
+                image: 'welcome_screen_1781236319288.png',
+                content: [
+                    "Kiến thức: Nhận biết các nguy cơ đuối nước phổ biến; cách phòng tránh; biết các vật hỗ trợ nổi.",
+                    "Kỹ năng: Thu thập thông tin; phân tích tình huống; kết nối nguyên nhân và giải pháp.",
+                    "Thái độ: Có ý thức bảo vệ bản thân và quan tâm đến sự an toàn của người khác."
+                ]
+            },
+            {
+                type: 'big-question',
+                stage: 'PRE-LESSON',
+                title: 'Câu Hỏi Lớn (Big Question)',
+                image: 'big_question_1781236338352.png',
+                question: 'Làm thế nào để phòng tránh đuối nước và giúp người khác an toàn hơn?'
+            },
+            {
+                type: 'role-intro',
+                stage: 'PRE-LESSON',
+                title: 'Giới Thiệu Vai Trò',
+                image: 'reporter_role_1781236354913.png',
+                description: 'Các em sẽ đóng vai phóng viên Nova News để điều tra nguy cơ đuối nước và thu thập thông tin giúp trẻ em an toàn hơn.',
+                tasks: [
+                    "Điều tra các nguy cơ đuối nước phổ biến trong cuộc sống.",
+                    "Tìm cách phòng tránh đuối nước hiệu quả nhất.",
+                    "Thu thập thông tin để lập sổ tay giúp trẻ em an toàn hơn."
+                ]
+            },
+            // --- GIAI ĐOẠN 1 (3 to 8) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                dna: 'Situation',
+                stageNum: 1
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NÓNG',
+                goal: '• Khơi gợi sự quan tâm tới chủ đề\n• Tạo nhu cầu tìm hiểu',
+                image: 'big_question_1781236338352.png',
+                extra: 'Bản tin: [Đang cập nhật]'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NÓNG',
+                steps: ["Đọc kỹ bản tin khẩn cấp từ tòa soạn.", "Chia sẻ những suy nghĩ ban đầu với cả lớp."]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NÓNG',
+                prompt: 'Thảo luận:\n- Chuyện gì đã xảy ra?\n- Nếu em ở đó, em sẽ làm gì?',
+                product: 'Các dự đoán ban đầu về nguyên nhân và cách xử lý',
+                format: 'Cả lớp',
+                time: '5 phút',
+                interactiveId: 'news-clue-hunt'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NÓNG',
+                results: '• Học sinh hoàn thiện phân tích bản tin tin nóng.\n• Học sinh tích cực chia sẻ suy nghĩ và dự báo bối cảnh.\n• Các dự đoán ban đầu về nguyên nhân và cách xử lý đuối nước.',
+                message: 'Cần tìm hiểu nguyên nhân và cách xử lý để bảo vệ bản thân và người khác khi gặp nguy cơ đuối nước.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NÓNG',
+                explored: 'Một tình huống đuối nước có thể xảy ra trong đời sống thực tế.',
+                nextQuestion: 'Phóng viên cần nhận nhiệm vụ điều tra điều gì?'
+            },
+            // --- GIAI ĐOẠN 2 (9 to 14) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ phóng viên',
+                dna: 'Situation',
+                stageNum: 2
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ phóng viên',
+                actTitle: 'NHẬN NHIỆM VỤ TỪ TÒA SOẠN',
+                goal: '• Hiểu chủ đề điều tra\n• Xác định câu hỏi trọng tâm',
+                image: 'welcome_screen_1781236319288.png',
+                extra: 'Nhiệm vụ từ Nova News: Điều tra nguy cơ đuối nước, tìm cách phòng tránh, thu thập thông tin giúp trẻ em an toàn.'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ phóng viên',
+                actTitle: 'NHẬN NHIỆM VỤ TỪ TÒA SOẠN',
+                steps: ["Tiếp nhận nhiệm vụ chính thức từ tổng biên tập."]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ phóng viên',
+                actTitle: 'NHẬN NHIỆM VỤ TỪ TÒA SOẠN',
+                prompt: 'Nova News giao nhiệm vụ điều tra:\n- Những nguy cơ đuối nước nào thường gặp?\n- Vì sao chúng nguy hiểm?\n- Làm thế nào để phòng tránh?',
+                product: 'Bộ câu hỏi điều tra chính thức',
+                format: 'Cả lớp',
+                time: '4 phút',
+                interactiveId: 'reporter-questions'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ phóng viên',
+                actTitle: 'NHẬN NHIỆM VỤ TỪ TÒA SOẠN',
+                results: '• Tiếp nhận thành công nhiệm vụ điều tra các nguy cơ đuối nước.\n• Tìm cách phòng tránh và thu thập thông tin giúp ích cho trẻ em.\n• Xây dựng bộ câu hỏi điều tra ban đầu.',
+                message: 'Phóng viên cần xác định đúng câu hỏi điều tra trước khi thu thập thông tin.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ phóng viên',
+                actTitle: 'NHẬN NHIỆM VỤ TỪ TÒA SOẠN',
+                explored: 'Nhiệm vụ và bộ câu hỏi điều tra của phóng viên Nova News.',
+                nextQuestion: 'Những nhân chứng đã gặp tình huống nguy hiểm nào?'
+            },
+            // --- GIAI ĐOẠN 3 (15 to 20) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Thu thập thông tin',
+                dna: 'Experience',
+                stageNum: 3
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Thu thập thông tin',
+                actTitle: 'PHỎNG VẤN NHÂN CHỨNG',
+                goal: '• Thu thập dữ kiện thực tế\n• Xác định các nguy cơ đuối nước',
+                image: 'witness_profiles_1781236367723.png',
+                extra: 'Hồ sơ nhân chứng:\n- Nhân chứng 1 bị chuột rút khi đang bơi.\n- Nhân chứng 2 gặp dòng nước xoáy.\n- Nhân chứng 3 thuyền bị lật.'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Thu thập thông tin',
+                actTitle: 'PHỎNG VẤN NHÂN CHỨNG',
+                steps: ["Đọc hồ sơ lời khai nhân chứng.", "Xác định rõ nguy cơ tương ứng."]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Thu thập thông tin',
+                actTitle: 'PHỎNG VẤN NHÂN CHỨNG',
+                prompt: 'Mỗi nhóm nhận hồ sơ nhân chứng. Nhiệm vụ:\n- Nhân chứng đã gặp tình huống nào?\n- Em phát hiện những nguy cơ đuối nước nào?\n\nCác nhóm ghi kết quả lên phiếu điều tra.',
+                product: 'Danh sách nguy cơ đuối nước',
+                format: 'Nhóm 4',
+                time: '7 phút',
+                interactiveId: 'witness-matching'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Thu thập thông tin',
+                actTitle: 'PHỎNG VẤN NHÂN CHỨNG',
+                results: '• Xác định tình huống chuột rút khi đang bơi.\n• Nhận biết dòng nước xoáy dữ dội dưới lòng sâu.\n• Nhận biết tình huống thuyền di chuyển bị lật bất ngờ.',
+                message: 'Thu thập dữ kiện giúp phóng viên nhận diện các nguy cơ trước khi phân tích.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Thu thập thông tin',
+                actTitle: 'PHỎNG VẤN NHÂN CHỨNG',
+                explored: 'Các tình huống nhân chứng gặp phải và danh sách nguy cơ đuối nước.',
+                nextQuestion: 'Vì sao những tình huống này nguy hiểm?'
+            },
+            // --- GIAI ĐOẠN 4 (21 to 26) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Khám phá các góc nhìn',
+                dna: 'Thinking',
+                stageNum: 4
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Khám phá các góc nhìn',
+                actTitle: 'NHÌN TỪ GÓC ĐỘ NHÂN CHỨNG',
+                goal: '• Hiểu vì sao các tình huống đó nguy hiểm\n• Nhìn vấn đề từ góc độ người gặp nạn',
+                image: 'analysis_sheet.png'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Khám phá các góc nhìn',
+                actTitle: 'NHÌN TỪ GÓC ĐỘ NHÂN CHỨNG',
+                steps: ["Phân tích hậu quả chi tiết của từng nguy cơ."]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Khám phá các góc nhìn',
+                actTitle: 'NHÌN TỪ GÓC ĐỘ NHÂN CHỨNG',
+                prompt: 'Thảo luận:\n- Vì sao chuột rút khi đang bơi lại nguy hiểm?\n- Điều gì có thể xảy ra khi gặp nước xoáy?\n- Người trên thuyền bị lật sẽ gặp khó khăn gì?\n\nHoàn thành bảng Nguy cơ ➔ Hậu quả.',
+                product: 'Bảng phân tích nguy cơ và hậu quả',
+                format: 'Nhóm 4',
+                time: '6 phút',
+                interactiveId: 'reflection-consequences'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Khám phá các góc nhìn',
+                actTitle: 'NHÌN TỪ GÓC ĐỘ NHÂN CHỨNG',
+                results: '• Chuột rút ➔ Gây co cơ, mất khả năng bơi và di chuyển dưới nước.\n• Nước xoáy ➔ Hút chìm xuống dòng chảy xiết nguy hiểm.\n• Lật thuyền ➔ Rơi bất ngờ, ngạt thở nếu không có thiết bị bảo vệ.',
+                message: 'Những tình huống này đều có thể khiến người gặp nạn mất khả năng tự bảo vệ bản thân dưới nước.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Khám phá các góc nhìn',
+                actTitle: 'NHÌN TỪ GÓC ĐỘ NHÂN CHỨNG',
+                explored: 'Hậu quả có thể xảy ra từ từng nguy cơ đuối nước.',
+                nextQuestion: 'Từ các nguy cơ vừa phân tích, chúng ta nên làm gì để phòng tránh?'
+            },
+            // --- GIAI ĐOẠN 5 (27 to 37) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                dna: 'Decision',
+                stageNum: 5
+            },
+            // Act 5.1: Tìm giải pháp
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'TÌM GIẢI PHÁP',
+                goal: '• Xác định thông tin quan trọng nhất\n• Tìm giải pháp phòng tránh',
+                image: 'solution_table.png'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'TÌM GIẢI PHÁP',
+                steps: ["Nhóm thảo luận tìm cách phòng tránh từ nguy cơ đã biết."]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'TÌM GIẢI PHÁP',
+                prompt: 'Thảo luận:\nTừ các nguy cơ vừa phân tích, chúng ta nên làm gì để phòng tránh?',
+                product: 'Danh sách giải pháp phòng tránh',
+                format: 'Nhóm',
+                time: '6 phút',
+                interactiveId: 'solution-discussion'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'TÌM GIẢI PHÁP',
+                results: '• Khởi động kỹ trước khi xuống nước để tránh chuột rút.\n• Mặc áo phao đúng quy chuẩn khi đi thuyền.\n• Tránh xa các vùng nước có biển cảnh báo nguy hiểm.',
+                message: 'Kết nối nguy cơ với giải pháp giúp phòng tránh đuối nước chủ động hơn.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'TÌM GIẢI PHÁP',
+                explored: 'Các giải pháp phòng tránh tương ứng với từng nguy cơ.',
+                nextQuestion: 'Những vật nào có thể hỗ trợ nổi trên mặt nước?'
+            },
+            // Act 5.2: Vật nổi
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'VẬT NÀO GIÚP MÌNH NỔI?',
+                goal: '• Xác định thông tin quan trọng nhất\n• Phân loại vật dụng hỗ trợ nổi',
+                image: 'floating_objects_1781236383139.png',
+                extra: 'Thẻ hình ảnh điều tra thực tế gồm: áo phao, can nhựa rỗng, khúc cây nổi, cục đá, cành cây chìa ra bờ.'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'VẬT NÀO GIÚP MÌNH NỔI?',
+                steps: ["Phân loại các vật vào 2 nhóm: Giúp nổi / Không giúp nổi."]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'VẬT NÀO GIÚP MÌNH NỔI?',
+                prompt: 'Phân loại các vật: áo phao, can nhựa rỗng, khúc cây nổi, cục đá, cành cây chìa ra bờ vào 2 nhóm: Giúp nổi / Không giúp nổi.',
+                product: 'Danh sách vật hỗ trợ nổi',
+                format: 'Nhóm',
+                time: '6 phút',
+                interactiveId: 'buoyancy-drag-drop'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'VẬT NÀO GIÚP MÌNH NỔI?',
+                results: '• Giúp nổi: áo phao, can nhựa rỗng, khúc cây nổi, cành cây chìa ra bờ.\n• Không giúp nổi: cục đá (chìm hẳn).\n• Điểm chung: là vật nổi hoặc giúp cơ thể duy trì trên mặt nước.',
+                message: 'Vật hỗ trợ cần là vật nổi hoặc giúp cơ thể duy trì trên mặt nước.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Tìm ra điều quan trọng',
+                actTitle: 'VẬT NÀO GIÚP MÌNH NỔI?',
+                explored: 'Các vật có thể và không thể hỗ trợ nổi cứu sinh.',
+                nextQuestion: 'Làm thế nào chuyển thông tin đã điều tra thành sổ tay hữu ích?'
+            },
+            // --- GIAI ĐOẠN 6 (38 to 43) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Thông điệp phóng viên',
+                dna: 'Action',
+                stageNum: 6
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Thông điệp phóng viên',
+                actTitle: 'SỔ TAY PHÓNG VIÊN',
+                goal: '• Chuyển thông tin thành sản phẩm truyền thông hữu ích',
+                image: 'reporter_notebook_1781236401501.png',
+                notebookLeft: '📓 SỔ TAY PHÒNG TRÁNH\n\n🔍 Chuột rút ➔ Khởi động\n🌪️ Nước xoáy ➔ Tránh xa\n⛵ Lật thuyền ➔ Mặc áo phao',
+                notebookRight: '🦺 VẬT HỖ TRỢ NỔI\n\n✔ Áo phao\n✔ Can nhựa rỗng\n✔ Khúc cây nổi\n✔ Cành cây'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Thông điệp phóng viên',
+                actTitle: 'SỔ TAY PHÓNG VIÊN',
+                steps: ["Nhóm cùng hợp tác hoàn thiện sổ tay phóng viên.", "Đại diện nhóm đứng trước lớp tự tin chia sẻ."]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Thông điệp phóng viên',
+                actTitle: 'SỔ TAY PHÓNG VIÊN',
+                prompt: 'Nhóm hoàn thiện sổ tay: Chuột rút ➔ Khởi động trước khi xuống nước; Nước xoáy ➔ Tránh khu vực nguy hiểm; Lật thuyền ➔ Mặc áo phao. Vật hỗ trợ nổi: áo phao, can rỗng, khúc cây, cành cây. Đại diện nhóm chia sẻ.',
+                product: 'Sổ tay phóng viên hoàn chỉnh',
+                format: 'Nhóm 4',
+                time: '10 phút',
+                interactiveId: 'notebook-preview'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Thông điệp phóng viên',
+                actTitle: 'SỔ TAY PHÓNG VIÊN',
+                results: '• Hệ thống hóa Nguy cơ ➔ Cách phòng tránh.\n• Tổng hợp danh sách vật hỗ trợ nổi.\n• Chia sẻ và thuyết trình sổ tay của nhóm.',
+                message: 'Thông tin điều tra cần được chuyển thành sản phẩm dễ hiểu, giúp cảnh báo và hỗ trợ người khác.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Thông điệp phóng viên',
+                actTitle: 'SỔ TAY PHÓNG VIÊN',
+                explored: 'Sổ tay phóng viên phòng tránh đuối nước.',
+                nextQuestion: 'Điều gì khiến em bất ngờ và muốn ghi nhớ sau bài học?'
+            },
+            // --- GIAI ĐOẠN 7 (44 to 49) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                dna: 'Reflection',
+                stageNum: 7
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
+                goal: '• Thực hiện hoạt động tự phản chiếu (Reflection)',
+                image: 'reflection_journal_1781236420017.png',
+                journalText: '📓 NHẬT KÝ PHÓNG VIÊN\n\n⭐ Điều làm em bất ngờ nhất là...\n\n⭐ Nguy cơ em chưa từng nghĩ tới là...\n\n⭐ Điều em muốn ghi nhớ là...'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
+                steps: [
+                    "Hoàn thành: Điều làm em bất ngờ nhất là...",
+                    "Hoàn thành: Nguy cơ em chưa từng nghĩ tới là...",
+                    "Hoàn thành: Điều em muốn ghi nhớ là..."
+                ]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
+                prompt: 'Hoàn thành phiếu Reflection: Điều làm em bất ngờ nhất là…; Nguy cơ em chưa từng nghĩ tới là…; Điều em muốn ghi nhớ là…',
+                product: 'Phiếu Reflection hoàn thiện',
+                format: 'Cá nhân',
+                time: '4 phút',
+                interactiveId: 'reflection-notepad'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
+                results: '• Tự tổng hợp suy ngẫm điều bất ngờ.\n• Xác định rõ các nguy cơ tiềm ẩn.\n• Đúc rút ghi nhớ thiết thực nhất.',
+                message: 'Reflection giúp học sinh nhận ra nhiều nguy cơ đuối nước có thể xuất hiện trong cuộc sống hằng ngày.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
+                explored: 'Những điều bất ngờ, nguy cơ chưa từng nghĩ tới và điều cần ghi nhớ.',
+                nextQuestion: 'Sau bài học này, em sẽ hành động như thế nào?'
+            },
+            // --- GIAI ĐOẠN 8 (50 to 55) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                dna: 'Adaptation',
+                stageNum: 8
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                actTitle: 'CAM KẾT AN TOÀN',
+                goal: '• Chuyển bài học thành hành động thực tế',
+                image: 'safety_commitment_1781236438910.png',
+                commitmentText: '📜 BẢN CAM KẾT AN TOÀN\n\n👁️ Em sẽ...\n\n👁️ Em sẽ nhắc bạn...\n\n👁️ Em sẽ báo người lớn khi...'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                actTitle: 'CAM KẾT AN TOÀN',
+                steps: [
+                    "Hoàn thành cam kết: Em sẽ...",
+                    "Hoàn thành cam kết: Em sẽ nhắc bạn...",
+                    "Hoàn thành cam kết: Em sẽ báo người lớn khi..."
+                ]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                actTitle: 'CAM KẾT AN TOÀN',
+                prompt: 'Hoàn thành phiếu cam kết: Sau bài học này: Em sẽ…; Em sẽ nhắc bạn…; Em sẽ báo người lớn khi…',
+                product: 'Cam kết hành động cụ thể',
+                format: 'Cá nhân',
+                time: '3 phút',
+                interactiveId: 'safety-certificate'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                actTitle: 'CAM KẾT AN TOÀN',
+                results: '• Thiết lập cam kết hành động tự bảo vệ.\n• Cam kết chủ động nhắc nhở mọi người xung quanh.\n• Nắm rõ nguyên tắc liên lạc báo người lớn khi thấy nguy cơ.',
+                message: 'An toàn dưới nước bắt đầu từ sự chuẩn bị của mỗi chúng ta.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                actTitle: 'CAM KẾT AN TOÀN',
+                explored: 'Cam kết hành động sau bài học.',
+                nextQuestion: 'Kết thúc bài học.'
+            },
+            // --- END LESSON (56 to 60) ---
+            {
+                type: 'end-takeaways',
+                stage: 'END LESSON',
+                title: 'Tổng Kết Bài Học (Key Takeaways)'
+            },
+            {
+                type: 'end-output',
+                stage: 'END LESSON',
+                title: 'Sản Phẩm Cuối Tiết (Final Output)',
+                image: 'reporter_notebook_1781236401501.png'
+            },
+            {
+                type: 'end-revisit',
+                stage: 'END LESSON',
+                title: 'Quay Lại Câu Hỏi Lớn (Big Question Revisit)'
+            },
+            {
+                type: 'end-reflection',
+                stage: 'END LESSON',
+                title: 'Tự Phản Chiếu (Reflection)'
+            },
+            {
+                type: 'end-commitment',
+                stage: 'END LESSON',
+                title: 'Cam Kết Hành Động (Action Commitment)'
+            }
+        ];
+
+        // ---------------------------------------------------------------------
+        // STATE MANAGEMENT
+        // ---------------------------------------------------------------------
+        let currentSlideIdx = 0;
+
+        // ---------------------------------------------------------------------
+        // PRESENTATION CONTROLS
+        // ---------------------------------------------------------------------
+        function initPresentation() {
+            renderSlide(currentSlideIdx);
+            populateSlideMenu();
+            
+            // Key listeners
+            document.addEventListener('keydown', function(e) {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                if (e.key === 'ArrowRight') {
+                    goToNextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    goToPrevSlide();
+                }
+            });
+        }
+
+        function toggleMenu() {
+            document.getElementById('slide-menu').classList.toggle('open');
+            document.getElementById('menu-backdrop').classList.toggle('open');
+        }
+
+        function populateSlideMenu() {
+            const menuContainer = document.getElementById('menu-list-items');
+            menuContainer.innerHTML = '';
+            
+            slides.forEach((slide, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'menu-item';
+                if (idx === currentSlideIdx) btn.classList.add('active');
+                
+                let title = slide.title || slide.actTitle || `Slide ${idx + 1}`;
+                if (slide.stage) {
+                    title = `[${slide.stage}] ${title}`;
+                }
+                
+                btn.innerText = `${idx + 1}. ${title}`;
+                btn.onclick = () => {
+                    goToSlide(idx);
+                    toggleMenu();
+                };
+                menuContainer.appendChild(btn);
+            });
+        }
+
+        function goToSlide(idx) {
+            if (idx < 0 || idx >= slides.length) return;
+            currentSlideIdx = idx;
+            renderSlide(currentSlideIdx);
+            
+            // Update active state in menu
+            const buttons = document.querySelectorAll('.menu-item');
+            buttons.forEach((btn, i) => {
+                if (i === idx) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+        }
+
+        function goToNextSlide() {
+            if (currentSlideIdx < slides.length - 1) {
+                goToSlide(currentSlideIdx + 1);
+            }
+        }
+
+        function goToPrevSlide() {
+            if (currentSlideIdx > 0) {
+                goToSlide(currentSlideIdx - 1);
+            }
+        }
+        function renderSlide(idx) {
+            const slide = slides[idx];
+            const container = document.getElementById('slide-container');
+            const wrapper = document.getElementById('presentation-wrapper');
+            const stageIndicator = document.getElementById('slide-stage-indicator');
+            const currentNumSpan = document.getElementById('current-slide-num');
+            
+            currentNumSpan.innerText = idx + 1;
+            
+            // Enable/Disable buttons
+            document.getElementById('btn-prev').disabled = idx === 0;
+            document.getElementById('btn-next').disabled = idx === slides.length - 1;
+            
+            // Background type check
+            const isDark = ['welcome', 'big-question', 'role-intro', 'stage-intro', 'act-transition', 'end-takeaways', 'end-output', 'end-revisit', 'end-reflection', 'end-commitment'].includes(slide.type);
+            if (isDark) {
+                wrapper.className = 'dark-slide-bg';
+            } else {
+                wrapper.className = 'light-slide-bg';
+            }
+            
+            // Stage indicator update
+            stageIndicator.innerText = slide.stage;
+            if (slide.stageName) {
+                stageIndicator.innerText += ` • ${slide.stageName}`;
+            }
+
+            container.innerHTML = ''; // Clear
+            
+            // Render layouts
+            let layoutHTML = '';
+
+            if (slide.type === 'welcome') {
+                layoutHTML = `
+                    <div class="slide-content-layout split-layout">
+                        <div class="left-column">
+                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--cyan-accent);">CHỦ ĐỀ: AN TOÀN CÁ NHÂN</div>
+                            <h1 style="font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem;">PHÒNG TRÁNH<br>ĐUỐI NƯỚC</h1>
+                            <div style="display:inline-block; background-color: var(--coral-warning); color: white; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 700; font-size: 0.9rem; align-self: flex-start; margin-bottom: 1rem;">VAI TRÒ HỌC SINH: PHÓNG VIÊN</div>
+                            
+                            <div class="content-card">
+                                <div class="card-header">🎯 Mục tiêu bài học</div>
+                                <ul class="bullet-list">
+                                    ${slide.content.map(pt => `<li>${map_icon_to_text(pt)}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-top: 1rem; display: flex;">
+                                <button class="story-nav-btn" onclick="goToNextSlide()">Bắt đầu phát phóng sự 📺</button>
+                            </div>
+                        </div>
+                        <div class="right-column">
+                            <img src="images/${slide.image}" class="visual-img" alt="Welcome Image">
+                        </div>
+                    </div>
+                `;
+            } 
+            
+            else if (slide.type === 'big-question') {
+                layoutHTML = `
+                    <div class="slide-content-layout" style="text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.8rem; align-items: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: var(--coral-warning); text-transform: uppercase;">Câu hỏi lớn (Big Question)</div>
+                        <div class="content-card" style="border: 2px solid var(--cyan-accent); font-size: 2.2rem; font-weight: 800; padding: 2rem; width: 100%; text-shadow: 0 0 10px rgba(0,229,255,0.2);">
+                            ❓ ${slide.question}
+                        </div>
+                        <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; width: 100%; margin-top: 1rem;">
+                            <img src="images/${slide.image}" class="visual-img" style="max-height: 250px;" alt="Big Question Situation">
+                            <div style="text-align: left; max-width: 400px; color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; display: flex; flex-direction: column; gap: 1.2rem;">
+                                <div>🚨 <b>TÌNH HUỐNG GỢI SUY NGHĨ:</b><br>Một nhóm học sinh đi chơi gần sông, một bạn bị trượt chân xuống nước, các bạn còn lại chưa biết làm gì.</div>
+                                <button class="story-nav-btn" onclick="goToNextSlide()">Tiếp nhận phóng sự 🎤</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'role-intro') {
+                layoutHTML = `
+                    <div class="slide-content-layout split-layout">
+                        <div class="left-column">
+                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--cyan-accent);">GIỚI THIỆU VAI TRÒ</div>
+                            <h2 style="border:none; margin:0; padding:0; font-size: 2.4rem; font-weight: 800;">VAI TRÒ: PHÓNG VIÊN NOVA NEWS</h2>
+                            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">🎤 ${slide.description}</p>
+                            
+                            <div class="content-card">
+                                <div class="card-header" style="color: var(--coral-warning);">📋 Nhiệm vụ chính của em</div>
+                                <ul class="bullet-list">
+                                    ${slide.tasks.map(t => `<li>${map_icon_to_text(t)}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div style="background-color: var(--coral-warning); padding: 0.8rem 1.2rem; border-radius: 8px; font-weight: 700; font-size: 1.1rem; width: 100%; color: white;">
+                                ❓ CÂU HỎI TRỌNG TÂM: Ai liên quan? Có những góc nhìn nào?
+                            </div>
+                            
+                            <div style="margin-top: 0.5rem; display: flex;">
+                                <button class="story-nav-btn" onclick="goToNextSlide()">Bắt đầu nhiệm vụ 📋</button>
+                            </div>
+                        </div>
+                        <div class="right-column">
+                            <img src="images/${slide.image}" class="visual-img" alt="Reporter Gear">
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'stage-intro') {
+                layoutHTML = `
+                    <div class="slide-content-layout stage-intro-layout" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: var(--cyan-accent); letter-spacing: 1px;">LESSON DNA: ${slide.dna.toUpperCase()}</div>
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--coral-warning);">GIAI ĐOẠN 0${slide.stageNum}</div>
+                        <h1 style="font-size: 4rem; font-weight: 800; text-transform: uppercase; line-height: 1.2; margin-bottom: 1.5rem;">${slide.stageName}</h1>
+                        <div style="width: 150px; height: 5px; background-color: var(--cyan-accent); border-radius: 2px;"></div>
+                        <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 1rem;">🎤 Nhiệm vụ Phóng viên Nova News</p>
+                        <button class="story-nav-btn" onclick="goToNextSlide()">Bắt đầu hoạt động ⚙️</button>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'act-intro') {
+                layoutHTML = `
+                    <div class="slide-content-layout split-layout">
+                        <div class="left-column">
+                            <h2 class="slide-title-bar">Hoạt động: <span>${slide.actTitle}</span></h2>
+                            
+                            <div class="content-card">
+                                <div class="card-header">🎯 Mục tiêu hoạt động</div>
+                                <ul class="bullet-list">
+                                    ${slide.goal.split('\n').map(g => `<li>${map_icon_to_text(g)}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            ${slide.extra ? `
+                                <div class="content-card" style="background-color: rgba(28,37,65,0.03);">
+                                    <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); font-style: italic;">📝 ${slide.extra}</p>
+                                </div>
+                            ` : ''}
+                            
+                            <div style="margin-top: 1rem; display: flex;">
+                                <button class="story-nav-btn" onclick="goToNextSlide()">Xem hướng dẫn thực hiện 💡</button>
+                            </div>
+                        </div>
+                        
+                        <div class="right-column">
+                            ${slide.tableHeader ? `
+                                <table class="slide-table">
+                                    <thead>
+                                        <tr>
+                                            ${slide.tableHeader.map(th => `<th>${th}</th>`).join('')}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${slide.tableRows.map(row => `
+                                            <tr>
+                                                ${row.map(td => `<td>${td}</td>`).join('')}
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            ` : slide.notebookLeft ? `
+                                <div style="position: relative; display: inline-block; max-width: 100%;">
+                                    <img src="images/${slide.image}" class="visual-img" style="display: block;" alt="Notebook">
+                                    <!-- Left Page overlay -->
+                                    <div style="position: absolute; top: 10%; left: 8%; width: 38%; height: 80%; font-size: 0.85rem; line-height: 1.5; white-space: pre-line; color: var(--navy-medium); font-weight: 700; text-align: left; overflow: hidden;">
+                                        ${slide.notebookLeft}
+                                    </div>
+                                    <!-- Right Page overlay -->
+                                    <div style="position: absolute; top: 10%; left: 54%; width: 38%; height: 80%; font-size: 0.85rem; line-height: 1.5; white-space: pre-line; color: var(--navy-medium); font-weight: 700; text-align: left; overflow: hidden;">
+                                        ${slide.notebookRight}
+                                    </div>
+                                </div>
+                            ` : slide.journalText ? `
+                                <div style="position: relative; display: inline-block; max-width: 100%;">
+                                    <img src="images/${slide.image}" class="visual-img" style="display: block;" alt="Journal">
+                                    <div style="position: absolute; top: 25%; left: 8%; width: 84%; height: 65%; font-size: 0.95rem; line-height: 1.5; white-space: pre-line; color: var(--navy-medium); font-weight: 700; text-align: left; overflow: hidden;">
+                                        ${slide.journalText}
+                                    </div>
+                                </div>
+                            ` : slide.commitmentText ? `
+                                <div style="position: relative; display: inline-block; max-width: 100%;">
+                                    <img src="images/${slide.image}" class="visual-img" style="display: block;" alt="Commitment">
+                                    <div style="position: absolute; top: 32%; left: 16%; width: 68%; height: 50%; font-size: 0.95rem; line-height: 1.6; white-space: pre-line; color: var(--navy-medium); font-weight: 700; text-align: center; overflow: hidden;">
+                                        ${slide.commitmentText}
+                                    </div>
+                                </div>
+                            ` : `
+                                <img src="images/${slide.image}" class="visual-img" alt="Activity Image">
+                            `}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'act-howto') {
+                layoutHTML = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>${slide.actTitle}</span> • HƯỚNG DẪN THỰC HIỆN</h2>
+                        <div class="grid-layout" style="margin-top: 2rem;">
+                            ${slide.steps.map((st, i) => `
+                                <div class="step-card">
+                                    <div class="step-number">${i+1}</div>
+                                    <div class="step-text">${st}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div style="margin-top: 2rem; display: flex; justify-content: center; width: 100%;">
+                            <button class="story-nav-btn" onclick="goToNextSlide()">Bắt đầu hoạt động ⚙️</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'act-workspace') {
+                // If it is an interactive workspace slide, render the custom interactive widget
+                if (slide.interactiveId) {
+                    layoutHTML = renderInteractiveWidget(slide);
+                } else {
+                    layoutHTML = `
+                        <div class="slide-content-layout">
+                            <h2 class="slide-title-bar">Hoạt động: <span>${slide.actTitle}</span> • KHÔNG GIAN THẢO LUẬN</h2>
+                            <div class="workspace-layout" style="margin-top: 1.5rem;">
+                                <div class="content-card">
+                                    <div class="card-header" style="background-color: var(--navy-medium); color: white; padding: 0.6rem 1rem; border-radius: 6px; margin: -1.5rem -1.5rem 1.2rem -1.5rem;">📋 Đề bài thảo luận</div>
+                                    <p style="font-size: 1.2rem; line-height: 1.6; white-space: pre-line;">${slide.prompt}</p>
+                                </div>
+                                <div class="workspace-right-info">
+                                    <div class="content-card">
+                                        <div class="card-header">⚙️ Yêu cầu hoàn thành</div>
+                                        <p style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700; color: var(--text-muted);">Sản phẩm:</p>
+                                        <p style="font-size: 1.15rem; font-weight: 600; margin-bottom: 1.2rem;">📝 ${slide.product}</p>
+                                        <p style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700; color: var(--text-muted);">Hình thức tổ chức:</p>
+                                        <p style="font-size: 1.15rem; font-weight: 600;">👥 ${slide.format}</p>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                        <div class="time-badge">
+                                            ⏱️ ${slide.time}
+                                        </div>
+                                        <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="goToNextSlide()">Hoàn thành hoạt động 📈</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            else if (slide.type === 'act-debrief') {
+                layoutHTML = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>${slide.actTitle}</span> • BÁO CÁO & CHỐT KIẾN THỨC</h2>
+                        <div class="debrief-layout" style="margin-top: 1.5rem;">
+                            <div class="content-card">
+                                <div class="card-header" style="background-color: var(--navy-medium); color: white; padding: 0.6rem 1rem; border-radius: 6px; margin: -1.5rem -1.5rem 1.2rem -1.5rem;">📈 KẾT QUẢ THU HOẠCH</div>
+                                <ul class="bullet-list">
+                                    ${slide.results.split('\n').map(r => `<li>${map_icon_to_text(r)}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                                <div class="debrief-callout">
+                                    <div class="debrief-callout-header">💡 THÔNG ĐIỆP CHÍNH</div>
+                                    <div class="debrief-callout-text">📢 ${slide.message}</div>
+                                </div>
+                                <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="goToNextSlide()">Tiếp tục hành trình ➔</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'act-transition') {
+                layoutHTML = `
+                    <div class="slide-content-layout transition-layout">
+                        <div style="font-size: 1.1rem; font-weight: 700; color: var(--cyan-accent); text-transform: uppercase;">HOÀN THÀNH HOẠT ĐỘNG: ${slide.actTitle}</div>
+                        <div class="explored-box">
+                            Chúng ta vừa khám phá:
+                            <span>👉 ${slide.explored}</span>
+                        </div>
+                        <div class="next-question-box">
+                            Câu hỏi tiếp theo dành cho phóng viên:
+                            <span>❓ ${slide.nextQuestion}</span>
+                        </div>
+                        <button class="story-nav-btn" style="padding: 0.8rem 2.5rem; font-size: 1.1rem; margin-top: 1rem;" onclick="goToNextSlide()">TIẾP TỤC ➔</button>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'end-takeaways') {
+                layoutHTML = `
+                    <div class="slide-content-layout" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <h1 style="font-size: 2.2rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">TỔNG KẾT BÀI HỌC (KEY TAKEAWAYS)</h1>
+                        <div class="grid-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent);">
+                                <div class="card-header">📚 KIẾN THỨC</div>
+                                <ul class="bullet-list">
+                                    <li>📚 Nhận biết các nguy cơ đuối nước phổ biến</li>
+                                    <li>🛡️ Biết một số biện pháp phòng tránh</li>
+                                    <li>🦺 Biết các vật có thể hỗ trợ nổi trên mặt nước</li>
+                                </ul>
+                            </div>
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent);">
+                                <div class="card-header">🛠️ KỸ NĂNG</div>
+                                <ul class="bullet-list">
+                                    <li>🔍 Thu thập thông tin điều tra</li>
+                                    <li>🌪️ Phân tích tình huống nguy hiểm</li>
+                                    <li>💡 Kết nối nguyên nhân và giải pháp</li>
+                                </ul>
+                            </div>
+                            <div class="content-card" style="background-color: var(--coral-warning); border-color: var(--coral-warning);">
+                                <div class="card-header" style="color: white;">📢 THÔNG ĐIỆP CHÍNH</div>
+                                <p style="font-size: 1.3rem; font-weight: 700; line-height: 1.6; text-align: center; margin-top: 1.5rem; color: white;">
+                                    📢 An toàn dưới nước bắt đầu từ sự chuẩn bị của mỗi chúng ta.
+                                </p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex;">
+                            <button class="story-nav-btn" onclick="goToNextSlide()">Xem sản phẩm cuối tiết 📖</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'end-output') {
+                layoutHTML = `
+                    <div class="slide-content-layout" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <h1 style="font-size: 2.2rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">SẢN PHẨM CUỐI TIẾT (FINAL OUTPUT)</h1>
+                        <div class="split-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent);">
+                                <div class="card-header">📖 Sổ tay phóng viên phòng tránh đuối nước</div>
+                                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 700;">Thành phần chính của sản phẩm:</p>
+                                <ul class="bullet-list">
+                                    <li>🔍 Nhận diện các nguy cơ đuối nước phổ biến.</li>
+                                    <li>🛡️ Đề xuất cách phòng tránh tương ứng.</li>
+                                    <li>🦺 Danh sách những vật hỗ trợ nổi khẩn cấp.</li>
+                                </ul>
+                            </div>
+                            <div style="position: relative; display: inline-block; max-width: 100%;">
+                                <img src="images/${slide.image}" class="visual-img" style="display: block;" alt="Notebook">
+                                <!-- Notebook contents overlay -->
+                                <div style="position: absolute; top: 10%; left: 8%; width: 38%; height: 80%; font-size: 0.85rem; line-height: 1.5; white-space: pre-line; color: var(--navy-medium); font-weight: 700; text-align: left; overflow: hidden;">
+                                    📓 SỔ TAY PHÒNG TRÁNH\n\n🔍 Chuột rút ➔ Khởi động\n🌪️ Nước xoáy ➔ Tránh xa\n⛵ Lật thuyền ➔ Mặc áo phao
+                                </div>
+                                <div style="position: absolute; top: 10%; left: 54%; width: 38%; height: 80%; font-size: 0.85rem; line-height: 1.5; white-space: pre-line; color: var(--navy-medium); font-weight: 700; text-align: left; overflow: hidden;">
+                                    🦺 VẬT HỖ TRỢ NỔI\n\n✔ Áo phao\n✔ Can nhựa rỗng\n✔ Khúc cây nổi\n✔ Cành cây
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex;">
+                            <button class="story-nav-btn" onclick="goToNextSlide()">Quay lại câu hỏi lớn ❓</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'end-revisit') {
+                layoutHTML = `
+                    <div class="slide-content-layout" style="text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+                        <h1 style="font-size: 2.2rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; width: 100%; text-align: left;">QUAY LẠI CÂU HỎI LỚN (BIG QUESTION REVISIT)</h1>
+                        
+                        <div class="content-card" style="border: 2px solid var(--coral-warning); background-color: var(--navy-medium); padding: 1.5rem; width: 100%; text-align: left;">
+                            <div style="font-size: 0.9rem; font-weight: 700; color: var(--coral-warning); margin-bottom: 0.5rem;">❓ CÂU HỎI LỚN ĐẦU GIỜ:</div>
+                            <p style="font-size: 1.6rem; font-weight: 700;">Làm thế nào để phòng tránh đuối nước và giúp người khác an toàn hơn?</p>
+                        </div>
+                        
+                        <div class="content-card" style="background-color: var(--cyan-accent); color: var(--bg-dark); padding: 2rem; width: 100%; text-align: left;">
+                            <div style="font-size: 0.9rem; font-weight: 800; color: var(--bg-dark); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">💡 CÂU TRẢ LỜI ĐÚC RÚT SAU BÀI HỌC:</div>
+                            <p style="font-size: 1.6rem; font-weight: 800; line-height: 1.5;">
+                                📢 Đuối nước không chỉ xảy ra khi bơi. Nhiều tình huống khác nhau đều có thể dẫn đến đuối nước. Nhận biết nguy cơ sớm và chuẩn bị trước là cách tốt nhất để bảo vệ bản thân.
+                            </p>
+                        </div>
+                        <div style="width: 100%; text-align: left; margin-top: 1rem;">
+                            <button class="story-nav-btn" onclick="goToNextSlide()">Xem tự phản chiếu tổng kết 💭</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'end-reflection') {
+                layoutHTML = `
+                    <div class="slide-content-layout" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <h1 style="font-size: 2.2rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">TỰ PHẢN CHIẾU (REFLECTION)</h1>
+                        <div class="grid-layout" style="grid-template-columns: 1fr 1fr; margin-top: 1rem; gap: 1.2rem;">
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent); border-width: 1px;">
+                                <div class="card-header">⭐ ĐIỀU EM BẤT NGỜ NHẤT LÀ...</div>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); font-style: italic;">
+                                    (Học sinh tự điền chia sẻ: Nhiều nguy cơ đuối nước phát sinh rất thầm lặng trong đời sống sinh hoạt, không chỉ đơn giản là đi bơi sông hồ.)
+                                </p>
+                            </div>
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent); border-width: 1px;">
+                                <div class="card-header">💭 TRƯỚC ĐÂY EM NGHĨ...</div>
+                                <p style="font-size: 1.05rem; line-height: 1.5;">
+                                    💭 Trước đây em nghĩ đuối nước chỉ xảy ra với những người không biết bơi hoặc khi cố tình tắm ở hồ sâu. Nghĩ rằng chỉ cần đứng xa mép nước là hoàn toàn vô hại.
+                                </p>
+                            </div>
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent); border-width: 1px;">
+                                <div class="card-header">💡 BÂY GIỜ EM HIỂU RẰNG...</div>
+                                <p style="font-size: 1.05rem; line-height: 1.5;">
+                                    💡 Nhiều nguy cơ đuối nước có thể xuất hiện trong cuộc sống hằng ngày (như chuột rút khi bơi, lật thuyền, hoặc trượt ngã mép nước). Nhận diện nguy cơ sớm là cách tốt nhất.
+                                </p>
+                            </div>
+                            <div class="content-card" style="background-color: var(--coral-warning); border-color: var(--coral-warning);">
+                                <div class="card-header" style="color: white;">🎤 GÓC NHÌN PHÓNG VIÊN (ROLE LENS)</div>
+                                <p style="font-size: 1.05rem; line-height: 1.5; color: white;">
+                                    🎤 Nếu là phóng viên Nova News, em muốn cảnh báo cộng đồng về nguy cơ nào nhất? Vì sao? Em sẽ chọn kênh truyền thông nào để đạt hiệu quả?
+                                </p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex;">
+                            <button class="story-nav-btn" onclick="goToNextSlide()">Xem cam kết hành động cuối 📜</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'end-commitment') {
+                layoutHTML = `
+                    <div class="slide-content-layout" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <h1 style="font-size: 2.2rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">CAM KẾT HÀNH ĐỘNG (ACTION COMMITMENT)</h1>
+                        <div class="grid-layout" style="margin-top: 1rem; gap: 1.5rem;">
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent); border-width: 1.5px; text-align: center;">
+                                <div class="card-header" style="font-size: 1.2rem; margin-bottom: 1rem;">👁️ CAM KẾT 1</div>
+                                <p style="font-size: 1.05rem; line-height: 1.6;">Quan sát nguy cơ sông nước xung quanh mỗi khi đến gần khu vực sông, hồ, ao, suối, biển.</p>
+                            </div>
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent); border-width: 1.5px; text-align: center;">
+                                <div class="card-header" style="font-size: 1.2rem; margin-bottom: 1rem;">🚣 CAM KẾT 2</div>
+                                <p style="font-size: 1.05rem; line-height: 1.6;">Luôn mặc áo phao cứu hộ đúng cách khi đi đò, thuyền hoặc tham gia các trò chơi dưới nước.</p>
+                            </div>
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent); border-width: 1.5px; text-align: center;">
+                                <div class="card-header" style="font-size: 1.2rem; margin-bottom: 1rem;">🗣️ CAM KẾT 3</div>
+                                <p style="font-size: 1.05rem; line-height: 1.6;">Tuyên truyền, nhắc nhở bạn bè và người thân xung quanh thực hiện tốt quy tắc phòng tránh đuối nước.</p>
+                            </div>
+                        </div>
+                        <div style="background-color: var(--coral-warning); padding: 0.8rem; border-radius: 8px; font-weight: 700; font-size: 1.2rem; text-align: center; margin-top: 1rem; color: white;">
+                            🛠️ CÔNG CỤ HỖ TRỢ CHÍNH: Sổ tay phóng viên phòng tránh đuối nước.
+                        </div>
+                        <div style="margin-top: 1rem; display: flex; justify-content: center;">
+                            <button class="story-nav-btn" onclick="showCompletionScreen()">Hoàn thành tiết học 🎉</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = layoutHTML;
+            
+            // Post-render widget initialization if applicable
+            if (slide.type === 'act-workspace' && slide.interactiveId) {
+                initInteractiveWidget(slide.interactiveId);
+            }
+        }
+
+        function renderInteractiveWidget(slide) {
+            let html = '';
+            
+            // 1. Stage 1: Tin Nóng Clue Hunt
+            if (slide.interactiveId === 'news-clue-hunt') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>TIN NÓNG</span> • KHÔNG GIAN TƯƠNG TÁC</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="padding: 1.2rem;">
+                                <div class="card-header">📺 BẢN TIN NOVA NEWS</div>
+                                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">Click vào các từ ngữ để phát hiện 3 manh mối quan trọng:</p>
+                                <div class="news-hunt-screen" style="font-size: 1.2rem; line-height: 1.8; color: var(--navy-medium);">
+                                    "Một <span class="clickable-word" onclick="toggleClueWord(this, 1)">nhóm học sinh đi chơi gần sông</span>. Một bạn bị <span class="clickable-word" onclick="toggleClueWord(this, 2)">trượt chân xuống nước</span>. Các bạn còn lại <span class="clickable-word" onclick="toggleClueWord(this, 3)">không biết làm gì</span> để cứu bạn."
+                                </div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card" style="padding: 1.2rem;">
+                                    <div class="card-header">📓 Ghi chép manh mối</div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem;">
+                                        <div class="clue-badge" id="clue-badge-1">✓ Manh mối 1: Vui chơi gần sông</div>
+                                        <div class="clue-badge" id="clue-badge-2">✓ Manh mối 2: Tai nạn trượt chân</div>
+                                        <div class="clue-badge" id="clue-badge-3">✓ Manh mối 3: Chưa biết xử lý</div>
+                                    </div>
+                                    <div id="hunt-status-alert" style="margin-top: 1rem; display: none; flex-direction: column; gap: 0.8rem;">
+                                        <div style="padding: 0.5rem; background-color: rgba(0,230,118,0.1); border: 1px solid var(--teal-success); border-radius: 6px; text-align: center; font-weight: 700; font-size: 0.85rem; color: #008f3a;">
+                                            🔓 ĐÃ MỞ KHÓA NHIỆM VỤ!
+                                        </div>
+                                        <button class="story-nav-btn" style="width: 100%; justify-content: center; margin-top: 0;" onclick="showCustomAlert('Chúc mừng phóng viên đã tìm đủ 3 manh mối quan trọng về sự kiện đuối nước khẩn cấp!<br><br>Nhấn ĐÓNG để tiến hành báo cáo kết quả cho tòa soạn.', 'Hoàn thành điều tra tin nóng', '📡', () => goToNextSlide())">BÁO CÁO KẾT QUẢ 📈</button>
+                                    </div>
+                                </div>
+                                <div class="time-badge">⏱️ 5 phút</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 2. Stage 2: Reporter Questions Workspace
+            else if (slide.interactiveId === 'reporter-questions') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>NHIỆM VỤ TÒA SOẠN</span> • KHÔNG GIAN TỰ HỌC</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card">
+                                <div class="card-header">📋 BỘ CÂU HỎI ĐIỀU TRA CỦA PHÓNG VIÊN</div>
+                                <p style="font-size: 0.95rem; margin-bottom: 0.8rem;">Em hãy nhập bổ sung câu hỏi điều tra mà em muốn tìm hiểu để tòa soạn ghi nhận:</p>
+                                <textarea id="custom-question-input" style="width: 100%; height: 80px; background-color: #F8FAFC; border: 1px solid rgba(28,37,65,0.15); border-radius: 8px; padding: 0.8rem; font-family: inherit; font-size: 0.95rem; resize: none; outline: none;" placeholder="Ví dụ: Cần chuẩn bị những gì trước khi xuống nước bơi?..." oninput="saveQuestionState()"></textarea>
+                                <button class="story-nav-btn" style="width: 100%; justify-content: center; margin-top: 1rem;" onclick="submitReporterQuestions()">Gửi câu hỏi điều tra 📈</button>
+                                <div style="margin-top: 0.8rem; padding: 0.5rem; background-color: rgba(0,180,216,0.1); border-radius: 6px; font-size: 0.85rem; font-weight: 600; display: none;" id="question-saved-badge">✓ Đã lưu câu hỏi của phóng viên!</div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <ul class="bullet-list">
+                                        <li>📝 Sản phẩm: Bộ câu hỏi điều tra</li>
+                                        <li>👥 Tổ chức: Cả lớp</li>
+                                    </ul>
+                                </div>
+                                <div class="time-badge">⏱️ 4 phút</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 3. Stage 3: Witness Matching Game
+            else if (slide.interactiveId === 'witness-matching') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>PHỎNG VẤN NHÂN CHỨNG</span> • KẾT NỐI HỒ SƠ</h2>
+                        <div class="witness-deck">
+                            <div class="folders-rack" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <button class="folder-tab-btn active" id="f-tab-1" onclick="selectWitnessTab(1)">🏊 Nhân chứng 1</button>
+                                <button class="folder-tab-btn" id="f-tab-2" onclick="selectWitnessTab(2)">🌀 Nhân chứng 2</button>
+                                <button class="folder-tab-btn" id="f-tab-3" onclick="selectWitnessTab(3)">🛶 Nhân chứng 3</button>
+                            </div>
+                            <div class="dossier-paper" id="dossier-paper-widget">
+                                <div class="dossier-title" id="dossier-title-widget">HỒ SƠ NHÂN CHỨNG #1</div>
+                                <img id="dossier-img-widget" style="max-height: 160px; border-radius: 8px; margin-bottom: 0.8rem; object-fit: cover; border: 1px solid rgba(28, 37, 65, 0.1);" src="images/cramps_swimmer.png" alt="Illustration">
+                                <div class="dossier-quote" id="dossier-text-widget">"Tôi đang bơi giữa hồ bỗng dưng bắp chân cứng đờ, đau điếng không thể đạp nước hay co duỗi được. Tôi hoảng loạn chìm dần..."</div>
+                                <div style="font-weight: 700; font-size: 0.85rem; color: #4A5568; margin-bottom: 0.5rem;">CHỌN NGUY CƠ TƯƠNG ỨNG:</div>
+                                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="dossier-options-widget">
+                                    <!-- Populated in JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 4. Stage 4: Consequences Workspace
+            else if (slide.interactiveId === 'reflection-consequences') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>NHÌN TỪ GÓC ĐỘ NHÂN CHỨNG</span> • PHÂN TÍCH HẬU QUẢ</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="padding: 1rem;">
+                                <div class="card-header">📋 PHIẾU PHÂN TÍCH NGUY CƠ</div>
+                                <table class="slide-table" style="margin-top: 0.5rem;">
+                                    <thead>
+                                        <tr>
+                                            <th>Nguy cơ đuối nước</th>
+                                            <th>Hậu quả xảy ra (Em hãy click chọn)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Chuột rút khi bơi</td>
+                                            <td>
+                                                <select id="conseq-sel-1" style="width:100%; padding:0.4rem; border-radius:4px; font-family:inherit; border:1px solid #CBD5E0;" onchange="saveConseqState()">
+                                                    <option value="">-- Click để chọn hậu quả --</option>
+                                                    <option value="correct">Co cứng cơ chân tay, đau đớn, mất khả năng tự nổi</option>
+                                                    <option value="wrong1">Dễ bị nước cuốn ra xa bờ sông hồ</option>
+                                                    <option value="wrong2">Không có điểm bám víu trên mặt nước</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nước xoáy</td>
+                                            <td>
+                                                <select id="conseq-sel-2" style="width:100%; padding:0.4rem; border-radius:4px; font-family:inherit; border:1px solid #CBD5E0;" onchange="saveConseqState()">
+                                                    <option value="">-- Click để chọn hậu quả --</option>
+                                                    <option value="wrong1">Gây hoảng loạn tinh thần do rơi từ thuyền</option>
+                                                    <option value="correct">Lực cuốn mạnh kéo chìm xuống đáy sâu, cản ngoi lên</option>
+                                                    <option value="wrong2">Gây chuột rút bất ngờ khắp cơ thể</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lật thuyền</td>
+                                            <td>
+                                                <select id="conseq-sel-3" style="width:100%; padding:0.4rem; border-radius:4px; font-family:inherit; border:1px solid #CBD5E0;" onchange="saveConseqState()">
+                                                    <option value="">-- Click để chọn hậu quả --</option>
+                                                    <option value="wrong1">Bị chuột rút bắp đùi không bơi được</option>
+                                                    <option value="wrong2">Cuốn mạnh chìm nhanh xuống dòng sâu</option>
+                                                    <option value="correct">Rơi bất ngờ xuống nước, hoảng loạn uống nước và chìm</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <p style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted);">Sản phẩm:</p>
+                                    <p style="font-size: 1.15rem; font-weight: 600;">📝 Bảng phân tích hoàn chỉnh</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 6 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="submitConsequences()">Báo cáo hậu quả 📈</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 5. Stage 5.1: Solution Discussion Workspace
+            else if (slide.interactiveId === 'solution-discussion') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>TÌM GIẢI PHÁP</span> • KẾT NỐI PHÒNG TRÁNH</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="padding: 1rem;">
+                                <div class="card-header">📋 BẢNG KẾT NỐI PHÒNG TRÁNH</div>
+                                <table class="slide-table" style="margin-top: 0.5rem;">
+                                    <thead>
+                                        <tr>
+                                            <th>Nguy cơ đuối nước</th>
+                                            <th>Giải pháp phòng tránh tương ứng (Click chọn)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Chuột rút khi bơi</td>
+                                            <td>
+                                                <select id="sol-sel-1" style="width:100%; padding:0.4rem; border-radius:4px; font-family:inherit; border:1px solid #CBD5E0;" onchange="saveSolState()">
+                                                    <option value="">-- Click chọn giải pháp --</option>
+                                                    <option value="correct">Khởi động kỹ, làm ấm cơ thể trước khi xuống nước</option>
+                                                    <option value="wrong1">Luôn mặc áo phao cứu sinh đúng cách</option>
+                                                    <option value="wrong2">Không bơi lội gần chân đập nước</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dòng nước xoáy</td>
+                                            <td>
+                                                <select id="sol-sel-2" style="width:100%; padding:0.4rem; border-radius:4px; font-family:inherit; border:1px solid #CBD5E0;" onchange="saveSolState()">
+                                                    <option value="">-- Click chọn giải pháp --</option>
+                                                    <option value="wrong1">Khởi động các khớp đầu gối chân</option>
+                                                    <option value="correct">Tránh xa và cắm biển cảnh báo cấm tắm nơi nguy hiểm</option>
+                                                    <option value="wrong2">Chuẩn bị sẵn khúc gỗ to để bám vào</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lật thuyền đột ngột</td>
+                                            <td>
+                                                <select id="sol-sel-3" style="width:100%; padding:0.4rem; border-radius:4px; font-family:inherit; border:1px solid #CBD5E0;" onchange="saveSolState()">
+                                                    <option value="">-- Click chọn giải pháp --</option>
+                                                    <option value="correct">Luôn mặc áo phao cứu hộ suốt chuyến đi thuyền đò</option>
+                                                    <option value="wrong1">Bơi chậm rãi khởi động trước khi bước lên đò</option>
+                                                    <option value="wrong2">Không tắm biển một mình lúc trời nắng</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <p style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted);">Sản phẩm:</p>
+                                    <p style="font-size: 1.15rem; font-weight: 600;">📝 Danh sách giải pháp tương ứng</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 6 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="submitSolutions()">Báo cáo giải pháp 📈</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 6. Stage 5.2: Buoyancy Drag & Drop Lab
+            else if (slide.interactiveId === 'buoyancy-drag-drop') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>VẬT NÀO GIÚP MÌNH NỔI?</span> • PHÒNG THÍ NGHIỆM NỔI / CHÌM</h2>
+                        <div class="lab-panel-grid">
+                            <div class="items-rack" style="gap: 0.5rem; overflow-y: auto; display: flex; flex-direction: column;">
+                                <div class="draggable-lab-item" id="widget-item-1" draggable="true" ondragstart="dragLabItem(event)" data-float="true" data-avatar="🦺" data-name="Áo phao" onclick="testLabItemWidget('widget-item-1', true, '🦺', 'Áo phao')">
+                                    <span style="font-size: 1.5rem;">🦺</span>
+                                    <span>Áo phao cứu sinh</span>
+                                </div>
+                                <div class="draggable-lab-item" id="widget-item-2" draggable="true" ondragstart="dragLabItem(event)" data-float="true" data-avatar="🥤" data-name="Can nhựa rỗng" onclick="testLabItemWidget('widget-item-2', true, '🥤', 'Can nhựa rỗng')">
+                                    <span style="font-size: 1.5rem;">🥤</span>
+                                    <span>Can nhựa rỗng có nắp</span>
+                                </div>
+                                <div class="draggable-lab-item" id="widget-item-3" draggable="true" ondragstart="dragLabItem(event)" data-float="true" data-avatar="🪵" data-name="Khúc cây nổi" onclick="testLabItemWidget('widget-item-3', true, '🪵', 'Khúc cây nổi')">
+                                    <span style="font-size: 1.5rem;">🪵</span>
+                                    <span>Khúc cây gỗ khô</span>
+                                </div>
+                                <div class="draggable-lab-item" id="widget-item-4" draggable="true" ondragstart="dragLabItem(event)" data-float="false" data-avatar="🪨" data-name="Cục đá" onclick="testLabItemWidget('widget-item-4', false, '🪨', 'Cục đá')">
+                                    <span style="font-size: 1.5rem;">🪨</span>
+                                    <span>Cục đá nặng</span>
+                                </div>
+                                <div class="draggable-lab-item" id="widget-item-5" draggable="true" ondragstart="dragLabItem(event)" data-float="true" data-avatar="🌿" data-name="Cành cây" onclick="testLabItemWidget('widget-item-5', true, '🌿', 'Cành cây')">
+                                    <span style="font-size: 1.5rem;">🌿</span>
+                                    <span>Cành cây chìa ra bờ</span>
+                                </div>
+                                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem; width: 100%;">
+                                    <button class="nav-btn" style="background-color: var(--coral-warning); color:white; font-size: 0.8rem; padding: 0.4rem 0.8rem; flex: 1;" onclick="resetLabWidget()">Bắt đầu lại</button>
+                                    <button class="story-nav-btn" style="padding: 0.4rem 0.8rem; margin-top: 0; font-size: 0.8rem; flex: 1; justify-content: center;" onclick="goToNextSlide()">Tiếp tục ➔</button>
+                                </div>
+                            </div>
+                            
+                            <div class="aquarium" id="aquarium-box" ondragover="allowDropLab(event)" ondrop="dropLabItem(event)">
+                                <div style="position: absolute; top: 0.5rem; right: 0.5rem; background-color: var(--navy-medium); color:white; font-size: 0.75rem; padding:0.2rem 0.6rem; border-radius:10px; font-weight:700; z-index:20;" id="lab-widget-counter">Đã thả: 0/5</div>
+                                <div class="aquarium-water"></div>
+                                <div style="position: absolute; top: 15%; left: 0; width:100%; text-align:center; color:rgba(255,255,255,0.4); font-size: 0.85rem; pointer-events:none;" id="lab-widget-prompt">Kéo thả hoặc Click vào các vật để thả vào nước</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 7. Stage 6: Sổ Tay Phóng Viên Workspace Preview
+            else if (slide.interactiveId === 'notebook-preview') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>SỔ TAY PHÓNG VIÊN</span> • XÂY DỰNG SẢN PHẨM</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div style="position: relative; display: inline-block; max-width: 100%;">
+                                <img src="images/reporter_notebook_1781236401501.png" class="visual-img" style="display: block;" alt="Notebook">
+                                <!-- Left Page Text Area Overlay -->
+                                <div style="position: absolute; top: 10%; left: 8%; width: 38%; height: 80%; overflow: hidden;">
+                                    <p style="font-size: 0.85rem; font-weight: 800; color: var(--navy-medium); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.2rem; margin-bottom: 0.4rem;">📓 SỔ TAY PHÒNG TRÁNH</p>
+                                    <textarea id="nb-left-text" style="width: 100%; height: 80%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.85rem; line-height: 1.5; color: #1e293b; resize: none; font-weight: 700;" placeholder="Nhập ghi chép nguy cơ ➔ giải pháp phòng tránh..." oninput="saveNotebookState()"></textarea>
+                                </div>
+                                <!-- Right Page Text Area Overlay -->
+                                <div style="position: absolute; top: 10%; left: 54%; width: 38%; height: 80%; overflow: hidden;">
+                                    <p style="font-size: 0.85rem; font-weight: 800; color: var(--navy-medium); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.2rem; margin-bottom: 0.4rem;">🦺 VẬT HỖ TRỢ NỔI</p>
+                                    <textarea id="nb-right-text" style="width: 100%; height: 80%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.85rem; line-height: 1.5; color: #1e293b; resize: none; font-weight: 700;" placeholder="Nhập các vật nổi hỗ trợ..." oninput="saveNotebookState()"></textarea>
+                                </div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <p style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted);">Sản phẩm:</p>
+                                    <p style="font-size: 1.1rem; font-weight: 600;">📝 Sổ tay phóng viên hoàn chỉnh</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 10 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="submitNotebook()">Hoàn thành sổ tay 📈</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 8. Stage 7: Reflection Notepad Workspace
+            else if (slide.interactiveId === 'reflection-notepad') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>NHẬT KÝ PHÓNG VIÊN</span> • PHẢN CHIẾU</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div style="position: relative; display: inline-block; max-width: 100%;">
+                                <img src="images/reflection_journal_1781236420017.png" class="visual-img" style="display: block;" alt="Journal">
+                                <!-- Journal page text overlay -->
+                                <div style="position: absolute; top: 25%; left: 8%; width: 84%; height: 65%; overflow: hidden;">
+                                    <p style="font-size: 1.1rem; font-weight: 800; color: var(--navy-medium); border-bottom: 1px dashed rgba(0,0,0,0.15); padding-bottom: 0.2rem; margin-bottom: 0.4rem;">📓 NHẬT KÝ PHẢN CHIẾU</p>
+                                    <textarea id="reflect-note-text" style="width: 100%; height: 85%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 1rem; line-height: 1.6; color: #1e293b; resize: none; font-weight: 700;" placeholder="Em hãy nhập suy ngẫm vào đây:\n- Điều làm em bất ngờ nhất là...\n- Nguy cơ em chưa từng nghĩ tới là...\n- Điều em muốn ghi nhớ nhất là..." oninput="saveReflectionState()"></textarea>
+                                </div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <p style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted);">Sản phẩm:</p>
+                                    <p style="font-size: 1.1rem; font-weight: 600;">📝 Phiếu Nhật ký cá nhân</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 4 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="submitReflection()">Lưu nhật ký 📓</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 9. Stage 8: Safety Certificate Widget
+            else if (slide.interactiveId === 'safety-certificate') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>CAM KẾT AN TOÀN</span> • KÝ CHỨNG NHẬN</h2>
+                        <div class="interactive-cert-box" style="margin-top: 1rem;">
+                            <div class="cert-form" style="color: white; padding: 1.2rem;">
+                                <div class="form-group">
+                                    <label for="reporter-name-widget" style="color: var(--text-light);">Họ tên phóng viên nhí:</label>
+                                    <input type="text" id="reporter-name-widget" placeholder="Nhập họ tên..." style="background-color: var(--bg-dark); color:white;" oninput="updateCertNameWidget()">
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+                                    <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Lựa chọn cam kết:</label>
+                                    <div style="font-size: 0.8rem; display: flex; flex-direction: column; gap: 0.4rem;">
+                                        <label><input type="checkbox" id="w-commit-1" checked onchange="updateCertTextWidget()"> 👁️ Quan sát nguy cơ sông nước</label>
+                                        <label><input type="checkbox" id="w-commit-2" checked onchange="updateCertTextWidget()"> 🦺 Luôn mặc áo phao khi đi thuyền</label>
+                                        <label><input type="checkbox" id="w-commit-3" onchange="updateCertTextWidget()"> 🗣️ Tuyên truyền an toàn đuối nước</label>
+                                    </div>
+                                </div>
+                                <button class="story-nav-btn" style="width: 100%; margin-top: 1rem; justify-content: center;" onclick="signCertWidget()">Ký chứng nhận ✍️</button>
+                            </div>
+                            
+                            <div class="interactive-cert-paper">
+                                <canvas class="confetti-canvas" id="confetti-canvas-widget" style="width:100%; height:100%; position:absolute; top:0; left:0; border-radius:12px; pointer-events:none;"></canvas>
+                                <div style="font-size: 1.3rem; font-weight: 800; border-bottom: 2px solid var(--navy-medium); padding-bottom: 0.2rem; width:100%;">CHỨNG NHẬN CAM KẾT</div>
+                                <div style="font-size: 1.8rem; font-weight: 800; color: var(--navy-medium); margin-top: 0.5rem; border-bottom: 1px dashed #A0AEC0; width: 80%; padding-bottom: 0.2rem; min-height: 35px;" id="cert-name-widget-preview">HỌ TÊN PHÓNG VIÊN</div>
+                                <div style="font-size: 0.85rem; line-height: 1.4; max-width: 90%; text-align: left; font-weight: 600;" id="cert-body-widget-preview">
+                                    Đã thực hiện cam kết an toàn sông nước để bảo vệ bản thân và cộng đồng xung quanh.
+                                </div>
+                                <div style="font-size: 1.6rem; background: radial-gradient(circle, #FFD700 0%, #D4AF37 100%); width: 45px; height:45px; border-radius:50%; border:2px solid var(--navy-medium); display:flex; align-items:center; justify-content:center;">🎖️</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            return html;
+        }
+
+        // ---------------------------------------------------------------------
+        // INTERACTIVE STATE BACKUPS & INITIALIZATION
+        // ---------------------------------------------------------------------
+        const savedStates = {
+            clues: { 1: false, 2: false, 3: false },
+            witnessMatches: { 1: null, 2: null, 3: null },
+            customQuestion: '',
+            consequenceSelections: { 1: '', 2: '', 3: '' },
+            solutionSelections: { 1: '', 2: '', 3: '' },
+            labWidgetTested: new Set(),
+            labWidgetCount: 0,
+            notebookLeft: '',
+            notebookRight: '',
+            reflectionText: '',
+            certName: '',
+            certCommits: { 1: true, 2: true, 3: false }
+        };
+
+        function initInteractiveWidget(widgetId) {
+            // Restore previous inputs or set initial UI
+            if (widgetId === 'news-clue-hunt') {
+                for (let i = 1; i <= 3; i++) {
+                    const word = document.querySelector(`.clickable-word[onclick*="toggleClueWord(this, ${i})"]`);
+                    const badge = document.getElementById(`clue-badge-${i}`);
+                    if (savedStates.clues[i] && word) {
+                        word.classList.add('selected');
+                        badge.classList.add('found');
+                    }
+                }
+                checkClueHuntUnlock();
+            } 
+            
+            else if (widgetId === 'reporter-questions') {
+                document.getElementById('custom-question-input').value = savedStates.customQuestion;
+                if (savedStates.customQuestion !== '') {
+                    document.getElementById('question-saved-badge').style.display = 'block';
+                }
+            }
+            
+            else if (widgetId === 'witness-matching') {
+                selectWitnessTab(1);
+            }
+            
+            else if (widgetId === 'reflection-consequences') {
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById(`conseq-sel-${i}`).value = savedStates.consequenceSelections[i];
+                }
+            }
+            
+            else if (widgetId === 'solution-discussion') {
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById(`sol-sel-${i}`).value = savedStates.solutionSelections[i];
+                }
+            }
+            
+            else if (widgetId === 'notebook-preview') {
+                document.getElementById('nb-left-text').value = savedStates.notebookLeft || "📓 SỔ TAY PHÒNG TRÁNH\n\n🔍 Chuột rút ➔ ....................................................\n🌪️ Nước xoáy ➔ ....................................................\n⛵ Lật thuyền ➔ ....................................................";
+                document.getElementById('nb-right-text').value = savedStates.notebookRight || "🦺 VẬT HỖ TRỢ NỔI\n\n✔ ....................................................\n✔ ....................................................\n✔ ....................................................\n✔ ....................................................";
+            }
+            
+            else if (widgetId === 'reflection-notepad') {
+                document.getElementById('reflect-note-text').value = savedStates.reflectionText || "⭐ Điều làm em bất ngờ nhất là:\n......................................................................\n\n⭐ Nguy cơ em chưa từng nghĩ tới là:\n......................................................................\n\n⭐ Điều em muốn ghi nhớ nhất là:\n......................................................................";
+            }
+            
+            else if (widgetId === 'safety-certificate') {
+                document.getElementById('reporter-name-widget').value = savedStates.certName;
+                document.getElementById('w-commit-1').checked = savedStates.certCommits[1];
+                document.getElementById('w-commit-2').checked = savedStates.certCommits[2];
+                document.getElementById('w-commit-3').checked = savedStates.certCommits[3];
+                updateCertTextWidget();
+            }
+        }
+
+        // --- Clue Hunt Widget Logic ---
+        function toggleClueWord(element, num) {
+            element.classList.toggle('selected');
+            savedStates.clues[num] = element.classList.contains('selected');
+            
+            const badge = document.getElementById(`clue-badge-${num}`);
+            if (savedStates.clues[num]) {
+                badge.classList.add('found');
+            } else {
+                badge.classList.remove('found');
+            }
+            checkClueHuntUnlock();
+        }
+
+        function checkClueHuntUnlock() {
+            if (savedStates.clues[1] && savedStates.clues[2] && savedStates.clues[3]) {
+                document.getElementById('hunt-status-alert').style.display = 'block';
+            } else {
+                document.getElementById('hunt-status-alert').style.display = 'none';
+            }
+        }
+
+        // --- Questions Save Logic ---
+        function saveQuestionState() {
+            savedStates.customQuestion = document.getElementById('custom-question-input').value;
+            if (savedStates.customQuestion.trim() !== '') {
+                document.getElementById('question-saved-badge').style.display = 'block';
+            } else {
+                document.getElementById('question-saved-badge').style.display = 'none';
+            }
+        }
+
+        // --- Witness Matching Widget Logic ---
+        let selectedWitnessNum = 1;
+        const witnessData = {
+            1: {
+                title: "HỒ SƠ NHÂN CHỨNG #1",
+                text: '"Tôi đang bơi giữa hồ bỗng dưng bắp chân cứng đờ, đau điếng không thể đạp nước hay co duỗi được. Tôi hoảng loạn chìm dần..."',
+                image: "cramps_swimmer.png",
+                answer: "Chuột rút"
+            },
+            2: {
+                title: "HỒ SƠ NHÂN CHỨNG #2",
+                text: '"Chúng tôi đang tắm gần chân đập thì đột nhiên có một lực hút cực mạnh dưới lòng nước kéo ghì tôi xuống. Càng bơi thoát ra càng bất lực..."',
+                image: "whirlpool_danger.png",
+                answer: "Nước xoáy"
+            },
+            3: {
+                title: "HỒ SƠ NHÂN CHỨNG #3",
+                text: '"Mọi người đang đùa giỡn làm chiếc đò chòng chành rồi lật úp hẳn. Tôi rơi xuống nước bất ngờ, ngợp ngụa và không có gì để bám vào..."',
+                image: "overturned_boat.png",
+                answer: "Lật thuyền"
+            }
+        };
+
+        function selectWitnessTab(num) {
+            selectedWitnessNum = num;
+            document.querySelectorAll('.folder-tab-btn').forEach((btn, i) => {
+                if (i + 1 === num) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            
+            document.getElementById('dossier-title-widget').innerText = witnessData[num].title;
+            document.getElementById('dossier-text-widget').innerText = witnessData[num].text;
+            document.getElementById('dossier-img-widget').src = `images/${witnessData[num].image}`;
+            
+            // Render option buttons
+            const options = ["Chuột rút", "Nước xoáy", "Lật thuyền"];
+            const container = document.getElementById('dossier-options-widget');
+            container.innerHTML = '';
+            
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'match-btn';
+                btn.innerText = opt;
+                
+                if (savedStates.witnessMatches[num] === opt) {
+                    btn.classList.add('matched');
+                    btn.innerText = opt + " ✓";
+                    btn.disabled = true;
+                } else {
+                    btn.onclick = () => checkWitnessMatchWidget(opt);
+                }
+                container.appendChild(btn);
+            });
+        }
+
+        function checkWitnessMatchWidget(selectedOpt) {
+            const correct = witnessData[selectedWitnessNum].answer;
+            if (selectedOpt === correct) {
+                savedStates.witnessMatches[selectedWitnessNum] = selectedOpt;
+                
+                // Update folder button label
+                const folderBtn = document.getElementById(`f-tab-${selectedWitnessNum}`);
+                const emoji = selectedWitnessNum === 1 ? '🏊' : selectedWitnessNum === 2 ? '🌀' : '🛶';
+                folderBtn.innerHTML = `${emoji} Nhân chứng ${selectedWitnessNum}: ${correct} ✓`;
+                folderBtn.style.color = 'var(--teal-success)';
+                
+                selectWitnessTab(selectedWitnessNum); // Redraw
+                
+                // Final Check
+                if (savedStates.witnessMatches[1] && savedStates.witnessMatches[2] && savedStates.witnessMatches[3]) {
+                    showCustomAlert("Chính xác! Phóng viên đã hoàn tất hồ sơ phỏng vấn cả 3 nhân chứng!<br><br>Hãy nhấn ĐÓNG để tiến hành báo cáo hậu quả cho Tòa soạn.", "Hoàn thành phỏng vấn", "🏊", () => goToNextSlide());
+                }
+            } else {
+                showCustomAlert("Nguy cơ chưa khớp với dữ kiện của nhân chứng. Hãy suy luận và chọn lại!", "Sai lệch thông tin", "❌");
+            }
+        }
+
+        // --- Reflection Selections Logic ---
+        function saveConseqState() {
+            for (let i = 1; i <= 3; i++) {
+                savedStates.consequenceSelections[i] = document.getElementById(`conseq-sel-${i}`).value;
+            }
+        }
+
+        // --- Solution Selections Logic ---
+        function saveSolState() {
+            for (let i = 1; i <= 3; i++) {
+                savedStates.solutionSelections[i] = document.getElementById(`sol-sel-${i}`).value;
+            }
+        }
+
+        // --- Floatation Lab Widget Logic ---
+        function testLabItemWidget(elementId, isFloat, avatar, name) {
+            if (savedStates.labWidgetTested.has(elementId)) return;
+            
+            // Mark element tested
+            document.getElementById(elementId).classList.add('tested');
+            savedStates.labWidgetTested.add(elementId);
+            
+            // Add visual item to aquarium
+            const simObject = document.createElement('div');
+            simObject.className = 'lab-sprite';
+            
+            // Random horizontal placement inside aquarium
+            const randomX = 15 + Math.random() * 60;
+            simObject.style.left = `${randomX}%`;
+            
+            simObject.innerHTML = `<span>${avatar}</span><span class="label">${name}</span>`;
+            document.getElementById('aquarium-box').appendChild(simObject);
+            
+            document.getElementById('lab-widget-prompt').style.display = 'none';
+            
+            // Apply physics animation
+            setTimeout(() => {
+                if (isFloat) {
+                    simObject.classList.add('float');
+                    simObject.style.top = '30%';
+                    simObject.querySelector('.label').style.color = 'var(--teal-success)';
+                } else {
+                    simObject.style.top = '80%';
+                    simObject.querySelector('.label').style.color = 'var(--coral-warning)';
+                }
+            }, 100);
+            
+            savedStates.labWidgetCount++;
+            document.getElementById('lab-widget-counter').innerText = `Đã thả: ${savedStates.labWidgetCount}/5`;
+            
+            if (savedStates.labWidgetCount === 5) {
+                setTimeout(() => {
+                    showCustomAlert("Hoàn thành thử nghiệm!<br><br>Cục đá chìm do nặng hơn nước.<br>Áo phao, can nhựa rỗng, cành cây và khúc gỗ đều giúp cơ thể nổi giữ khoảng cách an toàn sông nước!<br><br>Nhấn ĐÓNG để tiến hành ghi chép vào Sổ tay phóng viên.", "Thử nghiệm thành công", "🔬", () => goToNextSlide());
+                }, 1000);
+            }
+        }
+
+        function resetLabWidget() {
+            document.querySelectorAll('.lab-sprite').forEach(sp => sp.remove());
+            document.getElementById('lab-widget-prompt').style.display = 'block';
+            document.querySelectorAll('.draggable-lab-item').forEach(item => {
+                item.classList.remove('tested');
+            });
+            savedStates.labWidgetTested.clear();
+            savedStates.labWidgetCount = 0;
+            document.getElementById('lab-widget-counter').innerText = `Đã thả: 0/5`;
+        }
+
+        // --- Drag and Drop Handlers for Buoyancy Lab ---
+        function dragLabItem(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function allowDropLab(event) {
+            event.preventDefault();
+        }
+
+        function dropLabItem(event) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            const item = document.getElementById(data);
+            if (item) {
+                const isFloat = item.getAttribute('data-float') === 'true';
+                const avatar = item.getAttribute('data-avatar');
+                const name = item.getAttribute('data-name');
+                testLabItemWidget(data, isFloat, avatar, name);
+            }
+        }
+
+        // --- Sổ Tay & Nhật Ký Ghi Nhớ Logic ---
+        function saveNotebookState() {
+            savedStates.notebookLeft = document.getElementById('nb-left-text').value;
+            savedStates.notebookRight = document.getElementById('nb-right-text').value;
+        }
+
+        function saveReflectionState() {
+            savedStates.reflectionText = document.getElementById('reflect-note-text').value;
+        }
+
+        // --- Safety Certificate Widget Logic ---
+        function updateCertNameWidget() {
+            const inputVal = document.getElementById('reporter-name-widget').value;
+            savedStates.certName = inputVal;
+            const preview = document.getElementById('cert-name-widget-preview');
+            preview.innerText = inputVal.trim() !== '' ? inputVal.toUpperCase() : "HỌ TÊN PHÓNG VIÊN";
+        }
+
+        function updateCertTextWidget() {
+            for (let i = 1; i <= 3; i++) {
+                savedStates.certCommits[i] = document.getElementById(`w-commit-${i}`).checked;
+            }
+            
+            const name = savedStates.certName || "Họ tên Phóng viên";
+            let bodyText = `Phóng viên nhí <b>${name}</b> cam kết thực hiện hành động sông nước an toàn:<br><br>`;
+            let commitsText = [];
+            if (savedStates.certCommits[1]) commitsText.push("👁️ Quan sát kỹ các vùng nước");
+            if (savedStates.certCommits[2]) commitsText.push("🦺 Luôn mặc áo phao cứu sinh");
+            if (savedStates.certCommits[3]) commitsText.push("🗣️ Nhắc nhở mọi người xung quanh");
+            
+            bodyText += commitsText.join("<br>");
+            document.getElementById('cert-body-widget-preview').innerHTML = bodyText;
+        }
+
+        function signCertWidget() {
+            const name = document.getElementById('reporter-name-widget').value.trim();
+            if (name === '') {
+                showCustomAlert("Vui lòng điền họ tên của phóng viên nhí trước khi ký cam kết!", "Thiếu thông tin", "✍️");
+                return;
+            }
+            updateCertTextWidget();
+            
+            // Trigger confetti
+            const canvas = document.getElementById('confetti-canvas-widget');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            
+            let particles = [];
+            const colors = ['#00E5FF', '#FF3B30', '#00E676', '#FFD700', '#FFFFFF'];
+            
+            for (let i = 0; i < 70; i++) {
+                particles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height - 20,
+                    size: Math.random() * 4 + 3,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedX: (Math.random() - 0.5) * 6,
+                    speedY: -Math.random() * 8 - 4,
+                    gravity: 0.18,
+                    opacity: 1
+                });
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let alive = false;
+                
+                particles.forEach(p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.speedY += p.gravity;
+                    p.opacity -= 0.015;
+                    
+                    if (p.opacity > 0) {
+                        alive = true;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fillStyle = p.color;
+                        ctx.globalAlpha = p.opacity;
+                        ctx.fill();
+                    }
+                });
+                
+                if (alive) {
+                    requestAnimationFrame(animate);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            
+            animate();
+            
+            showCustomAlert(`Chúc mừng Phóng viên nhí <b>${name}</b> đã hoàn thành xuất sắc khóa tập huấn và ký Cam kết An toàn Sông nước!<br><br>Chứng nhận điện tử đã được ghi nhận trên hệ thống Nova News. Hãy nhấn ĐÓNG để xem tổng kết bài học.`, "Ký cam kết thành công", "🎉", () => goToNextSlide());
+        }
+
+        // --- SUBMIT WORKSPACE HANDLERS ---
+        function submitReporterQuestions() {
+            const val = document.getElementById('custom-question-input').value.trim();
+            if (val === '') {
+                showCustomAlert("Vui lòng nhập ít nhất một câu hỏi điều tra trước khi gửi!", "Thiếu câu hỏi", "📋");
+                return;
+            }
+            showCustomAlert("Bộ câu hỏi điều tra của phóng viên đã được gửi về Tòa soạn Nova News thành công!<br><br>Nhấn ĐÓNG để tiếp tục hoạt động kết nối hồ sơ nhân chứng.", "Gửi câu hỏi thành công", "📡", () => goToNextSlide());
+        }
+
+        function submitConsequences() {
+            const s1 = document.getElementById('conseq-sel-1').value;
+            const s2 = document.getElementById('conseq-sel-2').value;
+            const s3 = document.getElementById('conseq-sel-3').value;
+            
+            if (s1 === '' || s2 === '' || s3 === '') {
+                showCustomAlert("Vui lòng chọn đầy đủ hậu quả cho cả 3 nguy cơ trước khi báo cáo!", "Phiếu chưa hoàn thành", "📋");
+                return;
+            }
+            
+            if (s1 === 'correct' && s2 === 'correct' && s3 === 'correct') {
+                showCustomAlert("Chúc mừng phóng viên! Bảng phân tích hậu quả hoàn toàn chính xác.<br><br>Nhấn ĐÓNG để tiến hành tìm giải pháp phòng tránh.", "Báo cáo chính xác", "📊", () => goToNextSlide());
+            } else {
+                showCustomAlert("Có thông tin phân tích hậu quả chưa chính xác. Hãy suy nghĩ kỹ và lựa chọn lại!", "Sai lệch phân tích", "❌");
+            }
+        }
+
+        function submitSolutions() {
+            const s1 = document.getElementById('sol-sel-1').value;
+            const s2 = document.getElementById('sol-sel-2').value;
+            const s3 = document.getElementById('sol-sel-3').value;
+            
+            if (s1 === '' || s2 === '' || s3 === '') {
+                showCustomAlert("Vui lòng chọn đầy đủ giải pháp cho cả 3 nguy cơ trước khi báo cáo!", "Bảng chưa hoàn thành", "📋");
+                return;
+            }
+            
+            if (s1 === 'correct' && s2 === 'correct' && s3 === 'correct') {
+                showCustomAlert("Chính xác! Các giải pháp phòng tránh đã khớp hoàn hảo với nguy cơ tương ứng.<br><br>Nhấn ĐÓNG để chuyển tới phòng thí nghiệm vật nổi.", "Báo cáo chính xác", "🛡️", () => goToNextSlide());
+            } else {
+                showCustomAlert("Có giải pháp chưa phù hợp với nguy cơ tương ứng. Hãy điều chỉnh và gửi lại!", "Sai lệch giải pháp", "❌");
+            }
+        }
+
+        function submitNotebook() {
+            const valL = document.getElementById('nb-left-text').value.trim();
+            const valR = document.getElementById('nb-right-text').value.trim();
+            if (valL === '' || valR === '') {
+                showCustomAlert("Vui lòng hoàn thành ghi chép cả 2 trang Sổ tay phóng viên!", "Chưa hoàn thành ghi chép", "📓");
+                return;
+            }
+            showCustomAlert("Tuyệt vời! Sổ tay phòng tránh đuối nước của phóng viên đã được lưu và xuất bản thành công!<br><br>Nhấn ĐÓNG để tự phản chiếu suy ngẫm sau buổi điều tra.", "Xuất bản sổ tay thành công", "🎉", () => goToNextSlide());
+        }
+
+        function submitReflection() {
+            const val = document.getElementById('reflect-note-text').value.trim();
+            if (val === '') {
+                showCustomAlert("Vui lòng nhập chia sẻ phản chiếu suy ngẫm của em trước khi lưu!", "Nhật ký chưa hoàn thành", "📓");
+                return;
+            }
+            showCustomAlert("Nhật ký phản chiếu của phóng viên đã được lưu giữ thành công.<br><br>Nhấn ĐÓNG để chuyển sang phần cam kết an toàn sông nước.", "Lưu nhật ký thành công", "💾", () => goToNextSlide());
+        }
+
+        function showCompletionScreen() {
+            showCustomAlert("Chúc mừng em đã hoàn thành toàn bộ khóa tập huấn Phóng viên Nhí phòng tránh đuối nước!<br><br>Hãy luôn ghi nhớ các nguy cơ, áp dụng giải pháp và chia sẻ kiến thức này để bảo vệ bản thân và bạn bè nhé!", "Chúc mừng hoàn thành!", "🏆", () => goToSlide(0));
+        }
+
+        // ---------------------------------------------------------------------
+        // INITIALIZATION
+        // ---------------------------------------------------------------------
+        window.onload = initPresentation;
+    </script>
+</body>
+</html>
