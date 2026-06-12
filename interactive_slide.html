@@ -759,6 +759,52 @@
             position: relative;
             background: transparent !important;
         }
+        /* Gold corner brackets styling */
+        .cert-corner-bracket {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-color: #d4af37 !important;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .cert-corner-bracket.top-left {
+            top: 0;
+            left: 0;
+            border-top: 2px solid;
+            border-left: 2px solid;
+        }
+        .cert-corner-bracket.top-right {
+            top: 0;
+            right: 0;
+            border-top: 2px solid;
+            border-right: 2px solid;
+        }
+        .cert-corner-bracket.bottom-left {
+            bottom: 0;
+            left: 0;
+            border-bottom: 2px solid;
+            border-left: 2px solid;
+        }
+        .cert-corner-bracket.bottom-right {
+            bottom: 0;
+            right: 0;
+            border-bottom: 2px solid;
+            border-right: 2px solid;
+        }
+        /* Gold Medal styling */
+        .cert-medal-badge {
+            position: absolute;
+            left: 0.6rem;
+            top: 0.6rem;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .cert-medal-badge svg {
+            width: 45px;
+            height: 45px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
         .cert-header {
             text-align: center;
             display: flex;
@@ -1326,79 +1372,108 @@
             }
             .batch-cert-page .cert-border-inner {
                 border: 2.5px solid #d4af37 !important;
-                padding: 2.2rem 3rem !important;
+                padding: 1.4rem 2.2rem !important;
             }
             .batch-cert-page .cert-logo {
-                font-size: 1.3rem !important;
+                font-size: 1.0rem !important;
                 letter-spacing: 4px !important;
                 width: 60% !important;
-                padding-bottom: 0.3rem !important;
-                margin-bottom: 0.3rem !important;
+                padding-bottom: 0.2rem !important;
+                margin-bottom: 0.2rem !important;
             }
             .batch-cert-page .cert-main-title {
-                font-size: 2.3rem !important;
+                font-size: 1.8rem !important;
                 letter-spacing: 2px !important;
-                margin-top: 0.4rem !important;
+                margin-top: 0.3rem !important;
             }
             .batch-cert-page .cert-sub-title {
-                font-size: 1.05rem !important;
-                margin-top: 0.4rem !important;
+                font-size: 0.9rem !important;
+                margin-top: 0.3rem !important;
                 letter-spacing: 1px !important;
             }
             .batch-cert-page .cert-recipient-section {
-                margin: 1.5rem 0 !important;
+                margin: 0.8rem 0 !important;
             }
             .batch-cert-page .cert-certify-text {
-                font-size: 1.2rem !important;
+                font-size: 1.0rem !important;
             }
             .batch-cert-page .cert-name {
-                font-size: 3rem !important;
+                font-size: 2.4rem !important;
                 border-bottom-width: 3px !important;
                 padding: 0 3rem !important;
-                margin-top: 0.5rem !important;
-                min-height: 4rem !important;
+                margin-top: 0.3rem !important;
+                min-height: 3.2rem !important;
             }
             .batch-cert-page .cert-description {
-                font-size: 1.15rem !important;
-                line-height: 1.6 !important;
-                margin-top: 1rem !important;
+                font-size: 1.0rem !important;
+                line-height: 1.5 !important;
+                margin-top: 0.6rem !important;
                 max-width: 90% !important;
             }
             .batch-cert-page .cert-commitments-list {
-                font-size: 1.25rem !important;
-                line-height: 1.6 !important;
-                margin: 1rem auto !important;
-                gap: 0.5rem !important;
+                font-size: 1.1rem !important;
+                line-height: 1.5 !important;
+                margin: 0.6rem auto !important;
+                gap: 0.4rem !important;
                 width: 85% !important;
             }
             .batch-cert-page .cert-commitments-list li {
                 padding-left: 1.5rem !important;
             }
             .batch-cert-page .cert-footer {
-                margin-top: 1.8rem !important;
-                font-size: 1.05rem !important;
+                margin-top: 1.2rem !important;
+                font-size: 1.0rem !important;
                 border-top-width: 2px !important;
-                padding-top: 0.8rem !important;
+                padding-top: 0.6rem !important;
                 width: 90% !important;
                 margin-left: auto !important;
                 margin-right: auto !important;
             }
             .batch-cert-page .cert-signature-placeholder.handwritten {
-                font-size: 1.8rem !important;
-                min-height: 2.2rem !important;
-                margin-top: 0.5rem !important;
+                font-size: 1.5rem !important;
+                min-height: 2.0rem !important;
+                margin-top: 0.4rem !important;
             }
             .batch-cert-page .cert-signature-placeholder.signature-img {
-                font-size: 2.2rem !important;
-                margin: 0.5rem 0 !important;
+                font-size: 1.8rem !important;
+                margin: 0.4rem 0 !important;
             }
             .batch-cert-page .cert-stamp-container {
-                right: -30px !important;
-                top: -35px !important;
+                right: -20px !important;
+                top: -25px !important;
             }
             .batch-cert-page .cert-stamp-container svg {
-                width: 105px !important;
-                height: 105px !important;
+                width: 85px !important;
+                height: 85px !important;
+            }
+            /* Scale gold corner brackets and medal in print */
+            .batch-cert-page .cert-corner-bracket {
+                width: 25px !important;
+                height: 25px !important;
+            }
+            .batch-cert-page .cert-corner-bracket.top-left {
+                border-top-width: 3.5px !important;
+                border-left-width: 3.5px !important;
+            }
+            .batch-cert-page .cert-corner-bracket.top-right {
+                border-top-width: 3.5px !important;
+                border-right-width: 3.5px !important;
+            }
+            .batch-cert-page .cert-corner-bracket.bottom-left {
+                border-bottom-width: 3.5px !important;
+                border-left-width: 3.5px !important;
+            }
+            .batch-cert-page .cert-corner-bracket.bottom-right {
+                border-bottom-width: 3.5px !important;
+                border-right-width: 3.5px !important;
+            }
+            .batch-cert-page .cert-medal-badge {
+                left: 1.2rem !important;
+                top: 1.2rem !important;
+            }
+            .batch-cert-page .cert-medal-badge svg {
+                width: 75px !important;
+                height: 75px !important;
             }
             .batch-cert-page {
                 color: var(--navy-medium);
@@ -2925,13 +3000,13 @@
                     <div class="slide-content-layout">
                         <h2 class="slide-title-bar">Hoạt động: <span>CAM KẾT AN TOÀN</span> • KÝ CHỨNG NHẬN</h2>
                         <div class="interactive-cert-box" style="margin-top: 1rem;">
-                            <div class="cert-form" style="color: white; padding: 1.2rem;">
+                            <div class="cert-form" style="color: var(--navy-medium); padding: 1.2rem;">
                                 <div class="form-group">
-                                    <label for="reporter-name-widget" style="color: var(--text-light);">Họ tên phóng viên nhí:</label>
-                                    <input type="text" id="reporter-name-widget" placeholder="Nhập họ tên..." style="background-color: var(--bg-dark); color:white;" oninput="updateCertNameWidget()">
+                                    <label for="reporter-name-widget" style="color: var(--navy-medium); font-weight: 700;">Họ tên phóng viên nhí:</label>
+                                    <input type="text" id="reporter-name-widget" placeholder="Nhập họ tên..." oninput="updateCertNameWidget()">
                                 </div>
                                 <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
-                                    <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Lựa chọn cam kết:</label>
+                                    <label style="font-size: 0.85rem; font-weight: 700; color: var(--navy-medium);">Lựa chọn cam kết:</label>
                                     <div style="font-size: 0.8rem; display: flex; flex-direction: column; gap: 0.4rem;">
                                         <label><input type="checkbox" id="w-commit-1" checked onchange="updateCertTextWidget()"> 👁️ Quan sát nguy cơ sông nước</label>
                                         <label><input type="checkbox" id="w-commit-2" checked onchange="updateCertTextWidget()"> 🦺 Luôn mặc áo phao khi đi thuyền</label>
@@ -2940,7 +3015,7 @@
                                 </div>
                                 <button class="story-nav-btn" style="width: 100%; margin-top: 1rem; justify-content: center;" onclick="signCertWidget()">Ký chứng nhận ✍️</button>
                                 
-                                <div id="print-controls-section" style="display: none; margin-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; flex-direction: column; gap: 0.6rem;">
+                                <div id="print-controls-section" style="display: none; margin-top: 1.2rem; border-top: 1px solid rgba(28,37,65,0.15); padding-top: 1rem; flex-direction: column; gap: 0.6rem;">
                                     <div style="font-size: 0.9rem; font-weight: 700; color: var(--cyan-accent); text-transform: uppercase;">🖨️ In & Tải Về</div>
                                     <button class="nav-btn" style="width: 100%; justify-content: center; background-color: var(--navy-medium); border-color: var(--cyan-accent);" onclick="printSingleCertificate()">In / Tải PDF Chứng nhận 🖨️</button>
                                     
@@ -2959,8 +3034,8 @@
                                 <div class="cert-border-outer">
                                     <div class="cert-border-inner">
                                         <!-- Gold Ribbon Medal decoration -->
-                                        <div style="position: absolute; left: 0.6rem; top: 0.6rem; pointer-events: none; z-index: 2;">
-                                            <svg width="45" height="45" viewBox="0 0 100 100" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));">
+                                        <div class="cert-medal-badge">
+                                            <svg viewBox="0 0 100 100">
                                                 <defs>
                                                     <linearGradient id="gold-grad-widget" x1="0%" y1="0%" x2="100%" y2="100%">
                                                         <stop offset="0%" stop-color="#FFE082" />
@@ -2977,10 +3052,10 @@
                                             </svg>
                                         </div>
                                         <!-- Decorative corner brackets -->
-                                        <div style="position: absolute; top: 0; left: 0; width: 15px; height: 15px; border-top: 2px solid #d4af37; border-left: 2px solid #d4af37;"></div>
-                                        <div style="position: absolute; top: 0; right: 0; width: 15px; height: 15px; border-top: 2px solid #d4af37; border-right: 2px solid #d4af37;"></div>
-                                        <div style="position: absolute; bottom: 0; left: 0; width: 15px; height: 15px; border-bottom: 2px solid #d4af37; border-left: 2px solid #d4af37;"></div>
-                                        <div style="position: absolute; bottom: 0; right: 0; width: 15px; height: 15px; border-bottom: 2px solid #d4af37; border-right: 2px solid #d4af37;"></div>
+                                        <div class="cert-corner-bracket top-left"></div>
+                                        <div class="cert-corner-bracket top-right"></div>
+                                        <div class="cert-corner-bracket bottom-left"></div>
+                                        <div class="cert-corner-bracket bottom-right"></div>
                                         
                                         <!-- Header -->
                                         <div class="cert-header">
@@ -3463,11 +3538,11 @@
 
         function getCertificateHTML(name, commitsHTML, suffix = 'print') {
             return `
-                <div class="cert-border-outer" style="border: 8px double var(--navy-medium) !important; padding: 10px; width: 100%; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; border-radius: 12px; background: radial-gradient(circle, #fffdf9 0%, #f6edd8 100%) !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;">
-                    <div class="cert-border-inner" style="border: 2.5px solid #d4af37 !important; padding: 2.5rem; height: 100%; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; position: relative; background: transparent !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;">
+                <div class="cert-border-outer">
+                    <div class="cert-border-inner">
                         <!-- Gold Ribbon Medal decoration -->
-                        <div style="position: absolute; left: 1.5rem; top: 1.5rem; pointer-events: none; z-index: 2;">
-                            <svg width="80" height="80" viewBox="0 0 100 100" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));">
+                        <div class="cert-medal-badge">
+                            <svg viewBox="0 0 100 100">
                                 <defs>
                                     <linearGradient id="gold-grad-${suffix}" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" stop-color="#FFE082" />
@@ -3485,45 +3560,45 @@
                         </div>
                         
                         <!-- Decorative gold corner brackets -->
-                        <div style="position: absolute; top: 0; left: 0; width: 25px; height: 25px; border-top: 3px solid #d4af37; border-left: 3px solid #d4af37; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;"></div>
-                        <div style="position: absolute; top: 0; right: 0; width: 25px; height: 25px; border-top: 3px solid #d4af37; border-right: 3px solid #d4af37; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;"></div>
-                        <div style="position: absolute; bottom: 0; left: 0; width: 25px; height: 25px; border-bottom: 3px solid #d4af37; border-left: 3px solid #d4af37; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;"></div>
-                        <div style="position: absolute; bottom: 0; right: 0; width: 25px; height: 25px; border-bottom: 3px solid #d4af37; border-right: 3px solid #d4af37; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;"></div>
+                        <div class="cert-corner-bracket top-left"></div>
+                        <div class="cert-corner-bracket top-right"></div>
+                        <div class="cert-corner-bracket bottom-left"></div>
+                        <div class="cert-corner-bracket bottom-right"></div>
 
                         <!-- Header -->
-                        <div style="text-align: center;">
-                            <div style="font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--navy-medium); letter-spacing: 4px; margin-bottom: 0.3rem;">★ NOVA NEWS STUDIO ★</div>
-                            <div style="font-family: 'Outfit', sans-serif; font-size: 2.4rem; font-weight: 900; color: #b91c1c; letter-spacing: 2px; line-height: 1.2; border-bottom: 2.5px solid #d4af37; padding-bottom: 0.5rem; display: inline-block; width: 85%;">CHỨNG NHẬN PHÓNG VIÊN AN TOÀN</div>
-                            <div style="font-size: 1.1rem; color: var(--navy-medium); font-weight: bold; margin-top: 0.6rem; letter-spacing: 1px;">CHUYÊN ĐỀ: PHÒNG TRÁNH ĐUỐI NƯỚC CÁ NHÂN</div>
+                        <div class="cert-header">
+                            <div class="cert-logo">★ NOVA NEWS <span>STUDIO</span> ★</div>
+                            <div class="cert-main-title">CHỨNG NHẬN PHÓNG VIÊN AN TOÀN</div>
+                            <div class="cert-sub-title">CHUYÊN ĐỀ: PHÒNG TRÁNH ĐUỐI NƯỚC CÁ NHÂN</div>
                         </div>
                         
                         <!-- Recipient Name -->
-                        <div style="text-align: center; margin-top: 1.5rem; margin-bottom: 1.5rem;">
-                            <div style="font-size: 1.3rem; font-style: italic; color: #4a5568;">Chứng nhận Phóng viên nhí:</div>
-                            <div style="font-family: 'Itim', sans-serif; font-size: 3.2rem; font-weight: 900; color: var(--navy-medium); border-bottom: 3px dashed #d4af37; display: inline-block; padding: 0 3rem; margin-top: 0.5rem; text-transform: uppercase;">${name}</div>
+                        <div class="cert-recipient-section">
+                            <div class="cert-certify-text">Chứng nhận Phóng viên nhí:</div>
+                            <div class="cert-name">${name.toUpperCase()}</div>
                         </div>
 
                         <!-- Body / Commitments -->
-                        <div style="font-size: 1.25rem; line-height: 1.6; font-weight: 600; text-align: left; width: 85%; margin: 0 auto; color: #2d3748;">
-                            <div style="font-weight:700; margin-bottom: 0.5rem; font-size: 1.3rem; color: var(--navy-medium);">Cam kết hành động sông nước an toàn đã ký:</div>
-                            <ul style="list-style-type: none; padding-left: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem;">
+                        <div class="cert-description">
+                            <div style="font-weight:700; margin-bottom: 0.2rem; color: var(--navy-medium);">Cam kết hành động sông nước an toàn của Phóng viên:</div>
+                            <ul class="cert-commitments-list">
                                 ${commitsHTML}
                             </ul>
                         </div>
 
                         <!-- Footer Signatures and Red Stamp -->
-                        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 2rem; font-size: 1.1rem; border-top: 2px solid rgba(28,37,65,0.2); padding-top: 1rem; width: 85%; margin-left: auto; margin-right: auto; position: relative;">
+                        <div class="cert-footer">
                             <div>
-                                <div style="color: #4a5568;">Chữ ký phóng viên</div>
-                                <div class="handwritten" style="font-family: 'Itim', sans-serif; font-size: 1.8rem; color: #1e3a8a; font-weight: bold; margin-top: 0.5rem; font-style: italic;">${name}</div>
+                                <div class="cert-sign-label">Chữ ký Phóng viên</div>
+                                <div class="cert-signature-placeholder handwritten">${name}</div>
                             </div>
-                            <div style="text-align: right; position: relative; padding-right: 2rem;">
-                                <div style="color: #4a5568; z-index: 2; position: relative;">Tổng Biên Tập Nova News</div>
-                                <div style="font-family: 'Playball', 'Caveat', cursive, sans-serif; font-size: 2.2rem; color: #1e3a8a; font-weight: bold; transform: rotate(-3deg); margin: 0.5rem 0; z-index: 2; position: relative;">NovaNews</div>
+                            <div style="text-align: right; position: relative; padding-right: 1.2rem;">
+                                <div class="cert-sign-label" style="position: relative; z-index: 2;">Tổng Biên Tập Nova News</div>
+                                <div class="cert-signature-placeholder signature-img" style="position: relative; z-index: 2;">NovaNews</div>
                                 
                                 <!-- Red ink stamp badge -->
-                                <div style="position: absolute; right: -30px; top: -35px; opacity: 0.9; transform: rotate(-8deg); pointer-events: none; z-index: 1;">
-                                    <svg width="105" height="105" viewBox="0 0 100 100">
+                                <div class="cert-stamp-container">
+                                    <svg viewBox="0 0 100 100">
                                         <circle cx="50" cy="50" r="44" fill="none" stroke="#d32f2f" stroke-width="2.5" stroke-dasharray="3 1.5" />
                                         <circle cx="50" cy="50" r="40" fill="none" stroke="#d32f2f" stroke-width="1.2" />
                                         <path id="cert-stamp-path-${suffix}" d="M 16,50 A 34,34 0 1,1 84,50 A 34,34 0 1,1 16,50" fill="none" />
