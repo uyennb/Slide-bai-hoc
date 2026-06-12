@@ -1588,6 +1588,211 @@
                 color: var(--navy-medium);
             }
         }
+
+        /* --- Lesson Selector Hub & Tiết 2 Workspaces --- */
+        .selector-hub-layout {
+            padding: 2rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 1rem;
+        }
+        .hub-card {
+            background: linear-gradient(135deg, rgba(20,26,46,0.95) 0%, rgba(10,14,26,0.98) 100%);
+            border: 2px solid var(--cyan-accent);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 360px;
+            box-shadow: 0 8px 30px rgba(0,229,255,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .hub-card-locked {
+            background: rgba(20,26,46,0.4);
+            border: 2px dashed rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            cursor: not-allowed;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 360px;
+            position: relative;
+            opacity: 0.65;
+        }
+        .hub-card-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        /* Tiết 2: Tin Nhanh 60 Giây Options Grid */
+        .t2-quick-news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            width: 100%;
+        }
+        .t2-opt-card {
+            background-color: white;
+            border: 2px solid rgba(28, 37, 65, 0.1);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--navy-medium);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .t2-opt-card:hover {
+            border-color: var(--cyan-accent);
+            transform: translateY(-1px);
+        }
+        .t2-opt-card.selected {
+            background-color: rgba(0, 229, 255, 0.08);
+            border-color: var(--cyan-accent);
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.15);
+        }
+        /* Tiết 2: Storyboard Container & Cards */
+        .t2-story-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+        .t2-story-card {
+            background-color: white;
+            color: var(--navy-medium);
+            border: 2px solid rgba(28, 37, 65, 0.1);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+        .t2-story-card:hover {
+            border-color: var(--cyan-accent);
+        }
+        .t2-story-tag {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 800;
+            background-color: var(--navy-medium);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .t2-story-content {
+            flex: 1;
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+        .t2-story-select {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem !important;
+            font-weight: 700;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 2px solid var(--navy-medium);
+            color: var(--navy-medium);
+            background-color: white;
+            cursor: pointer;
+        }
+        .t2-story-select:focus {
+            outline: none;
+            border-color: var(--cyan-accent);
+        }
+        /* Tiết 2: Match table dropdowns styling */
+        .t2-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .t2-table th {
+            background-color: var(--navy-medium);
+            color: white;
+            padding: 1rem;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: left;
+        }
+        .t2-table td {
+            background-color: white;
+            color: var(--navy-medium);
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .t2-select {
+            width: 100%;
+            font-family: inherit;
+            font-size: 0.95rem !important;
+            font-weight: 600;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1.5px solid rgba(28, 37, 65, 0.2);
+            background-color: #f8fafc;
+            color: var(--navy-medium);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .t2-select:focus {
+            outline: none;
+            border-color: var(--cyan-accent);
+            background-color: white;
+        }
+        /* Tiết 2 image selector thumbnails */
+        .t2-img-thumb {
+            border: 2px solid rgba(28, 37, 65, 0.1);
+            border-radius: 8px;
+            padding: 0.3rem;
+            cursor: pointer;
+            text-align: center;
+            background: white;
+            flex: 1;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2rem;
+        }
+        .t2-img-thumb:hover {
+            border-color: var(--cyan-accent);
+            transform: translateY(-2px);
+        }
+        .t2-img-thumb.selected {
+            border-color: var(--cyan-accent);
+            background-color: rgba(0, 229, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 229, 255, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -1720,7 +1925,7 @@
         // ---------------------------------------------------------------------
         // 61 SLIDE DATA DEFINITIONS
         // ---------------------------------------------------------------------
-        const slides = [
+        const slidesTiet1 = [
             // --- PRE-LESSON (0 to 2) ---
             {
                 type: 'welcome',
@@ -2237,27 +2442,505 @@
                 stage: 'END LESSON',
                 title: 'Tự Phản Chiếu (Reflection)'
             },
+            }
+        ];
+
+        const slidesTiet2 = [
+            // --- PRE-LESSON (0 to 2) ---
             {
-                type: 'end-commitment',
+                type: 'welcome',
+                stage: 'PRE-LESSON',
+                title: 'Chào mừng Biên tập viên tổng hợp!',
+                image: 'welcome_screen_1781236319288.png',
+                content: [
+                    "Ôn lại kết quả khám phá và kích hoạt trí nhớ.",
+                    "Hiểu mục tiêu của sản phẩm cuối và hiểu người nghe cần gì.",
+                    "Chọn lọc thông tin quan trọng, loại bỏ thông tin không cần thiết.",
+                    "Kết nối dữ kiện thành câu chuyện bản tin hoàn chỉnh.",
+                    "Xác định thông điệp chính và viết bản thảo bản tin phòng tránh đuối nước."
+                ]
+            },
+            {
+                type: 'big-question',
+                stage: 'PRE-LESSON',
+                title: 'Câu Hỏi Lớn (Big Question)',
+                image: 'big_question_1781236338352.png',
+                question: 'Nếu chỉ có 1 phút để giúp người khác phòng tránh đuối nước, chúng ta nên nói điều gì?'
+            },
+            {
+                type: 'role-intro',
+                stage: 'PRE-LESSON',
+                title: 'Giới Thiệu Vai Trò',
+                image: 'reporter_role_1781236354913.png',
+                description: 'Đóng vai biên tập viên tổng hợp của Nova News để chọn lọc, kết nối và chuyển thông tin phòng tránh đuối nước thành bản thảo bản tin.',
+                tasks: [
+                    "Chọn thông tin đúng và quan trọng.",
+                    "Loại bỏ thông tin không liên quan hoặc trùng lặp.",
+                    "Kết nối dữ kiện thành câu chuyện bản tin.",
+                    "Thống nhất thông điệp chính và hoàn thiện bản thảo bản tin."
+                ]
+            },
+            
+            // --- GIAI ĐOẠN 1 (3 to 8) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                dna: 'Situation',
+                stageNum: 1
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NHANH 60 GIÂY',
+                goal: '• Ôn lại kết quả khám phá\n• Kích hoạt trí nhớ',
+                image: 'solution_table_1781237285286.png',
+                extra: 'Thẻ thông tin từ tiết trước đặt trên bàn biên tập Nova News; có nhãn “Tin nhanh 60 giây”.'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NHANH 60 GIÂY',
+                steps: [
+                    "Nhóm nhận các thẻ thông tin từ tiết trước.",
+                    "Chọn thông tin đúng.",
+                    "Loại bỏ thông tin không liên quan."
+                ]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NHANH 60 GIÂY',
+                prompt: 'Nhóm nhận các thẻ thông tin từ tiết trước. Nhiệm vụ: chọn thông tin đúng và loại bỏ thông tin không liên quan.',
+                product: 'Bộ thông tin đúng được giữ lại; thông tin không liên quan được loại bỏ.',
+                format: 'Nhóm',
+                time: '4 phút',
+                interactiveId: 'quick-news-60s'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NHANH 60 GIÂY',
+                results: '• Thông tin đúng được chọn\n• Thông tin không liên quan được loại bỏ',
+                message: 'Biên tập viên không thể đưa tất cả thông tin lên bản tin.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 1',
+                stageName: 'Mở khóa nhiệm vụ',
+                actTitle: 'TIN NHANH 60 GIÂY',
+                explored: 'kết quả khám phá từ tiết trước và yêu cầu chọn lọc thông tin.',
+                nextQuestion: 'Nova News cần bản tin giúp người xem hiểu điều gì?'
+            },
+            
+            // --- GIAI ĐOẠN 2 (9 to 13) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ tổng hợp',
+                dna: 'Comprehension',
+                stageNum: 2
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ tổng hợp',
+                actTitle: 'NHẬN NHIỆM VỤ TỪ TÒA SOẠN',
+                goal: '• Hiểu mục tiêu của sản phẩm cuối\n• Hiểu người nghe cần gì',
+                image: 'welcome_screen_1781236319288.png',
+                extra: 'Nhiệm vụ Nova News giao: Tạo một bản tin giúp trẻ em: nhận biết nguy cơ đuối nước; biết cách phòng tránh; biết cách xử lý an toàn. Yêu cầu: Người xem phải hiểu nhanh và nhớ được.'
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ tổng hợp',
+                actTitle: 'ĐIỀU NGƯỜI XEM CẦN HIỂU',
+                prompt: 'Từ nhiệm vụ của Nova News, xác định những điều bản tin cần giúp người xem hiểu nhanh và nhớ được nhất.',
+                product: 'Mục tiêu bản tin và yêu cầu dành cho người xem.',
+                format: 'Nhóm',
+                time: '3 phút',
+                interactiveId: 'viewer-needs'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ tổng hợp',
+                actTitle: 'ĐIỀU NGƯỜI XEM CẦN HIỂU',
+                results: '• Nguy cơ đuối nước\n• Cách phòng tránh\n• Cách xử lý an toàn',
+                message: 'Bản tin cần tập trung vào thông tin thiết thực nhất cho người xem.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 2',
+                stageName: 'Nhận nhiệm vụ tổng hợp',
+                actTitle: 'ĐIỀU NGƯỜI XEM CẦN HIỂU',
+                explored: 'yêu cầu và điều người xem cần hiểu nhanh từ bản tin.',
+                nextQuestion: 'Thông tin nào là quan trọng nhất để đưa vào bản tin?'
+            },
+            
+            // --- GIAI ĐOẠN 3 (14 to 19) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Chọn lọc thông tin',
+                dna: 'Selection',
+                stageNum: 3
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Chọn lọc thông tin',
+                actTitle: 'TỔNG HỢP THÔNG TIN',
+                goal: '• Chọn thông tin quan trọng\n• Loại bỏ thông tin không cần thiết',
+                image: 'solution_table_1781237285286.png',
+                extra: 'Bảng tổng hợp thông tin dạng ba cột: Vấn đề – Nguyên nhân – Cách phòng tránh.'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Chọn lọc thông tin',
+                actTitle: 'TỔNG HỢP THÔNG TIN',
+                steps: [
+                    "Nhóm hoàn thành bảng: Vấn đề – Nguyên nhân – Cách phòng tránh.",
+                    "Chọn các thông tin quan trọng nhất.",
+                    "Không ghi các thông tin trùng lặp."
+                ]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Chọn lọc thông tin',
+                actTitle: 'TỔNG HỢP THÔNG TIN',
+                prompt: 'Nhóm hoàn thành bảng: Vấn đề – Nguyên nhân – Cách phòng tránh. Nhiệm vụ: chọn các thông tin quan trọng nhất và không ghi các thông tin trùng lặp.',
+                product: 'Bảng tổng hợp thông tin đã được chọn lọc.',
+                format: 'Nhóm',
+                time: '5 phút',
+                interactiveId: 'info-aggregation'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Chọn lọc thông tin',
+                actTitle: 'TỔNG HỢP THÔNG TIN',
+                results: '• Bảng Vấn đề – Nguyên nhân – Cách phòng tránh\n• Thông tin quan trọng nhất được chọn\n• Thông tin trùng lặp được loại bỏ',
+                message: 'Chọn lọc thông tin giúp bản tin ngắn gọn, rõ ý và tránh trùng lặp.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Chọn lọc thông tin',
+                actTitle: 'TỔNG HỢP THÔNG TIN',
+                explored: 'bảng tổng hợp thông tin phòng tránh đuối nước.',
+                nextQuestion: 'Làm thế nào kết nối các dữ kiện thành một câu chuyện bản tin hoàn chỉnh?'
+            },
+            
+            // --- GIAI ĐOẠN 4 (20 to 25) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Kết nối thông tin',
+                dna: 'Connection',
+                stageNum: 4
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Kết nối thông tin',
+                actTitle: 'XÂY DỰNG CÂU CHUYỆN BẢN TIN',
+                goal: '• Kết nối các dữ kiện\n• Xây dựng câu chuyện hoàn chỉnh',
+                image: 'welcome_screen_1781236319288.png',
+                extra: 'Mẫu bản tin Nova News với các vùng thông tin: chuyện đang xảy ra, nguyên nhân và điều cần cảnh báo.'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Kết nối thông tin',
+                actTitle: 'XÂY DỰNG CÂU CHUYỆN BẢN TIN',
+                steps: [
+                    "Quan sát mẫu bản tin.",
+                    "Xác định: Chuyện gì đang xảy ra? Vì sao xảy ra? Điều gì cần cảnh báo?",
+                    "Kết nối các dữ kiện thành một câu chuyện hoàn chỉnh."
+                ]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Kết nối thông tin',
+                actTitle: 'XÂY DỰNG CÂU CHUYỆN BẢN TIN',
+                prompt: 'Quan sát mẫu bản tin. Xác định: Chuyện gì đang xảy ra? Vì sao xảy ra? Điều gì cần cảnh báo? Sau đó kết nối các dữ kiện thành một câu chuyện hoàn chỉnh.',
+                product: 'Câu chuyện bản tin hoàn chỉnh.',
+                format: 'Nhóm',
+                time: '5 phút',
+                interactiveId: 'news-storyboard'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Kết nối thông tin',
+                actTitle: 'XÂY DỰNG CÂU CHUYỆN BẢN TIN',
+                results: '• Chuyện đang xảy ra\n• Lý do xảy ra\n• Điều cần cảnh báo',
+                message: 'Bản tin cần có mạch thông tin rõ: sự việc – nguyên nhân – cảnh báo.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 4',
+                stageName: 'Kết nối thông tin',
+                actTitle: 'XÂY DỰNG CÂU CHUYỆN BẢN TIN',
+                explored: 'mẫu bản tin và câu chuyện bản tin hoàn chỉnh.',
+                nextQuestion: 'Nếu người xem chỉ nhớ một điều, nhóm nên chọn thông điệp nào?'
+            },
+            
+            // --- GIAI ĐOẠN 5 (26 to 31) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Xác định thông điệp',
+                dna: 'Core Message',
+                stageNum: 5
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Xác định thông điệp',
+                actTitle: 'THÔNG ĐIỆP CỘNG ĐỒNG',
+                goal: '• Xác định điều quan trọng nhất cần chia sẻ',
+                image: 'analysis_sheet_1781237307042.png',
+                extra: 'Bảng thảo luận thông điệp cộng đồng với câu hỏi lớn: “Nếu người xem chỉ nhớ một điều duy nhất…”'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Xác định thông điệp',
+                actTitle: 'THÔNG ĐIỆP CỘNG ĐỒNG',
+                steps: [
+                    "Thảo luận: Nếu người xem chỉ nhớ một điều duy nhất sau bản tin, đó nên là điều gì?",
+                    "Mỗi nhóm thống nhất thông điệp chính cho bản tin."
+                ]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Xác định thông điệp',
+                actTitle: 'THÔNG ĐIỆP CỘNG ĐỒNG',
+                prompt: 'Thảo luận: Nếu người xem chỉ nhớ một điều duy nhất sau bản tin, đó nên là điều gì?',
+                product: 'Thông điệp chính của bản tin.',
+                format: 'Nhóm',
+                time: '4 phút',
+                interactiveId: 'core-message-select'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Xác định thông điệp',
+                actTitle: 'THÔNG ĐIỆP CỘNG ĐỒNG',
+                results: '• Ý kiến thảo luận của nhóm\n• Thông điệp chính được thống nhất',
+                message: 'Mỗi bản tin cần có một thông điệp chính để người xem dễ nhớ.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 5',
+                stageName: 'Xác định thông điệp',
+                actTitle: 'THÔNG ĐIỆP CỘNG ĐỒNG',
+                explored: 'thông điệp chính cho bản tin.',
+                nextQuestion: 'Làm thế nào chuyển thông tin đã chọn thành bản thảo bản tin?'
+            },
+            
+            // --- GIAI ĐOẠN 6 (32 to 37) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Biên tập sản phẩm',
+                dna: 'Design',
+                stageNum: 6
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Biên tập sản phẩm',
+                actTitle: 'VIẾT BẢN THẢO BẢN TIN',
+                goal: '• Chuyển thông tin thành sản phẩm dễ hiểu',
+                image: 'reporter_notebook_1781236401501.png',
+                extra: 'Mẫu bản thảo bản tin có ba phần: Mở đầu – Thân tin – Kết luận; kèm khu vực vẽ hoặc chọn hình minh họa.'
+            },
+            {
+                type: 'act-howto',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Biên tập sản phẩm',
+                actTitle: 'VIẾT BẢN THẢO BẢN TIN',
+                steps: [
+                    "Nhóm xây dựng bản tin theo cấu trúc: mở đầu, thân tin, kết luận.",
+                    "Vẽ hoặc chọn hình minh họa.",
+                    "Hoàn thiện sản phẩm."
+                ]
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Biên tập sản phẩm',
+                actTitle: 'VIẾT BẢN THẢO BẢN TIN',
+                prompt: 'Nhóm xây dựng bản tin theo cấu trúc: 1. Mở đầu; 2. Thân tin; 3. Kết luận. Sau đó vẽ hoặc chọn hình minh họa và hoàn thiện sản phẩm.',
+                product: 'Bản thảo bản tin phòng tránh đuối nước.',
+                format: 'Nhóm',
+                time: '8 phút',
+                interactiveId: 'write-newsletter'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Biên tập sản phẩm',
+                actTitle: 'VIẾT BẢN THẢO BẢN TIN',
+                results: '• Mở đầu\n• Thân tin\n• Kết luận\n• Hình minh họa',
+                message: 'Thông tin phòng tránh đuối nước cần được chuyển thành sản phẩm truyền thông dễ hiểu.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 6',
+                stageName: 'Biên tập sản phẩm',
+                actTitle: 'VIẾT BẢN THẢO BẢN TIN',
+                explored: 'bản thảo bản tin phòng tránh đuối nước.',
+                nextQuestion: 'Thông tin nào quan trọng nhất và cộng đồng cần biết điều gì nhất?'
+            },
+            
+            // --- GIAI ĐOẠN 7 (38 to 41) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                dna: 'Reflection',
+                stageNum: 7
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
+                goal: '• Phản tư về bài học\n• Xác định cốt lõi truyền thông',
+                image: 'reflection_journal_1781236420017.png',
+                extra: 'Viết nhanh: Thông tin nào quan trọng nhất? Điều gì cộng đồng cần biết nhất?'
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
+                prompt: 'Viết nhanh: Thông tin nào quan trọng nhất? Điều gì cộng đồng cần biết nhất?',
+                product: 'Phiếu nhật ký phóng viên / nội dung reflection ngắn.',
+                format: 'Cá nhân',
+                time: '4 phút',
+                interactiveId: 'reporter-journal-t2'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
+                results: '• Thông tin quan trọng nhất\n• Điều cộng đồng cần biết nhất',
+                message: 'Reflection giúp học sinh xác định điều cốt lõi cần truyền thông tới cộng đồng.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
+                explored: 'nhật ký phóng viên dạng viết nhanh, có hai câu hỏi phản tư.',
+                nextQuestion: 'Sau buổi học này, em sẽ chia sẻ điều vừa học với ai?'
+            },
+            
+            // --- NOTEBOOK REVIEW (slide 41) ---
+            {
+                type: 'notebook-review-t2',
+                stage: 'TỔNG KẾT',
+                title: 'Nhìn lại sổ tay phóng viên'
+            },
+            
+            // --- GIAI ĐOẠN 8 (42 to 46) ---
+            {
+                type: 'stage-intro',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                dna: 'Adaptation',
+                stageNum: 8
+            },
+            {
+                type: 'act-intro',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                actTitle: 'TÔI SẼ NHẮC AI?',
+                goal: '• Chuyển nội dung bài học thành hành động cụ thể',
+                image: 'safety_commitment_1781236438910.png',
+                extra: 'Phiếu cam kết chia sẻ với dòng điền tên người em sẽ nhắc và lý do chia sẻ.'
+            },
+            {
+                type: 'act-workspace',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                actTitle: 'TÔI SẼ NHẮC AI?',
+                prompt: 'Hoàn thành câu: Sau buổi học này, em sẽ chia sẻ điều vừa học với __________. Lý do: ____________________.',
+                product: 'Cam kết chia sẻ điều vừa học.',
+                format: 'Cá nhân',
+                time: '3 phút',
+                interactiveId: 'remind-who'
+            },
+            {
+                type: 'act-debrief',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                actTitle: 'TÔI SẼ NHẮC AI?',
+                results: '• Người em sẽ chia sẻ điều vừa học\n• Lý do chia sẻ',
+                message: 'Kiến thức phòng tránh đuối nước cần được chia sẻ để giúp người khác an toàn hơn.'
+            },
+            {
+                type: 'act-transition',
+                stage: 'GIAI ĐOẠN 8',
+                stageName: 'Áp dụng ngay',
+                actTitle: 'TÔI SẼ NHẮC AI?',
+                explored: 'cam kết chia sẻ điều vừa học.',
+                nextQuestion: 'Bản tin và cam kết của em có thể giúp ai an toàn hơn?'
+            },
+            
+            // --- END LESSON (47 to 49) ---
+            {
+                type: 'end-takeaways-t2',
                 stage: 'END LESSON',
-                title: 'Cam Kết Hành Động (Action Commitment)'
+                title: 'Nội dung cốt lõi'
+            },
+            {
+                type: 'end-output-t2',
+                stage: 'END LESSON',
+                title: 'Sản Phẩm Cuối Và Cam Kết',
+                image: 'reporter_notebook_1781236401501.png'
+            },
+            {
+                type: 'end-revisit-t2',
+                stage: 'END LESSON',
+                title: 'Quay Lại Câu Hỏi Lớn'
             }
         ];
 
         // ---------------------------------------------------------------------
         // STATE MANAGEMENT
         // ---------------------------------------------------------------------
+        let slides = []; // Active slides array
+        let currentLesson = null; // null = Selection hub, 1 = Tiet 1, 2 = Tiet 2
         let currentSlideIdx = 0;
 
         // ---------------------------------------------------------------------
         // PRESENTATION CONTROLS
         // ---------------------------------------------------------------------
         function initPresentation() {
-            renderSlide(currentSlideIdx);
-            populateSlideMenu();
+            if (currentLesson === null) {
+                renderLessonSelectorHub();
+            } else {
+                initPresentationView();
+            }
             
             // Key listeners
             document.addEventListener('keydown', function(e) {
+                if (currentLesson === null) return;
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
                 if (e.key === 'ArrowRight') {
                     goToNextSlide();
@@ -2265,6 +2948,115 @@
                     goToPrevSlide();
                 }
             });
+        }
+
+        function renderLessonSelectorHub() {
+            // Hide bottom navigation controls
+            document.getElementById('nav-controls').style.display = 'none';
+            // Hide top banner stage indicator and menu button
+            document.getElementById('slide-stage-indicator').innerText = 'HỆ THỐNG BÀI HỌC';
+            document.querySelector('.logo-container button').style.display = 'none';
+            
+            // Set background to dark newsroom
+            document.getElementById('presentation-wrapper').className = 'dark-slide-bg';
+            
+            const container = document.getElementById('slide-container');
+            container.innerHTML = `
+                <div class="slide-content-layout selector-hub-layout" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; width: 100%; text-align: center; padding: 2rem 0;">
+                    <div class="hub-header" style="animation: fadeIn 0.8s ease-out;">
+                        <h1 style="font-size: 2.8rem; font-weight: 800; font-family: 'Outfit', sans-serif; letter-spacing: 1px; color: #ffffff; text-shadow: 0 4px 15px rgba(0,229,255,0.4); margin-bottom: 0.5rem;">HỆ THỐNG BÀI HỌC TƯƠNG TÁC</h1>
+                        <p style="font-size: 1.3rem; color: var(--text-muted); font-weight: 500;">Chủ đề: An toàn cá nhân · Phòng tránh đuối nước (Lớp 6)</p>
+                    </div>
+                    
+                    <div class="hub-grid">
+                        <!-- Tiet 1 Card -->
+                        <div class="hub-card" onclick="selectLesson(1)">
+                            <div class="hub-card-glow"></div>
+                            <div>
+                                <div style="font-size: 2.8rem; margin-bottom: 1rem;">🎤</div>
+                                <h3 style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-bottom: 0.8rem; font-family: 'Outfit', sans-serif;">TIẾT 1</h3>
+                                <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--cyan-accent); margin-bottom: 1rem;">PHÓNG VIÊN ĐIỀU TRA</h4>
+                                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; text-align: left;">Nhập vai phóng viên khám phá hiện trường, phỏng vấn nhân chứng, thí nghiệm độ nổi vật thể và ký cam kết an toàn.</p>
+                            </div>
+                            <div style="background-color: var(--cyan-accent); color: var(--bg-dark); font-weight: 800; font-size: 0.85rem; padding: 0.6rem; border-radius: 8px; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px;">BẮT ĐẦU HỌC ➔</div>
+                        </div>
+                        
+                        <!-- Tiet 2 Card -->
+                        <div class="hub-card" onclick="selectLesson(2)">
+                            <div class="hub-card-glow"></div>
+                            <div>
+                                <div style="font-size: 2.8rem; margin-bottom: 1rem;">✍️</div>
+                                <h3 style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-bottom: 0.8rem; font-family: 'Outfit', sans-serif;">TIẾT 2</h3>
+                                <h4 style="font-size: 1.15rem; font-weight: 700; color: #ff9f43; margin-bottom: 1rem;">BIÊN TẬP VIÊN TỔNG HỢP</h4>
+                                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; text-align: left;">Nhập vai biên tập viên tổng hợp thông tin, chọn lọc dữ kiện trọng tâm, xây dựng mạch câu chuyện và thiết kế bản thảo bản tin.</p>
+                            </div>
+                            <div style="background-color: #ff9f43; color: var(--bg-dark); font-weight: 800; font-size: 0.85rem; padding: 0.6rem; border-radius: 8px; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px;">BẮT ĐẦU HỌC ➔</div>
+                        </div>
+                        
+                        <!-- Tiet 3 Card -->
+                        <div class="hub-card-locked" onclick="showCustomAlert('Tiết 3 đang được xây dựng, vui lòng quay lại sau! 🚧', 'Tính năng sắp ra mắt', '🚧')">
+                            <div>
+                                <div style="font-size: 2.8rem; margin-bottom: 1rem; filter: grayscale(1);">📢</div>
+                                <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--text-muted); margin-bottom: 0.8rem; font-family: 'Outfit', sans-serif;">TIẾT 3</h3>
+                                <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--text-muted); margin-bottom: 1rem;">BIÊN TẬP VIÊN TRUYỀN THÔNG</h4>
+                                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.25); line-height: 1.6; text-align: left;">Phát thanh bản tin cảnh báo cộng đồng, tập huấn kỹ năng tự cứu và cứu nạn gián tiếp khi gặp nguy hiểm dưới nước.</p>
+                            </div>
+                            <div style="background-color: rgba(255,255,255,0.05); color: var(--text-muted); font-weight: 800; font-size: 0.85rem; padding: 0.6rem; border-radius: 8px; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px;">SẮP RA MẮT 🔒</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add hover effects for cards
+            const cards = container.querySelectorAll('.hub-card');
+            cards.forEach(card => {
+                const isTiet2 = card.querySelector('h3').innerText.includes('TIẾT 2');
+                card.onmouseenter = () => {
+                    card.style.transform = 'translateY(-8px)';
+                    if (isTiet2) {
+                        card.style.borderColor = '#ff9f43';
+                        card.style.boxShadow = '0 8px 30px rgba(255,159,67,0.25)';
+                    } else {
+                        card.style.borderColor = 'var(--cyan-accent)';
+                        card.style.boxShadow = '0 8px 30px rgba(0,229,255,0.3)';
+                    }
+                };
+                card.onmouseleave = () => {
+                    card.style.transform = 'translateY(0)';
+                    if (isTiet2) {
+                        card.style.borderColor = 'rgba(255,255,255,0.1)';
+                        card.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+                    } else {
+                        card.style.borderColor = 'var(--cyan-accent)';
+                        card.style.boxShadow = '0 8px 30px rgba(0,229,255,0.15)';
+                    }
+                };
+            });
+        }
+
+        function selectLesson(num) {
+            currentLesson = num;
+            slides = (num === 1) ? slidesTiet1 : slidesTiet2;
+            currentSlideIdx = 0;
+            
+            // Show bottom navigation controls
+            document.getElementById('nav-controls').style.display = 'flex';
+            // Show Slide Menu button
+            document.querySelector('.logo-container button').style.display = 'block';
+            
+            // Reinitialize presentation view
+            initPresentationView();
+        }
+
+        function returnToHub() {
+            currentLesson = null;
+            currentSlideIdx = 0;
+            renderLessonSelectorHub();
+        }
+
+        function initPresentationView() {
+            renderSlide(currentSlideIdx);
+            populateSlideMenu();
         }
 
         function toggleMenu() {
@@ -2275,6 +3067,20 @@
         function populateSlideMenu() {
             const menuContainer = document.getElementById('menu-list-items');
             menuContainer.innerHTML = '';
+            
+            // Prepend Home/Hub button
+            const homeBtn = document.createElement('div');
+            homeBtn.className = 'menu-item';
+            homeBtn.style.borderBottom = '1px solid rgba(255,255,255,0.15)';
+            homeBtn.style.marginBottom = '0.5rem';
+            homeBtn.style.paddingBottom = '0.6rem';
+            homeBtn.style.color = 'var(--cyan-accent)';
+            homeBtn.innerHTML = '🏠 ĐỔI TIẾT HỌC (TRANG CHỦ)';
+            homeBtn.onclick = () => {
+                returnToHub();
+                toggleMenu();
+            };
+            menuContainer.appendChild(homeBtn);
             
             slides.forEach((slide, idx) => {
                 const btn = document.createElement('div');
@@ -2303,7 +3109,7 @@
             // Update active state in menu
             const buttons = document.querySelectorAll('.menu-item');
             buttons.forEach((btn, i) => {
-                if (i === idx) btn.classList.add('active');
+                if (i === idx + 1) btn.classList.add('active');
                 else btn.classList.remove('active');
             });
         }
@@ -2333,7 +3139,7 @@
             document.getElementById('btn-next').disabled = idx === slides.length - 1;
             
             // Background type check
-            const isDark = ['welcome', 'big-question', 'role-intro', 'stage-intro', 'act-transition', 'notebook-review', 'end-takeaways', 'end-output', 'end-revisit', 'end-reflection', 'end-commitment'].includes(slide.type);
+            const isDark = ['welcome', 'big-question', 'role-intro', 'stage-intro', 'act-transition', 'notebook-review', 'notebook-review-t2', 'end-takeaways', 'end-takeaways-t2', 'end-output', 'end-output-t2', 'end-revisit', 'end-revisit-t2', 'end-reflection', 'end-commitment'].includes(slide.type);
             if (isDark) {
                 wrapper.className = 'dark-slide-bg';
             } else {
@@ -2890,6 +3696,251 @@
                 `;
             }
 
+            else if (slide.type === 'notebook-review-t2') {
+                const s = savedStates;
+
+                // 1. Clues
+                const clueLabels = {
+                    1: 'Chuột rút bắp cơ do không khởi động kỹ',
+                    2: 'Nước xoáy xiết kéo chìm người xuống đáy',
+                    3: 'Lật thuyền đò gây ngã xuống nước và chìm',
+                    4: 'Vật hỗ trợ nổi cứu sinh: Áo phao, can nhựa rỗng, cành cây',
+                    5: 'Nên tắm ao sông suối một mình',
+                    6: 'Ăn thật no trước khi bơi'
+                };
+                const cluesChosen = [1,2,3,4,5,6].filter(i => s.t2Clues[i]);
+                const t2CluesText = cluesChosen.length > 0 ? cluesChosen.map(i => `✓ ${clueLabels[i]}`).join('<br>') : '<span class="nbr-empty">Chưa lọc</span>';
+
+                // 2. Needs
+                const needLabels = {
+                    1: 'Nhận biết các nguy cơ đuối nước phổ biến',
+                    2: 'Biết cách phòng tránh đuối nước chủ động',
+                    3: 'Biết cách xử lý an toàn khi gặp sự cố',
+                    4: 'Lịch sử ra đời của các loại phao',
+                    5: 'Các kỹ năng bơi lội nâng cao'
+                };
+                const needsChosen = [1,2,3,4,5].filter(i => s.t2Needs[i]);
+                const t2NeedsText = needsChosen.length > 0 ? needsChosen.map(i => `✓ ${needLabels[i]}`).join('<br>') : '<span class="nbr-empty">Chưa chọn</span>';
+
+                // 3. Problem - Cause - Solution Matches
+                const probNames = { 1: 'Chuột rút bắp cơ', 2: 'Dòng nước xoáy', 3: 'Lật thuyền, đò' };
+                const causeNames = {
+                    'cause-1': 'Không khởi động kỹ trước khi xuống nước',
+                    'cause-2': 'Gần chân đập thủy điện hoặc khu vực sâu xoáy',
+                    'cause-3': 'Thuyền chở quá tải, khách xô lệch mất thăng bằng'
+                };
+                const solNames = {
+                    'sol-1': 'Khởi động kỹ bắp đùi và tay',
+                    'sol-2': 'Tránh xa vùng cắm biển cảnh báo xoáy',
+                    'sol-3': 'Luôn mặc áo phao cứu sinh suốt chuyến đi'
+                };
+                const matchRows = [1,2,3].map(i => {
+                    const match = s.t2Matches[i];
+                    const causeText = match.cause ? (causeNames[match.cause] || match.cause) : '<span class="nbr-empty">Chưa chọn nguyên nhân</span>';
+                    const solText = match.sol ? (solNames[match.sol] || match.sol) : '<span class="nbr-empty">Chưa chọn giải pháp</span>';
+                    return `<div style="margin-bottom: 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.4rem;">
+                        <span class="nbr-label">${probNames[i]}:</span><br>
+                        • Nguyên nhân: <b>${causeText}</b><br>
+                        • Phòng tránh: <b>${solText}</b>
+                    </div>`;
+                }).join('');
+
+                // 4. Storyboard ordering
+                const orderRows = [1,2,3].map(i => {
+                    const orderVal = s.t2Ordering[i];
+                    return `<div class="nbr-row"><span class="nbr-label">Khối ${i}:</span> ${orderVal ? `<b>Thứ tự ${orderVal}</b>` : '<span class="nbr-empty">Chưa sắp xếp</span>'}</div>`;
+                }).join('');
+
+                // 5. Core message
+                const t2MessageText = s.t2Message ? `<b>"${s.t2Message}"</b>` : '<span class="nbr-empty">Chưa chọn</span>';
+
+                // 6. Written Newsletter Draft
+                const draftTitle = s.t2NewsTitle.trim() !== '' ? `<b>Tiêu đề:</b> ${s.t2NewsTitle}<br>` : '';
+                const draftIntro = s.t2NewsIntro.trim() !== '' ? `<b>Mở đầu:</b> ${s.t2NewsIntro}<br>` : '';
+                const draftBody = s.t2NewsBody.trim() !== '' ? `<b>Thân tin:</b> ${s.t2NewsBody}<br>` : '';
+                const draftOutro = s.t2NewsOutro.trim() !== '' ? `<b>Kết luận:</b> ${s.t2NewsOutro}` : '';
+                const draftImgText = s.t2NewsImage ? `<div style="font-size: 0.75rem; color: var(--cyan-accent); margin-top: 0.3rem;">🖼️ Minh họa: ${s.t2NewsImage}</div>` : '';
+                
+                const draftText = (s.t2NewsTitle.trim() || s.t2NewsIntro.trim() || s.t2NewsBody.trim() || s.t2NewsOutro.trim()) 
+                    ? `<div style="font-size: 0.82rem; line-height: 1.4;">${draftTitle}${draftIntro}${draftBody}${draftOutro}${draftImgText}</div>`
+                    : '<span class="nbr-empty">Chưa biên tập bản thảo</span>';
+
+                // 7. Journal Reflections
+                const t2JournalInfoText = s.t2JournalInfo.trim() !== '' ? s.t2JournalInfo : 'Chưa nhập';
+                const t2JournalNeedText = s.t2JournalNeed.trim() !== '' ? s.t2JournalNeed : 'Chưa nhập';
+                const journalRows = `<div style="font-size: 0.82rem; line-height: 1.4;">
+                    • <b>Thông tin quan trọng nhất:</b> ${t2JournalInfoText}<br>
+                    • <b>Điều cộng đồng cần biết nhất:</b> ${t2JournalNeedText}
+                </div>`;
+
+                layoutHTML = `
+                    <div class="slide-content-layout nbr-layout">
+                        <div class="nbr-header">
+                            <div class="nbr-header-icon">📓</div>
+                            <div>
+                                <h1 class="nbr-title">NHÌN LẠI SỔ TAY BIÊN TẬP</h1>
+                                <div class="nbr-subtitle">Nova News · Biên tập viên tổng hợp · Bản tin phòng tránh đuối nước</div>
+                            </div>
+                        </div>
+
+                        <div class="nbr-grid">
+                            <!-- Card 1: Bản tin lọc sạch -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">⚡ THÔNG TIN TIN NHANH LỌC SẠCH</div>
+                                <div class="nbr-card-body">${t2CluesText}</div>
+                            </div>
+
+                            <!-- Card 2: Điều người xem cần -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">📺 ĐIỀU NGƯỜI XEM CẦN HIỂU</div>
+                                <div class="nbr-card-body">${t2NeedsText}</div>
+                            </div>
+
+                            <!-- Card 3: Thảo luận thông điệp -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">📢 THÔNG ĐIỆP CHÍNH</div>
+                                <div class="nbr-card-body">${t2MessageText}</div>
+                            </div>
+
+                            <!-- Card 4: Bảng tổng hợp thông tin -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">📊 BẢN TỔNG HỢP VẤN ĐỀ - NGUYÊN NHÂN - GIẢI PHÁP</div>
+                                <div class="nbr-card-body">${matchRows}</div>
+                            </div>
+
+                            <!-- Card 5: Mạch câu chuyện bản tin -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">📖 MẠCH CÂU CHUYỆN BẢN TIN</div>
+                                <div class="nbr-card-body">${orderRows}</div>
+                            </div>
+
+                            <!-- Card 6: Nhật ký phản tư -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">📝 NHẬT KÝ PHẢN TƯ BTV</div>
+                                <div class="nbr-card-body">${journalRows}</div>
+                            </div>
+
+                            <!-- Card 7: Bản thảo viết tin -->
+                            <div class="nbr-card nbr-card-wide">
+                                <div class="nbr-card-header">📰 BẢN THẢO BẢN TIN NOVA NEWS</div>
+                                <div class="nbr-card-body" style="background-color: rgba(255,255,255,0.02); max-height: 200px;">${draftText}</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 1rem; display: flex;">
+                            <button class="story-nav-btn" onclick="goToNextSlide()">Tiếp tục → Tôi sẽ nhắc ai? 📜</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            else if (slide.type === 'end-takeaways-t2') {
+                layoutHTML = `
+                    <div class="slide-content-layout" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <h1 style="font-size: 2.2rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">TỔNG KẾT BÀI HỌC (KEY TAKEAWAYS)</h1>
+                        <div class="grid-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent);">
+                                <div class="card-header">📚 KIẾN THỨC CỐT LÕI</div>
+                                <ul class="bullet-list">
+                                    <li>🚨 Nhận biết nguy cơ đuối nước thầm lặng</li>
+                                    <li>🛡️ Biết cách phòng tránh chủ động phù hợp nguy cơ</li>
+                                    <li>🦺 Biết cách xử lý an toàn khi gặp sự cố</li>
+                                </ul>
+                            </div>
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent);">
+                                <div class="card-header">🛠️ KỸ NĂNG BIÊN TẬP</div>
+                                <ul class="bullet-list">
+                                    <li>🔍 Chọn lọc thông tin quan trọng nhất</li>
+                                    <li>📖 Kết nối các dữ kiện thành câu chuyện logic</li>
+                                    <li>✍️ Biên tập thông tin thành bản thảo bản tin dễ hiểu</li>
+                                </ul>
+                            </div>
+                            <div class="content-card" style="background-color: var(--coral-warning); border-color: var(--coral-warning);">
+                                <div class="card-header" style="color: white;">📢 THÔNG ĐIỆP CHÍNH</div>
+                                <p style="font-size: 1.25rem; font-weight: 700; line-height: 1.6; text-align: center; margin-top: 1.5rem; color: white;">
+                                    📢 Nếu chỉ có 1 phút, hãy chọn điều quan trọng nhất để người xem hiểu nhanh, nhớ được và hành động an toàn.
+                                </p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex;">
+                            <button class="story-nav-btn" onclick="goToNextSlide()">Xem sản phẩm cuối và cam kết 📖</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            else if (slide.type === 'end-output-t2') {
+                const s = savedStates;
+                const draftHtml = (s.t2NewsTitle.trim() || s.t2NewsIntro.trim() || s.t2NewsBody.trim() || s.t2NewsOutro.trim())
+                    ? `<div style="color: var(--navy-medium); font-size: 0.8rem; font-weight:700; text-align:left; line-height: 1.4;">
+                        <b>[${s.t2NewsTitle.toUpperCase() || 'BẢN TIN AN TOÀN'}]</b><br>
+                        • Mở đầu: ${s.t2NewsIntro || '...'}<br>
+                        • Thân tin: ${s.t2NewsBody || '...'}<br>
+                        • Kết quả: ${s.t2NewsOutro || '...'}<br>
+                        ${s.t2NewsImage ? `<span style="font-size:0.7rem; color:#0077b6;">🖼️ Ảnh: ${s.t2NewsImage}</span>` : ''}
+                       </div>`
+                    : `<div style="color: rgba(0,0,0,0.3); font-style:italic; font-size:0.85rem; padding-top:2rem;">[Bản thảo bản tin trống]</div>`;
+
+                const remindPersonText = s.t2RemindPerson.trim() !== '' ? `<b>${s.t2RemindPerson}</b>` : '__________________';
+                const remindReasonText = s.t2RemindReason.trim() !== '' ? `<b>${s.t2RemindReason}</b>` : '____________________________________';
+
+                layoutHTML = `
+                    <div class="slide-content-layout" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <h1 style="font-size: 2.2rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">SẢN PHẨM CUỐI VÀ CAM KẾT</h1>
+                        <div class="split-layout" style="margin-top: 1rem; grid-template-columns: 1fr 1fr;">
+                            <div class="content-card" style="background-color: var(--navy-medium); border-color: var(--cyan-accent); display:flex; flex-direction:column; justify-content:space-between;">
+                                <div>
+                                    <div class="card-header">📰 Bản thảo bản tin phòng tránh đuối nước</div>
+                                    <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 1rem;">Sản phẩm truyền thông hoàn chỉnh thiết kế bởi nhóm biên tập.</p>
+                                </div>
+                                <div style="background-color:#fffdf9; border:2px solid #d4af37; border-radius:8px; padding:1rem; height:200px; overflow-y:auto; box-shadow:inset 0 2px 8px rgba(0,0,0,0.05);">
+                                    ${draftHtml}
+                                </div>
+                            </div>
+                            
+                            <div class="content-card" style="background: radial-gradient(circle, #fffdf9 0%, #f6edd8 100%) !important; border: 2px solid #d4af37; color: var(--navy-medium); display:flex; flex-direction:column; justify-content:space-between; padding:1.5rem;">
+                                <div style="text-align:center;">
+                                    <h3 style="font-family:'Outfit', sans-serif; font-size:1.2rem; font-weight:900; color:#b91c1c; border-bottom:1.5px solid #d4af37; padding-bottom:0.4rem; margin-bottom:1rem; text-transform:uppercase;">📜 CAM KẾT CHIA SẺ</h3>
+                                    <p style="font-family:'Itim', cursive; font-size:1.15rem; line-height:1.8; text-align:left;">
+                                        Sau buổi học này, em sẽ chủ động chia sẻ điều vừa học với: <span style="border-bottom:1px dashed #d4af37; color:#1a237e;">${remindPersonText}</span>.<br>
+                                        Lý do chia sẻ: <span style="border-bottom:1px dashed #d4af37; color:#1a237e;">${remindReasonText}</span>.
+                                    </p>
+                                </div>
+                                <div style="margin-top:1.5rem; text-align:right; font-family:'Itim', cursive; font-size:1rem; font-weight:700; color:#b91c1c;">
+                                    ✍️ Biên tập viên Nova News ký tên
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex;">
+                            <button class="story-nav-btn" onclick="goToNextSlide()">Quay lại câu hỏi lớn ❓</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            else if (slide.type === 'end-revisit-t2') {
+                layoutHTML = `
+                    <div class="slide-content-layout" style="text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+                        <h1 style="font-size: 2.2rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; width: 100%; text-align: left;">QUAY LẠI CÂU HỎI LỚN (BIG QUESTION REVISIT)</h1>
+                        
+                        <div class="content-card" style="border: 2px solid var(--coral-warning); background-color: var(--navy-medium); padding: 1.5rem; width: 100%; text-align: left;">
+                            <div style="font-size: 0.9rem; font-weight: 700; color: var(--coral-warning); margin-bottom: 0.5rem;">❓ CÂU HỎI LỚN ĐẦU GIỜ:</div>
+                            <p style="font-size: 1.6rem; font-weight: 700;">Nếu chỉ có 1 phút để giúp người khác phòng tránh đuối nước, chúng ta nên nói điều gì?</p>
+                        </div>
+                        
+                        <div class="content-card" style="background-color: var(--cyan-accent); color: var(--bg-dark); padding: 2rem; width: 100%; text-align: left;">
+                            <div style="font-size: 0.9rem; font-weight: 800; color: var(--bg-dark); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">💡 CÂU TRẢ LỜI ĐÚC RÚT SAU TIẾT HỌC:</div>
+                            <p style="font-size: 1.6rem; font-weight: 800; line-height: 1.5;">
+                                📢 Cần chọn thông tin quan trọng nhất về nguy cơ, cách phòng tránh và cách xử lý an toàn; sau đó kết nối thành bản tin ngắn gọn, dễ hiểu và dễ nhớ để giúp người xem biết cách hành động an toàn ngay lập tức.
+                            </p>
+                        </div>
+                        <div style="width: 100%; text-align: left; margin-top: 1rem; display:flex; justify-content:center;">
+                            <button class="story-nav-btn" onclick="showCompletionScreen()">Hoàn thành tiết học 🎉</button>
+                        </div>
+                    </div>
+                `;
+            }
+
             container.innerHTML = layoutHTML;
             
             // Post-render widget initialization if applicable
@@ -3360,6 +4411,458 @@
                 `;
             }
             
+            // --- TIẾT 2 WORKSPACES ---
+            // 10. Stage 1: Tin Nhanh 60 Giây Selection Card Grid
+            else if (slide.interactiveId === 'quick-news-60s') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>TIN NHANH 60 GIÂY</span> • LỌC BẢN TIN</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="padding: 1.2rem;">
+                                <div class="card-header">⚡ BẢN CHỌN LỌC TIN NHANH</div>
+                                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">Em hãy click chọn 4 thông tin đúng thu hoạch từ Tiết 1 và loại bỏ các thông tin sai:</p>
+                                <div class="t2-quick-news-grid">
+                                    <div class="t2-opt-card" id="t2-clue-1" onclick="toggleT2Clue(1)">
+                                        <span class="badge-icon">🏊</span>
+                                        <span>Chuột rút bắp cơ do không khởi động kỹ</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-clue-2" onclick="toggleT2Clue(2)">
+                                        <span class="badge-icon">🌀</span>
+                                        <span>Nước xoáy xiết kéo chìm người xuống đáy</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-clue-3" onclick="toggleT2Clue(3)">
+                                        <span class="badge-icon">🛶</span>
+                                        <span>Lật thuyền đò gây ngã xuống nước và chìm</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-clue-4" onclick="toggleT2Clue(4)">
+                                        <span class="badge-icon">🦺</span>
+                                        <span>Vật hỗ trợ nổi cứu sinh: Áo phao, can nhựa rỗng, cành cây</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-clue-5" onclick="toggleT2Clue(5)">
+                                        <span class="badge-icon">❌</span>
+                                        <span>Nên tắm ao sông suối một mình cho tự do</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-clue-6" onclick="toggleT2Clue(6)">
+                                        <span class="badge-icon">🍔</span>
+                                        <span>Ăn thật no trước khi bơi để tăng sinh lực</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <ul class="bullet-list">
+                                        <li>📝 Chọn đủ 4 thông tin đúng</li>
+                                        <li>👥 Tổ chức: Cả lớp</li>
+                                    </ul>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 4 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center; margin-top: 0;" onclick="submitT2Clues()">Nộp báo cáo tin nhanh 📈</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 11. Stage 2: Viewer Needs Workspace
+            else if (slide.interactiveId === 'viewer-needs') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>ĐIỀU NGƯỜI XEM CẦN HIỂU</span> • NHU CẦU</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="padding: 1.2rem;">
+                                <div class="card-header">📺 XÁC ĐỊNH MỤC TIÊU NGƯỜI XEM</div>
+                                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">Em hãy click chọn 3 điều quan trọng nhất bản tin cần giúp người xem hiểu nhanh và nhớ được:</p>
+                                <div class="t2-quick-news-grid" style="grid-template-columns: 1fr;">
+                                    <div class="t2-opt-card" id="t2-need-1" onclick="toggleT2Need(1)">
+                                        <span class="badge-icon">👁️</span>
+                                        <span>Nhận biết các nguy cơ đuối nước phổ biến xung quanh mình</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-need-2" onclick="toggleT2Need(2)">
+                                        <span class="badge-icon">🛡️</span>
+                                        <span>Biết cách phòng tránh đuối nước một cách chủ động</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-need-3" onclick="toggleT2Need(3)">
+                                        <span class="badge-icon">🚨</span>
+                                        <span>Biết cách xử lý an toàn khi không may gặp sự cố dưới nước</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-need-4" onclick="toggleT2Need(4)">
+                                        <span class="badge-icon">📜</span>
+                                        <span>Lịch sử phát triển và cấu tạo của các vật nổi trên thế giới</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-need-5" onclick="toggleT2Need(5)">
+                                        <span class="badge-icon">🏊</span>
+                                        <span>Các kỹ thuật bơi sải và bơi ếch nâng cao để thi đấu quốc tế</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <ul class="bullet-list">
+                                        <li>📝 Chọn đúng 3 nhu cầu cốt lõi</li>
+                                        <li>👥 Tổ chức: Nhóm</li>
+                                    </ul>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 3 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center; margin-top: 0;" onclick="submitT2Needs()">Xác nhận nhu cầu 📈</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 12. Stage 3: Information Aggregation Workspace
+            else if (slide.interactiveId === 'info-aggregation') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>TỔNG HỢP THÔNG TIN</span> • LIÊN KẾT DỮ KIỆN</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="padding: 1rem;">
+                                <div class="card-header">📊 BẢNG TỔNG HỢP VẤN ĐỀ - NGUYÊN NHÂN - GIẢI PHÁP</div>
+                                <table class="t2-table" style="margin-top: 0.5rem; width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 25%;">Vấn đề</th>
+                                            <th style="width: 38%;">Nguyên nhân chính</th>
+                                            <th style="width: 37%;">Giải pháp phòng tránh</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-weight: 700;">Chuột rút bắp cơ</td>
+                                            <td>
+                                                <select id="t2-match-cause-1" class="t2-select" onchange="saveT2Match(1)">
+                                                    <option value="">-- Chọn nguyên nhân --</option>
+                                                    <option value="cause-1">Không khởi động kỹ trước khi xuống nước</option>
+                                                    <option value="cause-2">Gần chân đập thủy điện hoặc khu vực sâu xoáy</option>
+                                                    <option value="cause-3">Thuyền chở quá tải, khách xô lệch mất thăng bằng</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select id="t2-match-sol-1" class="t2-select" onchange="saveT2Match(1)">
+                                                    <option value="">-- Chọn giải pháp --</option>
+                                                    <option value="sol-1">Khởi động kỹ bắp đùi và tay trước khi bơi</option>
+                                                    <option value="sol-2">Tránh xa vùng có biển cảnh báo nước xoáy</option>
+                                                    <option value="sol-3">Luôn mặc áo phao cứu sinh đúng cách suốt chuyến đi</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: 700;">Dòng nước xoáy</td>
+                                            <td>
+                                                <select id="t2-match-cause-2" class="t2-select" onchange="saveT2Match(2)">
+                                                    <option value="">-- Chọn nguyên nhân --</option>
+                                                    <option value="cause-1">Không khởi động kỹ trước khi xuống nước</option>
+                                                    <option value="cause-2">Gần chân đập thủy điện hoặc khu vực sâu xoáy</option>
+                                                    <option value="cause-3">Thuyền chở quá tải, khách xô lệch mất thăng bằng</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select id="t2-match-sol-2" class="t2-select" onchange="saveT2Match(2)">
+                                                    <option value="">-- Chọn giải pháp --</option>
+                                                    <option value="sol-1">Khởi động kỹ bắp đùi và tay trước khi bơi</option>
+                                                    <option value="sol-2">Tránh xa vùng có biển cảnh báo nước xoáy</option>
+                                                    <option value="sol-3">Luôn mặc áo phao cứu sinh đúng cách suốt chuyến đi</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: 700;">Lật thuyền, đò</td>
+                                            <td>
+                                                <select id="t2-match-cause-3" class="t2-select" onchange="saveT2Match(3)">
+                                                    <option value="">-- Chọn nguyên nhân --</option>
+                                                    <option value="cause-1">Không khởi động kỹ trước khi xuống nước</option>
+                                                    <option value="cause-2">Gần chân đập thủy điện hoặc khu vực sâu xoáy</option>
+                                                    <option value="cause-3">Thuyền chở quá tải, khách xô lệch mất thăng bằng</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select id="t2-match-sol-3" class="t2-select" onchange="saveT2Match(3)">
+                                                    <option value="">-- Chọn giải pháp --</option>
+                                                    <option value="sol-1">Khởi động kỹ bắp đùi và tay trước khi bơi</option>
+                                                    <option value="sol-2">Tránh xa vùng có biển cảnh báo nước xoáy</option>
+                                                    <option value="sol-3">Luôn mặc áo phao cứu sinh đúng cách suốt chuyến đi</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <p style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted);">Sản phẩm:</p>
+                                    <p style="font-size: 1.15rem; font-weight: 600;">📝 Bảng ghép nối hoàn chỉnh</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 5 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="submitT2Matches()">Nộp bảng tổng hợp 📈</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 13. Stage 4: News Storyboard Workspace
+            else if (slide.interactiveId === 'news-storyboard') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>MẠCH CÂU CHUYỆN BẢN TIN</span> • THỨ TỰ LOGIC</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                                <div class="card-header">📖 SẮP XẾP CẤU TRÚC BẢN TIN</div>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">Hãy chọn thứ tự (1, 2, 3) để sắp xếp mạch câu chuyện bản tin logic nhất:</p>
+                                <div class="t2-story-container">
+                                    <div class="t2-story-card">
+                                        <span class="t2-story-tag">Khối A</span>
+                                        <div class="t2-story-content">💡 <b>CẢNH BÁO PHÒNG TRÁNH:</b> Khuyến nghị người xem mặc áo phao cứu sinh khi đi thuyền, khởi động kỹ trước khi bơi và tránh xa dòng nước xoáy nguy hiểm.</div>
+                                        <select id="t2-order-3" class="t2-story-select" onchange="saveT2Ordering(3)">
+                                            <option value="">-- Thứ tự --</option>
+                                            <option value="1">Thứ tự 1 (Đầu)</option>
+                                            <option value="2">Thứ tự 2 (Giữa)</option>
+                                            <option value="3">Thứ tự 3 (Cuối)</option>
+                                        </select>
+                                    </div>
+                                    <div class="t2-story-card">
+                                        <span class="t2-story-tag">Khối B</span>
+                                        <div class="t2-story-content">📺 <b>SỰ VIỆC ĐUỐI NƯỚC KHẨN CẤP:</b> Bản tin nóng ghi nhận một nhóm học sinh vui chơi trượt chân tại sông suối nhưng không biết cách xử lý cứu hộ phù hợp.</div>
+                                        <select id="t2-order-1" class="t2-story-select" onchange="saveT2Ordering(1)">
+                                            <option value="">-- Thứ tự --</option>
+                                            <option value="1">Thứ tự 1 (Đầu)</option>
+                                            <option value="2">Thứ tự 2 (Giữa)</option>
+                                            <option value="3">Thứ tự 3 (Cuối)</option>
+                                        </select>
+                                    </div>
+                                    <div class="t2-story-card">
+                                        <span class="t2-story-tag">Khối C</span>
+                                        <div class="t2-story-content">🌀 <b>NGUYÊN NHÂN & NGUY CƠ:</b> Phân tích cho thấy tai nạn xảy ra do cơ thể bị chuột rút đột ngột, lực kéo chìm từ dòng nước xoáy sâu hoặc đò chở quá tải bị lật.</div>
+                                        <select id="t2-order-2" class="t2-story-select" onchange="saveT2Ordering(2)">
+                                            <option value="">-- Thứ tự --</option>
+                                            <option value="1">Thứ tự 1 (Đầu)</option>
+                                            <option value="2">Thứ tự 2 (Giữa)</option>
+                                            <option value="3">Thứ tự 3 (Cuối)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <ul class="bullet-list">
+                                        <li>📝 Sắp xếp đủ 3 khối</li>
+                                        <li>👥 Logic: Sự việc ➔ Nguyên nhân ➔ Khuyến cáo</li>
+                                    </ul>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 5 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="submitT2Ordering()">Nộp mạch câu chuyện 📈</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 14. Stage 5: Core Message Workspace
+            else if (slide.interactiveId === 'core-message-select') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>THÔNG ĐIỆP CỘNG ĐỒNG</span> • CỐT LÕI</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="padding: 1.2rem;">
+                                <div class="card-header">📢 CHỌN THÔNG ĐIỆP CHÍNH CHO BẢN TIN</div>
+                                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Thảo luận nhóm và chọn một thông điệp đắt giá nhất truyền tải giá trị phòng ngừa đuối nước:</p>
+                                <div style="display: flex; flex-direction: column; gap: 0.8rem; width: 100%;">
+                                    <div class="t2-opt-card" id="t2-msg-1" onclick="selectT2Message('An toàn sông nước bắt đầu từ việc nhận biết nguy cơ và luôn mang theo vật hỗ trợ nổi bên mình.', 1)">
+                                        <span class="badge-icon">📢</span>
+                                        <span>An toàn sông nước bắt đầu từ việc nhận biết nguy cơ và luôn mang theo vật hỗ trợ nổi bên mình.</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-msg-2" onclick="selectT2Message('Bơi lội là kỹ năng sinh tồn thiết yếu nhưng không nên tập bơi khi còn quá nhỏ tuổi.', 2)">
+                                        <span class="badge-icon">⚠️</span>
+                                        <span>Bơi lội là kỹ năng sinh tồn thiết yếu nhưng không nên tập bơi khi còn quá nhỏ tuổi.</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-msg-3" onclick="selectT2Message('Hãy cắm thật nhiều biển cảnh báo xung quanh tất cả các ao hồ tự nhiên để ngăn chặn đuối nước.', 3)">
+                                        <span class="badge-icon">🛑</span>
+                                        <span>Hãy cắm thật nhiều biển cảnh báo xung quanh tất cả các ao hồ tự nhiên để ngăn chặn đuối nước.</span>
+                                    </div>
+                                    <div class="t2-opt-card" id="t2-msg-4" onclick="selectT2Message('Mọi người dân đều có trách nhiệm chế tạo thêm áo phao cứu sinh từ can nhựa cũ.', 4)">
+                                        <span class="badge-icon">♻️</span>
+                                        <span>Mọi người dân đều có trách nhiệm chế tạo thêm áo phao cứu sinh từ can nhựa cũ.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <ul class="bullet-list">
+                                        <li>🎯 Chọn 1 thông điệp chính</li>
+                                        <li>👥 Tiêu chuẩn: Rõ ràng, dễ nhớ, dễ hành động</li>
+                                    </ul>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 4 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="submitT2Message()">Thống nhất thông điệp 📈</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 15. Stage 6: Written Newsletter Workspace
+            else if (slide.interactiveId === 'write-newsletter') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>BÀN BIÊN TẬP NOVA NEWS</span> • VIẾT BẢN TIN</h2>
+                        <div class="workspace-layout" style="margin-top: 0.5rem; gap: 1rem;">
+                            <div class="content-card" style="padding: 1rem; flex: 1.6; display: flex; flex-direction: column; gap: 0.8rem;">
+                                <div class="card-header">📰 BẢN THẢO BẢN TIN PHÒNG TRÁNH ĐUỐI NƯỚC</div>
+                                
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                                    <div class="form-group" style="grid-column: span 2;">
+                                        <label for="t2-news-title" style="font-weight: 700; font-size: 0.85rem; color: var(--navy-medium);">Tiêu đề bản tin:</label>
+                                        <input type="text" id="t2-news-title" placeholder="Nhập tiêu đề bản tin thu hút..." oninput="saveT2NewsState()" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #CBD5E0; font-family: inherit;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="t2-news-intro" style="font-weight: 700; font-size: 0.85rem; color: var(--navy-medium);">Mở đầu (Sự việc):</label>
+                                        <textarea id="t2-news-intro" placeholder="Ghi nhận sự việc đuối nước..." oninput="saveT2NewsState()" style="width: 100%; height: 75px; padding: 0.5rem; border-radius: 6px; border: 1px solid #CBD5E0; font-family: inherit; resize: none;"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="t2-news-body" style="font-weight: 700; font-size: 0.85rem; color: var(--navy-medium);">Thân tin (Nguyên nhân):</label>
+                                        <textarea id="t2-news-body" placeholder="Phân tích nguyên nhân do chuột rút, nước xoáy, lật thuyền..." oninput="saveT2NewsState()" style="width: 100%; height: 75px; padding: 0.5rem; border-radius: 6px; border: 1px solid #CBD5E0; font-family: inherit; resize: none;"></textarea>
+                                    </div>
+                                    <div class="form-group" style="grid-column: span 2;">
+                                        <label for="t2-news-outro" style="font-weight: 700; font-size: 0.85rem; color: var(--navy-medium);">Kết quả & Cảnh báo (Giải pháp):</label>
+                                        <textarea id="t2-news-outro" placeholder="Khuyến nghị áo phao cứu sinh, biển báo nguy hiểm..." oninput="saveT2NewsState()" style="width: 100%; height: 50px; padding: 0.5rem; border-radius: 6px; border: 1px solid #CBD5E0; font-family: inherit; resize: none;"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                                    <label style="font-weight: 700; font-size: 0.85rem; color: var(--navy-medium);">Chọn hình minh họa truyền thông:</label>
+                                    <div style="display: flex; gap: 0.6rem; overflow-x: auto; padding: 0.2rem 0;">
+                                        <div class="t2-img-thumb" id="t2-thumb-1" onclick="selectT2NewsImage('solution_table_1781237285286.png', 1)">
+                                            <img src="images/solution_table_1781237285286.png" style="height: 40px; border-radius: 4px; object-fit: cover;">
+                                            <div style="font-size: 0.7rem; font-weight:700;">Sơ đồ giải pháp</div>
+                                        </div>
+                                        <div class="t2-img-thumb" id="t2-thumb-2" onclick="selectT2NewsImage('cramps_swimmer.png', 2)">
+                                            <img src="images/cramps_swimmer.png" style="height: 40px; border-radius: 4px; object-fit: cover;">
+                                            <div style="font-size: 0.7rem; font-weight:700;">Chuột rút bơi</div>
+                                        </div>
+                                        <div class="t2-img-thumb" id="t2-thumb-3" onclick="selectT2NewsImage('whirlpool_danger.png', 3)">
+                                            <img src="images/whirlpool_danger.png" style="height: 40px; border-radius: 4px; object-fit: cover;">
+                                            <div style="font-size: 0.7rem; font-weight:700;">Nước xoáy</div>
+                                        </div>
+                                        <div class="t2-img-thumb" id="t2-thumb-4" onclick="selectT2NewsImage('overturned_boat.png', 4)">
+                                            <img src="images/overturned_boat.png" style="height: 40px; border-radius: 4px; object-fit: cover;">
+                                            <div style="font-size: 0.7rem; font-weight:700;">Lật thuyền</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workspace-right-info" style="flex: 0.8;">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <ul class="bullet-list" style="font-size: 0.85rem;">
+                                        <li>📝 Điền đầy đủ Title, Intro, Body, Outro</li>
+                                        <li>🖼️ Chọn 1 ảnh minh họa phù hợp</li>
+                                        <li>👥 Tổ chức: Nhóm biên tập</li>
+                                    </ul>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 0.8rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 8 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center; margin-top:0;" onclick="submitT2NewsDraft()">Hoàn thành bản thảo 📰</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 16. Stage 7: Reflection Journal Workspace
+            else if (slide.interactiveId === 'reporter-journal-t2') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>NHẬT KÝ BIÊN TẬP VIÊN</span> • PHẢN TƯ</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="css-notebook-single" style="flex: 1.4;">
+                                <p style="font-size: 1.15rem; font-weight: 800; color: #ff9f43; border-bottom: 2px solid #ff9f43; padding-bottom: 0.3rem; margin-bottom: 0.8rem; font-family: 'Outfit', sans-serif;">📓 SỔ TAY GHI NHANH PHẢN TƯ BTV</p>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; padding: 0.5rem 0;">
+                                    <div>
+                                        <label for="t2-journal-info" style="font-weight: 800; font-size: 0.95rem; color: var(--navy-medium); display: block; margin-bottom: 0.4rem;">❓ Thông tin nào quan trọng nhất em học được hôm nay?</label>
+                                        <textarea id="t2-journal-info" class="notebook-textarea-single" placeholder="Ví dụ: Cần khởi động trước khi bơi, cách xa vùng nước xoáy, luôn mặc áo phao..." oninput="saveT2JournalState()" style="height: 80px; width: 100%; resize: none; outline: none; border-radius: 8px; border: 1px solid rgba(28,37,65,0.15); padding: 0.5rem;"></textarea>
+                                    </div>
+                                    <div>
+                                        <label for="t2-journal-need" style="font-weight: 800; font-size: 0.95rem; color: var(--navy-medium); display: block; margin-bottom: 0.4rem;">❓ Điều gì cộng đồng xung quanh em cần biết nhất?</label>
+                                        <textarea id="t2-journal-need" class="notebook-textarea-single" placeholder="Ví dụ: Mang theo các vật hỗ trợ nổi cứu sinh đơn giản, dễ tìm như can nhựa rỗng..." oninput="saveT2JournalState()" style="height: 80px; width: 100%; resize: none; outline: none; border-radius: 8px; border: 1px solid rgba(28,37,65,0.15); padding: 0.5rem;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <p style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted);">Sản phẩm:</p>
+                                    <p style="font-size: 1.1rem; font-weight: 600;">📓 Phiếu phản tư hoàn chỉnh</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 4 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="submitT2Journal()">Lưu nhật ký BTV 📓</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 17. Stage 8: Adapt/Remind Who Workspace
+            else if (slide.interactiveId === 'remind-who') {
+                html = `
+                    <div class="slide-content-layout">
+                        <h2 class="slide-title-bar">Hoạt động: <span>TÔI SẼ NHẮC AI?</span> • CAM KẾT HÀNH ĐỘNG</h2>
+                        <div class="workspace-layout" style="margin-top: 1rem;">
+                            <div class="content-card" style="padding: 1.5rem; flex: 1.4; background: radial-gradient(circle, #fffdf9 0%, #f6edd8 100%) !important; border: 2px solid #d4af37; color: var(--navy-medium); position: relative; overflow: hidden;">
+                                <canvas id="t2-confetti-canvas" style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:5;"></canvas>
+                                <div style="text-align: center;">
+                                    <h3 style="font-family:'Outfit', sans-serif; font-size:1.3rem; font-weight:900; color:#b91c1c; border-bottom:1.5px solid #d4af37; padding-bottom:0.4rem; margin-bottom:1.2rem; text-transform:uppercase;">📜 PHIẾU CAM KẾT CHIA SẺ</h3>
+                                    
+                                    <div style="text-align: left; display: flex; flex-direction: column; gap: 1rem; font-size: 1.05rem;">
+                                        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                                            <span>Sau buổi học này, em sẽ chủ động chia sẻ điều vừa học với:</span>
+                                            <input type="text" id="t2-remind-person" placeholder="Tên người thân, bạn bè..." oninput="saveT2RemindState()" style="border: none; border-bottom: 1.5px dashed #b91c1c; background: transparent; padding: 0.2rem; font-weight: 700; color: #1a237e; font-family: inherit; font-size: 1.05rem; outline: none; width: 220px;">
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                                            <span>Lý do chia sẻ:</span>
+                                            <textarea id="t2-remind-reason" placeholder="Ví dụ: Để bạn biết cách mặc áo phao an toàn khi đi thuyền bè, phòng tránh tai nạn..." oninput="saveT2RemindState()" style="border: none; border-bottom: 1.5px dashed #b91c1c; background: transparent; padding: 0.2rem; font-weight: 700; color: #1a237e; font-family: inherit; font-size: 1.05rem; outline: none; width: 100%; height: 60px; resize: none;"></textarea>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 1.5rem; text-align: right; font-style: italic; color: #7f8c8d; font-family:'Itim', cursive;">
+                                        Biên tập viên Nova News ký nhận ✍️
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workspace-right-info">
+                                <div class="content-card">
+                                    <div class="card-header">⚙️ YÊU CẦU HOÀN THÀNH</div>
+                                    <ul class="bullet-list">
+                                        <li>✍️ Điền tên người nhận nhắc nhở</li>
+                                        <li>💡 Nêu rõ lý do thiết thực</li>
+                                    </ul>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                                    <div class="time-badge">⏱️ 3 phút</div>
+                                    <button class="story-nav-btn" style="width: 100%; justify-content: center;" onclick="signT2Commitment()">Ký cam kết chia sẻ ✍️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
             return html;
         }
 
@@ -3367,6 +4870,7 @@
         // INTERACTIVE STATE BACKUPS & INITIALIZATION
         // ---------------------------------------------------------------------
         const savedStates = {
+            // Tiet 1 States
             clues: { 1: false, 2: false, 3: false },
             witnessMatches: { 1: null, 2: null, 3: null },
             customQuestion: '',
@@ -3378,7 +4882,27 @@
             notebookRight: '',
             reflectionText: '',
             certName: '',
-            certCommits: { 1: true, 2: true, 3: false }
+            certCommits: { 1: true, 2: true, 3: false },
+
+            // Tiet 2 States
+            t2Clues: { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false },
+            t2Needs: { 1: false, 2: false, 3: false, 4: false, 5: false },
+            t2Matches: { 
+                1: { cause: '', sol: '' }, 
+                2: { cause: '', sol: '' }, 
+                3: { cause: '', sol: '' } 
+            },
+            t2Ordering: { 1: '', 2: '', 3: '' },
+            t2Message: null,
+            t2NewsTitle: '',
+            t2NewsIntro: '',
+            t2NewsBody: '',
+            t2NewsOutro: '',
+            t2NewsImage: '',
+            t2JournalInfo: '',
+            t2JournalNeed: '',
+            t2RemindPerson: '',
+            t2RemindReason: ''
         };
 
         function initInteractiveWidget(widgetId) {
@@ -3434,6 +4958,82 @@
                 document.getElementById('w-commit-3').checked = savedStates.certCommits[3];
                 updateCertTextWidget();
                 updateCertNameWidget();
+            }
+            
+            // --- TIẾT 2 ---
+            else if (widgetId === 'quick-news-60s') {
+                for (let i = 1; i <= 6; i++) {
+                    const card = document.getElementById(`t2-clue-${i}`);
+                    if (savedStates.t2Clues[i] && card) {
+                        card.classList.add('selected');
+                    }
+                }
+            }
+            
+            else if (widgetId === 'viewer-needs') {
+                for (let i = 1; i <= 5; i++) {
+                    const card = document.getElementById(`t2-need-${i}`);
+                    if (savedStates.t2Needs[i] && card) {
+                        card.classList.add('selected');
+                    }
+                }
+            }
+            
+            else if (widgetId === 'info-aggregation') {
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById(`t2-match-cause-${i}`).value = savedStates.t2Matches[i].cause;
+                    document.getElementById(`t2-match-sol-${i}`).value = savedStates.t2Matches[i].sol;
+                }
+            }
+            
+            else if (widgetId === 'news-storyboard') {
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById(`t2-order-${i}`).value = savedStates.t2Ordering[i];
+                }
+            }
+            
+            else if (widgetId === 'core-message-select') {
+                const s = savedStates;
+                if (s.t2Message) {
+                    const optionTexts = [
+                        'An toàn sông nước bắt đầu từ việc nhận biết nguy cơ và luôn mang theo vật hỗ trợ nổi bên mình.',
+                        'Bơi lội là kỹ năng sinh tồn thiết yếu nhưng không nên tập bơi khi còn quá nhỏ tuổi.',
+                        'Hãy cắm thật nhiều biển cảnh báo xung quanh tất cả các ao hồ tự nhiên để ngăn chặn đuối nước.',
+                        'Mọi người dân đều có trách nhiệm chế tạo thêm áo phao cứu sinh từ can nhựa cũ.'
+                    ];
+                    const idx = optionTexts.indexOf(s.t2Message);
+                    if (idx !== -1) {
+                        const card = document.getElementById(`t2-msg-${idx + 1}`);
+                        if (card) card.classList.add('selected');
+                    }
+                }
+            }
+            
+            else if (widgetId === 'write-newsletter') {
+                const s = savedStates;
+                document.getElementById('t2-news-title').value = s.t2NewsTitle;
+                document.getElementById('t2-news-intro').value = s.t2NewsIntro;
+                document.getElementById('t2-news-body').value = s.t2NewsBody;
+                document.getElementById('t2-news-outro').value = s.t2NewsOutro;
+                
+                if (s.t2NewsImage) {
+                    const imgNames = ['solution_table_1781237285286.png', 'cramps_swimmer.png', 'whirlpool_danger.png', 'overturned_boat.png'];
+                    const idx = imgNames.indexOf(s.t2NewsImage);
+                    if (idx !== -1) {
+                        const thumb = document.getElementById(`t2-thumb-${idx + 1}`);
+                        if (thumb) thumb.classList.add('selected');
+                    }
+                }
+            }
+            
+            else if (widgetId === 'reporter-journal-t2') {
+                document.getElementById('t2-journal-info').value = savedStates.t2JournalInfo;
+                document.getElementById('t2-journal-need').value = savedStates.t2JournalNeed;
+            }
+            
+            else if (widgetId === 'remind-who') {
+                document.getElementById('t2-remind-person').value = savedStates.t2RemindPerson;
+                document.getElementById('t2-remind-reason').value = savedStates.t2RemindReason;
             }
         }
 
@@ -4029,7 +5629,234 @@
         }
 
         function showCompletionScreen() {
-            showCustomAlert("Chúc mừng em đã hoàn thành toàn bộ khóa tập huấn Phóng viên Nhí phòng tránh đuối nước!<br><br>Hãy luôn ghi nhớ các nguy cơ, áp dụng giải pháp và chia sẻ kiến thức này để bảo vệ bản thân và bạn bè nhé!", "Chúc mừng hoàn thành!", "🏆", () => goToSlide(0));
+            const lessonTitle = currentLesson === 2 ? "Biên tập viên tổng hợp" : "Phóng viên Nhí";
+            showCustomAlert(`Chúc mừng em đã hoàn thành toàn bộ khóa tập huấn ${lessonTitle} phòng tránh đuối nước!<br><br>Hãy luôn ghi nhớ các nguy cơ, áp dụng giải pháp và chia sẻ kiến thức này để bảo vệ bản thân và bạn bè nhé!`, "Chúc mừng hoàn thành!", "🏆", () => returnToHub());
+        }
+
+        // --- TIẾT 2 WORKSPACE EVENT HANDLERS ---
+        function toggleT2Clue(index) {
+            const card = document.getElementById(`t2-clue-${index}`);
+            if (!card) return;
+            card.classList.toggle('selected');
+            savedStates.t2Clues[index] = card.classList.contains('selected');
+        }
+
+        function submitT2Clues() {
+            const s = savedStates.t2Clues;
+            const correct = s[1] && s[2] && s[3] && s[4] && !s[5] && !s[6];
+            const selectedCount = [1,2,3,4,5,6].filter(i => s[i]).length;
+            
+            if (selectedCount === 0) {
+                showCustomAlert("Vui lòng chọn các thông tin đúng trước khi báo cáo!", "Chưa chọn thông tin", "⚡");
+                return;
+            }
+            
+            if (correct) {
+                showCustomAlert("Chúc mừng Biên tập viên! Nhóm đã chọn lọc và giữ lại chính xác 4 thông tin cốt lõi nhất từ Tiết 1.<br><br>Nhấn ĐÓNG để nhận nhiệm vụ tiếp theo từ Tòa soạn.", "Lọc tin thành công", "🔓", () => goToNextSlide());
+            } else {
+                showCustomAlert("Lựa chọn chưa chính xác. Có thông tin sai lệch hoặc bị thiếu/trùng lặp. Hãy phân tích kỹ và chọn lại!", "Thông tin chưa chuẩn", "❌");
+            }
+        }
+
+        function toggleT2Need(index) {
+            const card = document.getElementById(`t2-need-${index}`);
+            if (!card) return;
+            card.classList.toggle('selected');
+            savedStates.t2Needs[index] = card.classList.contains('selected');
+        }
+
+        function submitT2Needs() {
+            const s = savedStates.t2Needs;
+            const correct = s[1] && s[2] && s[3] && !s[4] && !s[5];
+            const selectedCount = [1,2,3,4,5].filter(i => s[i]).length;
+            
+            if (selectedCount === 0) {
+                showCustomAlert("Vui lòng chọn các nhu cầu quan trọng nhất của người xem!", "Chưa chọn nhu cầu", "📺");
+                return;
+            }
+            
+            if (correct) {
+                showCustomAlert("Chính xác! 3 nhu cầu cốt lõi nhất của người xem chính là: Nhận biết nguy cơ, Phòng tránh chủ động và Xử lý an toàn khi gặp sự cố.<br><br>Nhấn ĐÓNG để tiến hành chọn lọc tổng hợp thông tin.", "Xác định chính xác", "🎯", () => goToNextSlide());
+            } else {
+                showCustomAlert("Lựa chọn chưa tối ưu. Hãy tập trung vào những nhu cầu cấp thiết, cơ bản nhất dành cho trẻ em thay vì các kiến thức quá nâng cao hoặc thứ yếu!", "Nhu cầu chưa tối ưu", "❌");
+            }
+        }
+
+        function saveT2Match(problemIdx) {
+            savedStates.t2Matches[problemIdx].cause = document.getElementById(`t2-match-cause-${problemIdx}`).value;
+            savedStates.t2Matches[problemIdx].sol = document.getElementById(`t2-match-sol-${problemIdx}`).value;
+        }
+
+        function submitT2Matches() {
+            const m = savedStates.t2Matches;
+            const isAllSelected = m[1].cause && m[1].sol && m[2].cause && m[2].sol && m[3].cause && m[3].sol;
+            
+            if (!isAllSelected) {
+                showCustomAlert("Vui lòng hoàn thành ghép nối Nguyên nhân và Giải pháp cho cả 3 vấn đề trước khi gửi!", "Bảng chưa hoàn thành", "📊");
+                return;
+            }
+            
+            const isCorrect = (m[1].cause === 'cause-1' && m[1].sol === 'sol-1' &&
+                               m[2].cause === 'cause-2' && m[2].sol === 'sol-2' &&
+                               m[3].cause === 'cause-3' && m[3].sol === 'sol-3');
+            
+            if (isCorrect) {
+                showCustomAlert("Tuyệt vời! Biên tập viên đã tổng hợp và kết hợp cực kỳ chính xác các nguyên nhân & giải pháp cho từng nguy cơ đuối nước.<br><br>Nhấn ĐÓNG để bắt đầu xây dựng câu chuyện bản tin.", "Tổng hợp chính xác", "📊", () => goToNextSlide());
+            } else {
+                showCustomAlert("Có thông tin ghép nối nguyên nhân hoặc giải pháp chưa chính xác với nguy cơ. Em hãy kiểm tra và chọn lại!", "Sai lệch thông tin", "❌");
+            }
+        }
+
+        function saveT2Ordering(blockIdx) {
+            savedStates.t2Ordering[blockIdx] = document.getElementById(`t2-order-${blockIdx}`).value;
+        }
+
+        function submitT2Ordering() {
+            const o = savedStates.t2Ordering;
+            const isAllSelected = o[1] && o[2] && o[3];
+            
+            if (!isAllSelected) {
+                showCustomAlert("Vui lòng chọn đầy đủ thứ tự cho cả 3 khối thông tin bản tin!", "Chưa hoàn thành sắp xếp", "📖");
+                return;
+            }
+            
+            const isCorrect = o[1] === '1' && o[2] === '2' && o[3] === '3';
+            
+            if (isCorrect) {
+                showCustomAlert("Chính xác! Mạch bản tin logic và chuyên nghiệp nhất chính là đi từ: Sự việc nóng ➔ Nguyên nhân cốt lõi ➔ Cảnh báo hành động.<br><br>Nhấn ĐÓNG để tiến hành thống nhất thông điệp chính.", "Cấu trúc logic", "🏆", () => goToNextSlide());
+            } else {
+                showCustomAlert("Mạch câu chuyện chưa logic. Hãy sắp xếp lại theo trình tự: Chuyện gì xảy ra ➔ Vì sao xảy ra ➔ Khuyên người xem làm gì!", "Mạch tin chưa logic", "❌");
+            }
+        }
+
+        function selectT2Message(text, idx) {
+            savedStates.t2Message = text;
+            document.querySelectorAll("[id^='t2-msg-']").forEach(card => card.classList.remove('selected'));
+            const selectedCard = document.getElementById(`t2-msg-${idx}`);
+            if (selectedCard) selectedCard.classList.add('selected');
+        }
+
+        function submitT2Message() {
+            if (!savedStates.t2Message) {
+                showCustomAlert("Vui lòng chọn thông điệp chính của bản tin trước khi đi tiếp!", "Chưa chọn thông điệp", "📢");
+                return;
+            }
+            
+            const correctText = 'An toàn sông nước bắt đầu từ việc nhận biết nguy cơ và luôn mang theo vật hỗ trợ nổi bên mình.';
+            if (savedStates.t2Message === correctText) {
+                showCustomAlert("Thông điệp tuyệt vời! Đây là nội dung bao quát, truyền cảm hứng và thúc đẩy hành động phòng ngừa hiệu quả nhất.<br><br>Nhấn ĐÓNG để tiến hành biên tập bản thảo bản tin.", "Thống nhất thông điệp", "🎉", () => goToNextSlide());
+            } else {
+                showCustomAlert("Thông điệp này chưa bao quát đầy đủ nội dung bài học hoặc mang tính cục bộ. Hãy thảo luận và chọn lại!", "Chọn lại thông điệp", "❌");
+            }
+        }
+
+        function saveT2NewsState() {
+            savedStates.t2NewsTitle = document.getElementById('t2-news-title').value;
+            savedStates.t2NewsIntro = document.getElementById('t2-news-intro').value;
+            savedStates.t2NewsBody = document.getElementById('t2-news-body').value;
+            savedStates.t2NewsOutro = document.getElementById('t2-news-outro').value;
+        }
+
+        function selectT2NewsImage(imgName, idx) {
+            savedStates.t2NewsImage = imgName;
+            document.querySelectorAll("[id^='t2-thumb-']").forEach(tb => tb.classList.remove('selected'));
+            const selectedThumb = document.getElementById(`t2-thumb-${idx}`);
+            if (selectedThumb) selectedThumb.classList.add('selected');
+        }
+
+        function submitT2NewsDraft() {
+            const s = savedStates;
+            if (s.t2NewsTitle.trim() === '' || s.t2NewsIntro.trim() === '' || s.t2NewsBody.trim() === '' || s.t2NewsOutro.trim() === '') {
+                showCustomAlert("Vui lòng nhập đầy đủ các mục (Tiêu đề, Mở đầu, Thân tin, Kết luận) của bản thảo bản tin!", "Bản thảo chưa hoàn thiện", "📰");
+                return;
+            }
+            if (!s.t2NewsImage) {
+                showCustomAlert("Vui lòng chọn một hình ảnh minh họa truyền thông cho bản tin!", "Thiếu hình ảnh minh họa", "🖼️");
+                return;
+            }
+            showCustomAlert("Chúc mừng nhóm biên tập! Bản thảo bản tin phòng tránh đuối nước đã được biên tập và trình bày hoàn chỉnh.<br><br>Nhấn ĐÓNG để ghi chép lại suy ngẫm trong nhật ký BTV.", "Bản thảo hoàn thiện", "🎉", () => goToNextSlide());
+        }
+
+        function saveT2JournalState() {
+            savedStates.t2JournalInfo = document.getElementById('t2-journal-info').value;
+            savedStates.t2JournalNeed = document.getElementById('t2-journal-need').value;
+        }
+
+        function submitT2Journal() {
+            const s = savedStates;
+            if (s.t2JournalInfo.trim() === '' || s.t2JournalNeed.trim() === '') {
+                showCustomAlert("Vui lòng điền suy ngẫm vào cả hai câu hỏi trong Sổ tay BTV!", "Chưa điền nhật ký", "📓");
+                return;
+            }
+            showCustomAlert("Nhật ký phản tư của Biên tập viên đã được ghi lại thành công.<br><br>Nhấn ĐÓNG để xem tổng hợp và đánh giá sổ tay.", "Lưu nhật ký thành công", "💾", () => goToNextSlide());
+        }
+
+        function saveT2RemindState() {
+            savedStates.t2RemindPerson = document.getElementById('t2-remind-person').value;
+            savedStates.t2RemindReason = document.getElementById('t2-remind-reason').value;
+        }
+
+        function signT2Commitment() {
+            const person = document.getElementById('t2-remind-person').value.trim();
+            const reason = document.getElementById('t2-remind-reason').value.trim();
+            
+            if (person === '' || reason === '') {
+                showCustomAlert("Vui lòng nhập tên người muốn chia sẻ và lý do chia sẻ trước khi ký cam kết!", "Thiếu thông tin cam kết", "✍️");
+                return;
+            }
+            
+            // Trigger confetti
+            const canvas = document.getElementById('t2-confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            
+            let particles = [];
+            const colors = ['#FF9F43', '#FF3B30', '#00E676', '#FFD700', '#FFFFFF'];
+            
+            for (let i = 0; i < 70; i++) {
+                particles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height - 20,
+                    size: Math.random() * 4 + 3,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedX: (Math.random() - 0.5) * 6,
+                    speedY: -Math.random() * 8 - 4,
+                    gravity: 0.18,
+                    opacity: 1
+                });
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let alive = false;
+                
+                particles.forEach(p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.speedY += p.gravity;
+                    p.opacity -= 0.015;
+                    
+                    if (p.opacity > 0) {
+                        alive = true;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fillStyle = p.color;
+                        ctx.globalAlpha = p.opacity;
+                        ctx.fill();
+                    }
+                });
+                
+                if (alive) {
+                    requestAnimationFrame(animate);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            
+            animate();
+            
+            showCustomAlert(`Chúc mừng Biên tập viên đã ký cam kết hành động! Nhóm hãy luôn chia sẻ kiến thức này để giúp <b>${person}</b> và mọi người xung quanh luôn an toàn sông nước nhé!`, "Ký cam kết thành công", "🎉", () => goToNextSlide());
         }
 
         // ---------------------------------------------------------------------
