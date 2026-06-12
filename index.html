@@ -58,7 +58,7 @@
 
         #presentation-wrapper.light-slide-bg {
             background-image: 
-                linear-gradient(rgba(248, 250, 252, 0.93), rgba(248, 250, 252, 0.93)),
+                linear-gradient(rgba(240, 244, 248, 0.78), rgba(240, 244, 248, 0.78)),
                 url('images/newsroom_light_bg.png');
             color: var(--navy-medium);
         }
@@ -943,7 +943,7 @@
         .stage-indicator { font-size: 1.2rem !important; }
         .nav-btn { font-size: 1.2rem !important; }
         .progress-text { font-size: 1.25rem !important; }
-        .menu-item { font-size: 1.2rem !important; }
+        .menu-item { font-size: 0.9rem !important; }
         .slide-title-bar { font-size: 2.6rem !important; }
         .card-header { font-size: 1.45rem !important; }
         .bullet-list li { font-size: 1.45rem !important; }
@@ -962,8 +962,33 @@
         .dossier-title { font-size: 1.45rem !important; }
         .dossier-quote { font-size: 1.35rem !important; }
         .folder-tab-btn { font-size: 1.35rem !important; }
-        .draggable-lab-item { font-size: 1.35rem !important; }
-        .lab-sprite span.label { font-size: 1.15rem !important; }
+        
+        /* Buoyancy Lab Upgrades */
+        .draggable-lab-item {
+            font-size: 1.35rem !important;
+            padding: 0.8rem 1.2rem !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+            border: 2px solid rgba(28, 37, 65, 0.1) !important;
+            border-radius: 8px !important;
+        }
+        .draggable-lab-item:hover {
+            border-color: var(--cyan-accent) !important;
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.2) !important;
+        }
+        .lab-sprite {
+            font-size: 3.5rem !important;
+            filter: drop-shadow(0 4px 10px rgba(0, 119, 182, 0.4)) !important;
+        }
+        .lab-sprite span.label {
+            font-size: 1.15rem !important;
+            background-color: rgba(10, 14, 26, 0.85) !important;
+            padding: 0.2rem 0.5rem !important;
+            border-radius: 6px !important;
+            margin-top: 0.3rem !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        
         .keyboard-hint { font-size: 1.1rem !important; }
         .story-nav-btn { font-size: 1.4rem !important; }
         select, textarea, input[type="text"] { font-size: 1.25rem !important; }
@@ -980,6 +1005,78 @@
         .cert-form input[type="checkbox"] {
             transform: scale(1.3);
             margin-right: 0.5rem;
+        }
+
+        /* --- Print layout styling --- */
+        #batch-print-container {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                color: var(--navy-medium) !important;
+            }
+            /* If printing single certificate */
+            body:not(.printing-batch) #presentation-wrapper,
+            body:not(.printing-batch) header,
+            body:not(.printing-batch) #nav-controls,
+            body:not(.printing-batch) .cert-form,
+            body:not(.printing-batch) .story-nav-btn {
+                display: none !important;
+            }
+            body:not(.printing-batch) .interactive-cert-box {
+                display: block !important;
+                border: none !important;
+                background: none !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            body:not(.printing-batch) .interactive-cert-paper {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(1.4);
+                border: 8px double var(--navy-medium) !important;
+                width: 600px !important;
+                height: 400px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                page-break-inside: avoid;
+                box-shadow: none !important;
+                background: white !important;
+                color: var(--navy-medium) !important;
+            }
+
+            /* If printing batch of certificates */
+            body.printing-batch #presentation-wrapper {
+                display: none !important;
+            }
+            body.printing-batch #batch-print-container {
+                display: block !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+            .batch-cert-page {
+                page-break-after: always;
+                page-break-inside: avoid;
+                width: 100vw !important;
+                height: 100vh !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                border: 10px double var(--navy-medium) !important;
+                padding: 2.5rem !important;
+                box-sizing: border-box !important;
+                background: white !important;
+                color: var(--navy-medium) !important;
+                font-family: 'Itim', cursive !important;
+                text-align: center !important;
+            }
         }
     </style>
 </head>
@@ -1023,6 +1120,9 @@
             <!-- Dynamically populated -->
         </div>
     </div>
+
+    <!-- Hidden Batch Print Container -->
+    <div id="batch-print-container"></div>
 
     <!-- Custom Modal Popup Dialog -->
     <div id="custom-alert-backdrop"></div>
@@ -2510,6 +2610,19 @@
                                     </div>
                                 </div>
                                 <button class="story-nav-btn" style="width: 100%; margin-top: 1rem; justify-content: center;" onclick="signCertWidget()">Ký chứng nhận ✍️</button>
+                                
+                                <div style="margin-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: var(--cyan-accent); text-transform: uppercase;">🖨️ In & Tải Về</div>
+                                    <button class="nav-btn" style="width: 100%; justify-content: center; background-color: var(--navy-medium); border-color: var(--cyan-accent);" onclick="printSingleCertificate()">In / Tải PDF Chứng nhận 🖨️</button>
+                                    
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: var(--cyan-accent); text-transform: uppercase; margin-top: 0.4rem;">👥 In Hàng Loạt</div>
+                                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                        <button class="nav-btn" style="flex: 1; justify-content: center; font-size: 0.85rem;" onclick="document.getElementById('cert-csv-upload').click()">Tải danh sách (.txt/.csv) 📂</button>
+                                        <input type="file" id="cert-csv-upload" accept=".csv, .txt" style="display: none;" onchange="handleBatchUpload(event)">
+                                        <span id="batch-count-label" style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);">Đã nạp: 0</span>
+                                    </div>
+                                    <button class="nav-btn primary-action" id="btn-batch-print" style="width: 100%; justify-content: center;" onclick="printBatchCertificates()" disabled>In hàng loạt danh sách 🖨️</button>
+                                </div>
                             </div>
                             
                             <div class="interactive-cert-paper">
@@ -2737,9 +2850,11 @@
             const simObject = document.createElement('div');
             simObject.className = 'lab-sprite';
             
-            // Random horizontal placement inside aquarium
-            const randomX = 15 + Math.random() * 60;
-            simObject.style.left = `${randomX}%`;
+            // Non-overlapping horizontal placement inside aquarium
+            const itemNum = parseInt(elementId.replace('widget-item-', '')) || 1;
+            const xCoords = { 1: 15, 2: 32, 3: 50, 4: 68, 5: 85 };
+            const leftPercent = xCoords[itemNum] || 50;
+            simObject.style.left = `${leftPercent}%`;
             
             simObject.innerHTML = `<span>${avatar}</span><span class="label">${name}</span>`;
             document.getElementById('aquarium-box').appendChild(simObject);
@@ -2894,6 +3009,93 @@
             animate();
             
             showCustomAlert(`Chúc mừng Phóng viên nhí <b>${name}</b> đã hoàn thành xuất sắc khóa tập huấn và ký Cam kết An toàn Sông nước!<br><br>Chứng nhận điện tử đã được ghi nhận trên hệ thống Nova News. Hãy nhấn ĐÓNG để xem tổng kết bài học.`, "Ký cam kết thành công", "🎉", () => goToNextSlide());
+        }
+
+        // --- Certificate Print & Batch Printing Logic ---
+        let batchNamesList = [];
+
+        function printSingleCertificate() {
+            const name = document.getElementById('reporter-name-widget').value.trim();
+            if (name === '') {
+                showCustomAlert("Vui lòng nhập họ tên phóng viên nhí trước khi in chứng nhận!", "Không có tên", "✍️");
+                return;
+            }
+            // Trigger browser print dialog
+            window.print();
+        }
+
+        function handleBatchUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                // Split by newlines or commas, filter out empty lines
+                batchNamesList = text.split(/[\r\n,]+/)
+                                     .map(name => name.trim())
+                                     .filter(name => name.length > 0);
+
+                const countLabel = document.getElementById('batch-count-label');
+                countLabel.innerText = `Đã nạp: ${batchNamesList.length}`;
+                countLabel.style.color = '#00E676';
+
+                const printBtn = document.getElementById('btn-batch-print');
+                if (batchNamesList.length > 0) {
+                    printBtn.disabled = false;
+                    showCustomAlert(`Đã nạp thành công danh sách gồm <b>${batchNamesList.length} học sinh</b>.<br><br>Nhấn nút <b>"In hàng loạt"</b> để bắt đầu xuất bản chứng nhận.`, "Nạp danh sách thành công", "📂");
+                } else {
+                    printBtn.disabled = true;
+                    showCustomAlert("Danh sách trống hoặc định dạng không hợp lệ. Vui lòng kiểm tra lại!", "Lỗi định dạng", "❌");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function printBatchCertificates() {
+            if (batchNamesList.length === 0) {
+                showCustomAlert("Vui lòng tải lên danh sách học sinh trước!", "Không có dữ liệu", "❌");
+                return;
+            }
+
+            const container = document.getElementById('batch-print-container');
+            container.innerHTML = '';
+
+            // Get selected commitment text to embed in batch certificates
+            let commitsText = [];
+            if (document.getElementById('w-commit-1').checked) commitsText.push("👁️ Quan sát kỹ các vùng nước");
+            if (document.getElementById('w-commit-2').checked) commitsText.push("🦺 Luôn mặc áo phao cứu sinh");
+            if (document.getElementById('w-commit-3').checked) commitsText.push("🗣️ Nhắc nhở mọi người xung quanh");
+            if (commitsText.length === 0) {
+                commitsText.push("Thực hiện các hành động sông nước an toàn");
+            }
+            const commitsHTML = commitsText.join("<br>");
+
+            batchNamesList.forEach(name => {
+                const page = document.createElement('div');
+                page.className = 'batch-cert-page';
+                page.innerHTML = `
+                    <div style="font-size: 2.2rem; font-weight: 800; border-bottom: 3px double var(--navy-medium); padding-bottom: 0.5rem; width:100%; text-align:center;">CHỨNG NHẬN CAM KẾT</div>
+                    <div style="font-size: 1.4rem; margin-top: 1rem; font-style: italic;">Chứng nhận Phóng viên nhí</div>
+                    <div style="font-size: 3.0rem; font-weight: 800; color: var(--navy-medium); margin-top: 1.2rem; border-bottom: 2px dashed #A0AEC0; width: 85%; padding-bottom: 0.5rem; text-align:center;">${name.toUpperCase()}</div>
+                    <div style="font-size: 1.3rem; line-height: 1.6; max-width: 90%; text-align: left; margin-top: 1.2rem; font-weight: 600; width: 80%; margin-left: auto; margin-right: auto;">
+                        Phóng viên nhí <b>${name}</b> đã cam kết thực hiện hành động sông nước an toàn:<br><br>
+                        ${commitsHTML}
+                    </div>
+                    <div style="font-size: 2.6rem; margin-top: 1rem;">🎖️</div>
+                `;
+                container.appendChild(page);
+            });
+
+            // Add batch print class to body
+            document.body.classList.add('printing-batch');
+
+            // Trigger print
+            setTimeout(() => {
+                window.print();
+                // Remove class after printing starts/finishes
+                document.body.classList.remove('printing-batch');
+            }, 500);
         }
 
         // --- SUBMIT WORKSPACE HANDLERS ---
