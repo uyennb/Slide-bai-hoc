@@ -1219,6 +1219,112 @@
         
         .keyboard-hint { font-size: 1.1rem !important; }
         .story-nav-btn { font-size: 1.4rem !important; }
+
+        /* Notebook Review slide (type: notebook-review) */
+        .nbr-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .nbr-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 2px solid rgba(0,229,255,0.3);
+            padding-bottom: 0.6rem;
+            flex-shrink: 0;
+        }
+        .nbr-header-icon {
+            font-size: 2.8rem;
+            line-height: 1;
+        }
+        .nbr-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #ffffff;
+            margin: 0;
+            text-shadow: 0 2px 8px rgba(0,229,255,0.3);
+        }
+        .nbr-subtitle {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            margin-top: 0.2rem;
+        }
+        .nbr-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.7rem;
+            flex: 1;
+        }
+        .nbr-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.04) 100%);
+            border: 1px solid rgba(0,229,255,0.25);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(4px);
+            transition: border-color 0.2s;
+        }
+        .nbr-card:hover {
+            border-color: rgba(0,229,255,0.5);
+        }
+        .nbr-card-wide {
+            grid-column: span 2;
+        }
+        .nbr-card-header {
+            background: linear-gradient(90deg, rgba(0,229,255,0.18) 0%, rgba(0,229,255,0.06) 100%);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            color: #00E5FF;
+            padding: 0.45rem 0.7rem;
+            border-bottom: 1px solid rgba(0,229,255,0.2);
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .nbr-card-body {
+            padding: 0.55rem 0.8rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+            flex: 1;
+            overflow-y: auto;
+        }
+        .nbr-row {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 0.25rem;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .nbr-label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        .nbr-empty {
+            color: rgba(255,255,255,0.3);
+            font-style: italic;
+            font-size: 0.82rem;
+        }
+        .nbr-pretext {
+            font-family: 'Itim', cursive;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin: 0;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.88);
+        }
         select, textarea, input[type="text"] { font-size: 1.25rem !important; }
         
         /* Slide 54 - Cursive checklist font adjustment */
@@ -2048,7 +2154,13 @@
                 explored: 'Những điều bất ngờ, nguy cơ chưa từng nghĩ tới và điều cần ghi nhớ.',
                 nextQuestion: 'Sau bài học này, em sẽ hành động như thế nào?'
             },
-            // --- GIAI ĐOẠN 8 (50 to 55) ---
+            // --- NOTEBOOK REVIEW (slide 50) ---
+            {
+                type: 'notebook-review',
+                stage: 'TỔNG KẾT',
+                title: 'Nhìn lại sổ tay phóng viên'
+            },
+            // --- GIAI ĐOẠN 8 (51 to 56) ---
             {
                 type: 'stage-intro',
                 stage: 'GIAI ĐOẠN 8',
@@ -2221,7 +2333,7 @@
             document.getElementById('btn-next').disabled = idx === slides.length - 1;
             
             // Background type check
-            const isDark = ['welcome', 'big-question', 'role-intro', 'stage-intro', 'act-transition', 'end-takeaways', 'end-output', 'end-revisit', 'end-reflection', 'end-commitment'].includes(slide.type);
+            const isDark = ['welcome', 'big-question', 'role-intro', 'stage-intro', 'act-transition', 'notebook-review', 'end-takeaways', 'end-output', 'end-revisit', 'end-reflection', 'end-commitment'].includes(slide.type);
             if (isDark) {
                 wrapper.className = 'dark-slide-bg';
             } else {
@@ -2647,7 +2759,146 @@
                     </div>
                 `;
             }
-            
+
+            else if (slide.type === 'notebook-review') {
+                // Build review data from savedStates
+                const s = savedStates;
+
+                // Clues
+                const clueLabels = { 1: 'Manh mối 1', 2: 'Manh mối 2', 3: 'Manh mối 3' };
+                const clueChosen = [1,2,3].filter(i => s.clues[i]);
+                const cluesText = clueChosen.length > 0 ? clueChosen.map(i => `✓ ${clueLabels[i]}`).join('<br>') : '<span class="nbr-empty">Chưa điền</span>';
+
+                // Custom question
+                const questionText = s.customQuestion.trim() !== '' ? s.customQuestion : '<span class="nbr-empty">Chưa điền</span>';
+
+                // Witness matches
+                const witnessNames = { 1: 'Nhân chứng 1 🏊', 2: 'Nhân chứng 2 🌀', 3: 'Nhân chứng 3 🛶' };
+                const witnessRows = [1,2,3].map(i => {
+                    const m = s.witnessMatches[i];
+                    return `<div class="nbr-row"><span class="nbr-label">${witnessNames[i]}:</span> ${m ? `<b>${m}</b>` : '<span class="nbr-empty">Chưa ghép</span>'}</div>`;
+                }).join('');
+
+                // Consequences
+                const dangerLabels = { 1: 'Chuột rút', 2: 'Nước xoáy', 3: 'Lật thuyền' };
+                const conseqMap = {
+                    1: { correct: 'Co cứng, mất khả năng tự nổi', wrong1: 'Bị nước cuốn xa bờ', wrong2: 'Không có điểm bám víu' },
+                    2: { correct: 'Lực cuốn kéo chìm xuống đáy', wrong1: 'Hoảng loạn do rơi thuyền', wrong2: 'Gây chuột rút bất ngờ' },
+                    3: { correct: 'Rơi xuống nước, uống nước và chìm', wrong1: 'Chuột rút bắp đùi', wrong2: 'Cuốn chìm nhanh' }
+                };
+                const conseqRows = [1,2,3].map(i => {
+                    const val = s.consequenceSelections[i];
+                    const text = val && conseqMap[i][val] ? conseqMap[i][val] : null;
+                    return `<div class="nbr-row"><span class="nbr-label">${dangerLabels[i]}:</span> ${text ? `<b>${text}</b>` : '<span class="nbr-empty">Chưa chọn</span>'}</div>`;
+                }).join('');
+
+                // Solutions
+                const solMap = {
+                    1: { correct: 'Khởi động kỹ trước khi xuống nước', wrong1: 'Luôn mặc áo phao cứu sinh', wrong2: 'Không bơi gần chân đập' },
+                    2: { correct: 'Tránh xa, cắm biển cảnh báo', wrong1: 'Khởi động các khớp đầu gối', wrong2: 'Chuẩn bị khúc gỗ to để bám' },
+                    3: { correct: 'Luôn mặc áo phao cứu hộ khi đi thuyền', wrong1: 'Bơi chậm rãi khởi động trước', wrong2: 'Không tắm biển một mình' }
+                };
+                const solRows = [1,2,3].map(i => {
+                    const val = s.solutionSelections[i];
+                    const text = val && solMap[i][val] ? solMap[i][val] : null;
+                    return `<div class="nbr-row"><span class="nbr-label">${dangerLabels[i]}:</span> ${text ? `<b>${text}</b>` : '<span class="nbr-empty">Chưa chọn</span>'}</div>`;
+                }).join('');
+
+                // Notebook pages
+                const nbLeftRaw = (s.notebookLeft || '').trim();
+                const nbRightRaw = (s.notebookRight || '').trim();
+                const nbLeft = nbLeftRaw !== '' ? `<pre class="nbr-pretext">${nbLeftRaw}</pre>` : '<span class="nbr-empty">Chưa điền</span>';
+                const nbRight = nbRightRaw !== '' ? `<pre class="nbr-pretext">${nbRightRaw}</pre>` : '<span class="nbr-empty">Chưa điền</span>';
+
+                // Reflection
+                const reflectRaw = (s.reflectionText || '').trim();
+                const reflectText = reflectRaw !== '' ? `<pre class="nbr-pretext">${reflectRaw}</pre>` : '<span class="nbr-empty">Chưa viết</span>';
+
+                // Certificate
+                const certNameText = s.certName.trim() !== '' ? `<b>${s.certName.toUpperCase()}</b>` : '<span class="nbr-empty">Chưa nhập tên</span>';
+                const commitItems = [
+                    s.certCommits[1] ? '✓ Quan sát nguy cơ sông nước' : null,
+                    s.certCommits[2] ? '✓ Mặc áo phao khi đi thuyền' : null,
+                    s.certCommits[3] ? '✓ Tuyên truyền an toàn đuối nước' : null
+                ].filter(Boolean);
+                const certCommitsText = commitItems.length > 0 ? commitItems.join('<br>') : '<span class="nbr-empty">Chưa chọn cam kết</span>';
+
+                layoutHTML = `
+                    <div class="slide-content-layout nbr-layout">
+                        <div class="nbr-header">
+                            <div class="nbr-header-icon">📓</div>
+                            <div>
+                                <h1 class="nbr-title">NHÌN LẠI SỔ TAY PHÓNG VIÊN</h1>
+                                <div class="nbr-subtitle">Nova News · Phòng tránh đuối nước cá nhân${s.certName.trim() ? ' · <b>' + s.certName + '</b>' : ''}</div>
+                            </div>
+                        </div>
+
+                        <div class="nbr-grid">
+                            <!-- Card 1: Bản tin -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">🔍 MANH MỐI BẢN TIN</div>
+                                <div class="nbr-card-body">${cluesText}</div>
+                            </div>
+
+                            <!-- Card 2: Câu hỏi phóng viên -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">🎤 CÂU HỎI PHÓNG VIÊN</div>
+                                <div class="nbr-card-body">${questionText}</div>
+                            </div>
+
+                            <!-- Card 3: Nhân chứng -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">👥 KẾT QUẢ PHỎNG VẤN NHÂN CHỨNG</div>
+                                <div class="nbr-card-body">${witnessRows}</div>
+                            </div>
+
+                            <!-- Card 4: Hậu quả -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">⚠️ PHÂN TÍCH HẬU QUẢ</div>
+                                <div class="nbr-card-body">${conseqRows}</div>
+                            </div>
+
+                            <!-- Card 5: Giải pháp -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">🛡️ GIẢI PHÁP PHÒNG TRÁNH</div>
+                                <div class="nbr-card-body">${solRows}</div>
+                            </div>
+
+                            <!-- Card 6: Sổ tay (trang trái) -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">📖 SỔ TAY – PHÒNG TRÁNH</div>
+                                <div class="nbr-card-body">${nbLeft}</div>
+                            </div>
+
+                            <!-- Card 7: Sổ tay (trang phải) -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">🦺 SỔ TAY – VẬT HỖ TRỢ NỔI</div>
+                                <div class="nbr-card-body">${nbRight}</div>
+                            </div>
+
+                            <!-- Card 8: Nhật ký phản chiếu -->
+                            <div class="nbr-card nbr-card-wide">
+                                <div class="nbr-card-header">📝 NHẬT KÝ PHẢN CHIẾU</div>
+                                <div class="nbr-card-body">${reflectText}</div>
+                            </div>
+
+                            <!-- Card 9: Cam kết -->
+                            <div class="nbr-card">
+                                <div class="nbr-card-header">📜 CAM KẾT AN TOÀN</div>
+                                <div class="nbr-card-body">
+                                    <div class="nbr-row"><span class="nbr-label">Phóng viên:</span> ${certNameText}</div>
+                                    <div style="margin-top: 0.4rem">${certCommitsText}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 1rem; display: flex;">
+                            <button class="story-nav-btn" onclick="goToNextSlide()">Tiếp tục → Cam kết an toàn 📜</button>
+                        </div>
+                    </div>
+                `;
+            }
+
             container.innerHTML = layoutHTML;
             
             // Post-render widget initialization if applicable
