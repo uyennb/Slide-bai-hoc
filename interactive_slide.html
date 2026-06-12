@@ -725,7 +725,9 @@
             padding: 0.3rem;
             border-radius: 12px;
             text-align: center;
-            min-height: 395px;
+            height: 395px;
+            max-height: 395px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -733,6 +735,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             position: relative;
             box-sizing: border-box;
+            flex-shrink: 0;
         }
 
         /* Premium Reporter Certificate Styles */
@@ -3072,7 +3075,12 @@
 
                                         <!-- Body / Commitments -->
                                         <div class="cert-description" id="cert-body-widget-preview">
-                                            Phóng viên nhí cam kết thực hiện nghiêm túc các hành động sông nước an toàn để bảo vệ bản thân & cộng đồng.
+                                            <div style="font-weight:700; margin-bottom: 0.2rem; color: var(--navy-medium);">Cam kết hành động sông nước an toàn của Phóng viên:</div>
+                                            <ul class="cert-commitments-list">
+                                                <li>✓ <b>Quan sát</b> nguy cơ sông nước xung quanh</li>
+                                                <li>✓ <b>Mặc áo phao</b> cứu hộ khi đi đò, thuyền</li>
+                                                <li>✓ <b>Tuyên truyền</b> an toàn đuối nước cho bạn bè</li>
+                                            </ul>
                                         </div>
 
                                         <!-- Signatures and Red Stamp -->
@@ -3447,28 +3455,18 @@
                 savedStates.certCommits[i] = document.getElementById(`w-commit-${i}`).checked;
             }
             
-            const name = savedStates.certName || "Học sinh";
-            let bodyHTML = `<div style="font-weight:700; margin-bottom: 0.2rem;">Cam kết hành động sông nước an toàn của Phóng viên:</div><ul style="list-style-type: none; padding-left: 0; margin: 0; display: flex; flex-direction: column; gap: 0.2rem;">`;
-            let count = 0;
-            if (savedStates.certCommits[1]) {
-                bodyHTML += `<li>✓ <b>Quan sát</b> nguy cơ sông nước xung quanh</li>`;
-                count++;
-            }
-            if (savedStates.certCommits[2]) {
-                bodyHTML += `<li>✓ <b>Mặc áo phao</b> cứu hộ khi đi đò, thuyền</li>`;
-                count++;
-            }
-            if (savedStates.certCommits[3]) {
-                bodyHTML += `<li>✓ <b>Tuyên truyền</b> an toàn đuối nước cho bạn bè</li>`;
-                count++;
-            }
-            if (count === 0) {
-                bodyHTML += `<li style="color:var(--text-muted); font-style:italic;">Chưa chọn cam kết hành động...</li>`;
-            }
-            bodyHTML += `</ul>`;
+            // Only update the <ul> list — don't replace the whole block to avoid layout shift
+            const listEl = document.querySelector('#cert-body-widget-preview .cert-commitments-list');
+            if (!listEl) return;
             
-            const bodyPreview = document.getElementById('cert-body-widget-preview');
-            if (bodyPreview) bodyPreview.innerHTML = bodyHTML;
+            let listHTML = '';
+            if (savedStates.certCommits[1]) listHTML += `<li>✓ <b>Quan sát</b> nguy cơ sông nước xung quanh</li>`;
+            if (savedStates.certCommits[2]) listHTML += `<li>✓ <b>Mặc áo phao</b> cứu hộ khi đi đò, thuyền</li>`;
+            if (savedStates.certCommits[3]) listHTML += `<li>✓ <b>Tuyên truyền</b> an toàn đuối nước cho bạn bè</li>`;
+            if (listHTML === '') {
+                listHTML = `<li style="color:var(--text-muted); font-style:italic;">Chưa chọn cam kết hành động...</li>`;
+            }
+            listEl.innerHTML = listHTML;
         }
 
         function signCertWidget() {
