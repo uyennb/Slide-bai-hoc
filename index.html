@@ -1018,6 +1018,93 @@
             margin-right: 0.5rem;
         }
 
+        /* CSS Notebook Layouts */
+        .css-notebook-double {
+            display: flex;
+            width: 100%;
+            height: 420px;
+            background-color: #fcfbe3;
+            border: 4px solid #5d4037;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            position: relative;
+            box-sizing: border-box;
+        }
+        .css-notebook-double::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 12px;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, rgba(0,0,0,0.15), rgba(0,0,0,0.02) 30%, rgba(255,255,255,0.15) 50%, rgba(0,0,0,0.02) 70%, rgba(0,0,0,0.15));
+            z-index: 5;
+        }
+        .notebook-page-left, .notebook-page-right {
+            flex: 1;
+            padding: 1.2rem 1.5rem;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .notebook-page-left {
+            border-right: 1px dashed rgba(0,0,0,0.15);
+        }
+        .notebook-textarea {
+            flex: 1;
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            background-image: linear-gradient(rgba(0, 0, 0, 0) 95%, rgba(26, 35, 126, 0.15) 95%);
+            background-size: 100% 2.2rem;
+            background-attachment: local;
+            font-family: 'Itim', cursive, sans-serif !important;
+            font-size: 1.15rem !important;
+            line-height: 2.2rem !important;
+            color: #1a237e;
+            resize: none;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem 0 0.5rem;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .css-notebook-single {
+            width: 100%;
+            height: 420px;
+            background-color: #fcfbe3;
+            border: 4px solid #5d4037;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box-sizing: border-box;
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .notebook-textarea-single {
+            flex: 1;
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            background-image: linear-gradient(rgba(0, 0, 0, 0) 95%, rgba(26, 35, 126, 0.15) 95%);
+            background-size: 100% 2.2rem;
+            background-attachment: local;
+            font-family: 'Itim', cursive, sans-serif !important;
+            font-size: 1.2rem !important;
+            line-height: 2.2rem !important;
+            color: #1a237e;
+            resize: none;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem 0 0.5rem;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
         /* --- Print layout styling --- */
         #batch-print-container {
             display: none;
@@ -1085,8 +1172,11 @@
                 box-sizing: border-box !important;
                 background: white !important;
                 color: var(--navy-medium) !important;
-                font-family: 'Itim', cursive !important;
+                font-family: 'Itim', "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
                 text-align: center !important;
+            }
+            .batch-cert-page * {
+                font-family: 'Itim', "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
             }
         }
     </style>
@@ -1565,9 +1655,7 @@
                 stageName: 'Thông điệp phóng viên',
                 actTitle: 'SỔ TAY PHÓNG VIÊN',
                 goal: '• Chuyển thông tin thành sản phẩm truyền thông hữu ích',
-                image: 'reporter_notebook_1781236401501.png',
-                notebookLeft: '📓 SỔ TAY PHÒNG TRÁNH\n\n🔍 Chuột rút ➔ Khởi động\n🌪️ Nước xoáy ➔ Tránh xa\n⛵ Lật thuyền ➔ Mặc áo phao',
-                notebookRight: '🦺 VẬT HỖ TRỢ NỔI\n\n✔ Áo phao\n✔ Can nhựa rỗng\n✔ Khúc cây nổi\n✔ Cành cây'
+                image: 'reporter_notebook_1781236401501.png'
             },
             {
                 type: 'act-howto',
@@ -1617,8 +1705,7 @@
                 stageName: 'Nhật ký phóng viên',
                 actTitle: 'NHẬT KÝ PHÓNG VIÊN',
                 goal: '• Thực hiện hoạt động tự phản chiếu (Reflection)',
-                image: 'reflection_journal_1781236420017.png',
-                journalText: '📓 NHẬT KÝ PHÓNG VIÊN\n\n⭐ Điều làm em bất ngờ nhất là...\n\n⭐ Nguy cơ em chưa từng nghĩ tới là...\n\n⭐ Điều em muốn ghi nhớ là...'
+                image: 'reflection_journal_1781236420017.png'
             },
             {
                 type: 'act-howto',
@@ -2505,8 +2592,14 @@
                                     <span>Áo phao cứu sinh</span>
                                 </div>
                                 <div class="draggable-lab-item" id="widget-item-2" draggable="true" ondragstart="dragLabItem(event)" data-float="true" data-avatar="🥤" data-name="Can nhựa rỗng" onclick="testLabItemWidget('widget-item-2', true, '🥤', 'Can nhựa rỗng')">
-                                    <span style="font-size: 1.5rem;">🥤</span>
-                                    <span>Can nhựa rỗng có nắp</span>
+                                    <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin-right: 0.5rem;">
+                                        <svg viewBox="0 0 100 100" style="width:100%; height:100%;">
+                                            <rect x="25" y="30" width="50" height="55" rx="8" fill="#FFC107" stroke="#FFA000" stroke-width="3"/>
+                                            <path d="M 50,30 L 50,20 C 50,15, 68,15, 68,20 L 68,30" fill="none" stroke="#FFA000" stroke-width="4" stroke-linecap="round"/>
+                                            <rect x="32" y="22" width="12" height="8" rx="2" fill="#E65100" stroke="#BF360C" stroke-width="1.5"/>
+                                        </svg>
+                                    </div>
+                                    <span>Can nhựa to màu vàng</span>
                                 </div>
                                 <div class="draggable-lab-item" id="widget-item-3" draggable="true" ondragstart="dragLabItem(event)" data-float="true" data-avatar="🪵" data-name="Khúc cây nổi" onclick="testLabItemWidget('widget-item-3', true, '🪵', 'Khúc cây nổi')">
                                     <span style="font-size: 1.5rem;">🪵</span>
@@ -2517,8 +2610,15 @@
                                     <span>Cục đá nặng</span>
                                 </div>
                                 <div class="draggable-lab-item" id="widget-item-5" draggable="true" ondragstart="dragLabItem(event)" data-float="true" data-avatar="🌿" data-name="Cành cây" onclick="testLabItemWidget('widget-item-5', true, '🌿', 'Cành cây')">
-                                    <span style="font-size: 1.5rem;">🌿</span>
-                                    <span>Cành cây chìa ra bờ</span>
+                                    <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin-right: 0.5rem;">
+                                        <svg viewBox="0 0 100 100" style="width:100%; height:100%;">
+                                            <path d="M 10,80 Q 40,70, 90,40" fill="none" stroke="#8B5A2B" stroke-width="10" stroke-linecap="round"/>
+                                            <path d="M 40,70 Q 55,50, 70,45" fill="none" stroke="#8B5A2B" stroke-width="6" stroke-linecap="round"/>
+                                            <path d="M 90,40 C 95,30, 92,20, 85,25 C 78,30, 82,38, 90,40" fill="#2E7D32"/>
+                                            <path d="M 70,45 C 75,35, 68,30, 62,35 C 56,40, 64,43, 70,45" fill="#2E7D32"/>
+                                        </svg>
+                                    </div>
+                                    <span>Cành cây to nhiều lá</span>
                                 </div>
                                 <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem; width: 100%;">
                                     <button class="nav-btn" style="background-color: var(--coral-warning); color:white; font-size: 0.8rem; padding: 0.4rem 0.8rem; flex: 1;" onclick="resetLabWidget()">Bắt đầu lại</button>
@@ -2542,17 +2642,14 @@
                     <div class="slide-content-layout">
                         <h2 class="slide-title-bar">Hoạt động: <span>SỔ TAY PHÓNG VIÊN</span> • XÂY DỰNG SẢN PHẨM</h2>
                         <div class="workspace-layout" style="margin-top: 1rem;">
-                            <div style="position: relative; display: inline-block; max-width: 100%;">
-                                <img src="images/reporter_notebook_1781236401501.png" class="visual-img" style="display: block;" alt="Notebook">
-                                <!-- Left Page Text Area Overlay -->
-                                <div style="position: absolute; top: 10%; left: 8%; width: 38%; height: 80%; overflow: hidden;">
-                                    <p style="font-size: 0.85rem; font-weight: 800; color: var(--navy-medium); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.2rem; margin-bottom: 0.4rem;">📓 SỔ TAY PHÒNG TRÁNH</p>
-                                    <textarea id="nb-left-text" style="width: 100%; height: 80%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.85rem; line-height: 1.5; color: #1e293b; resize: none; font-weight: 700;" placeholder="Nhập ghi chép nguy cơ ➔ giải pháp phòng tránh..." oninput="saveNotebookState()"></textarea>
+                            <div class="css-notebook-double">
+                                <div class="notebook-page-left">
+                                    <p style="font-size: 1.05rem; font-weight: 800; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 0.2rem; margin-bottom: 0.6rem; font-family: 'Outfit', sans-serif;">📓 SỔ TAY PHÒNG TRÁNH</p>
+                                    <textarea id="nb-left-text" class="notebook-textarea" placeholder="Nhập ghi chép nguy cơ ➔ giải pháp phòng tránh..." oninput="saveNotebookState()"></textarea>
                                 </div>
-                                <!-- Right Page Text Area Overlay -->
-                                <div style="position: absolute; top: 10%; left: 54%; width: 38%; height: 80%; overflow: hidden;">
-                                    <p style="font-size: 0.85rem; font-weight: 800; color: var(--navy-medium); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.2rem; margin-bottom: 0.4rem;">🦺 VẬT HỖ TRỢ NỔI</p>
-                                    <textarea id="nb-right-text" style="width: 100%; height: 80%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.85rem; line-height: 1.5; color: #1e293b; resize: none; font-weight: 700;" placeholder="Nhập các vật nổi hỗ trợ..." oninput="saveNotebookState()"></textarea>
+                                <div class="notebook-page-right">
+                                    <p style="font-size: 1.05rem; font-weight: 800; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 0.2rem; margin-bottom: 0.6rem; font-family: 'Outfit', sans-serif;">🦺 VẬT HỖ TRỢ NỔI</p>
+                                    <textarea id="nb-right-text" class="notebook-textarea" placeholder="Nhập các vật nổi hỗ trợ..." oninput="saveNotebookState()"></textarea>
                                 </div>
                             </div>
                             <div class="workspace-right-info">
@@ -2577,13 +2674,9 @@
                     <div class="slide-content-layout">
                         <h2 class="slide-title-bar">Hoạt động: <span>NHẬT KÝ PHÓNG VIÊN</span> • PHẢN CHIẾU</h2>
                         <div class="workspace-layout" style="margin-top: 1rem;">
-                            <div style="position: relative; display: inline-block; max-width: 100%;">
-                                <img src="images/reflection_journal_1781236420017.png" class="visual-img" style="display: block;" alt="Journal">
-                                <!-- Journal page text overlay -->
-                                <div style="position: absolute; top: 25%; left: 8%; width: 84%; height: 65%; overflow: hidden;">
-                                    <p style="font-size: 1.1rem; font-weight: 800; color: var(--navy-medium); border-bottom: 1px dashed rgba(0,0,0,0.15); padding-bottom: 0.2rem; margin-bottom: 0.4rem;">📓 NHẬT KÝ PHẢN CHIẾU</p>
-                                    <textarea id="reflect-note-text" style="width: 100%; height: 85%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 1rem; line-height: 1.6; color: #1e293b; resize: none; font-weight: 700;" placeholder="Em hãy nhập suy ngẫm vào đây:\n- Điều làm em bất ngờ nhất là...\n- Nguy cơ em chưa từng nghĩ tới là...\n- Điều em muốn ghi nhớ nhất là..." oninput="saveReflectionState()"></textarea>
-                                </div>
+                            <div class="css-notebook-single">
+                                <p style="font-size: 1.15rem; font-weight: 800; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 0.3rem; margin-bottom: 0.8rem; font-family: 'Outfit', sans-serif;">📓 NHẬT KÝ PHẢN CHIẾU</p>
+                                <textarea id="reflect-note-text" class="notebook-textarea-single" placeholder="Em hãy nhập suy ngẫm vào đây:&#10;- Điều làm em bất ngờ nhất là...&#10;- Nguy cơ em chưa từng nghĩ tới là...&#10;- Điều em muốn ghi nhớ nhất là..." oninput="saveReflectionState()"></textarea>
                             </div>
                             <div class="workspace-right-info">
                                 <div class="content-card">
@@ -2622,7 +2715,7 @@
                                 </div>
                                 <button class="story-nav-btn" style="width: 100%; margin-top: 1rem; justify-content: center;" onclick="signCertWidget()">Ký chứng nhận ✍️</button>
                                 
-                                <div style="margin-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem;">
+                                <div id="print-controls-section" style="display: none; margin-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; flex-direction: column; gap: 0.6rem;">
                                     <div style="font-size: 0.9rem; font-weight: 700; color: var(--cyan-accent); text-transform: uppercase;">🖨️ In & Tải Về</div>
                                     <button class="nav-btn" style="width: 100%; justify-content: center; background-color: var(--navy-medium); border-color: var(--cyan-accent);" onclick="printSingleCertificate()">In / Tải PDF Chứng nhận 🖨️</button>
                                     
@@ -2723,6 +2816,7 @@
                 document.getElementById('w-commit-2').checked = savedStates.certCommits[2];
                 document.getElementById('w-commit-3').checked = savedStates.certCommits[3];
                 updateCertTextWidget();
+                updateCertNameWidget();
             }
         }
 
@@ -2867,7 +2961,30 @@
             const leftPercent = xCoords[itemNum] || 50;
             simObject.style.left = `${leftPercent}%`;
             
-            simObject.innerHTML = `<span>${avatar}</span><span class="label">${name}</span>`;
+            // Custom SVG mapping for jerrycan (widget-item-2) and branch (widget-item-5)
+            let visualContent = avatar;
+            if (elementId === 'widget-item-2') {
+                visualContent = `<svg viewBox="0 0 100 100" style="width:70px; height:70px; display:block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+                    <rect x="25" y="30" width="50" height="55" rx="8" fill="#FFC107" stroke="#FFA000" stroke-width="3"/>
+                    <path d="M 50,30 L 50,20 C 50,15, 68,15, 68,20 L 68,30" fill="none" stroke="#FFA000" stroke-width="4" stroke-linecap="round"/>
+                    <rect x="32" y="22" width="12" height="8" rx="2" fill="#E65100" stroke="#BF360C" stroke-width="1.5"/>
+                    <line x1="37" y1="42" x2="37" y2="72" stroke="#FFA000" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="50" y1="42" x2="50" y2="72" stroke="#FFA000" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="63" y1="42" x2="63" y2="72" stroke="#FFA000" stroke-width="3" stroke-linecap="round"/>
+                </svg>`;
+            } else if (elementId === 'widget-item-5') {
+                visualContent = `<svg viewBox="0 0 100 100" style="width:85px; height:85px; display:block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));">
+                    <path d="M 10,80 Q 40,70, 90,40" fill="none" stroke="#8B5A2B" stroke-width="8" stroke-linecap="round"/>
+                    <path d="M 40,70 Q 55,50, 70,45" fill="none" stroke="#8B5A2B" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M 65,52 Q 72,35, 80,30" fill="none" stroke="#8B5A2B" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M 90,40 C 95,30, 92,20, 85,25 C 78,30, 82,38, 90,40" fill="#2E7D32"/>
+                    <path d="M 70,45 C 75,35, 68,30, 62,35 C 56,40, 64,43, 70,45" fill="#2E7D32"/>
+                    <path d="M 80,30 C 85,20, 78,15, 72,20 C 66,25, 74,28, 80,30" fill="#2E7D32"/>
+                    <path d="M 50,60 C 45,52, 38,55, 42,62 C 46,69, 48,65, 50,60" fill="#2E7D32"/>
+                </svg>`;
+            }
+            
+            simObject.innerHTML = `<span>${visualContent}</span><span class="label">${name}</span>`;
             document.getElementById('aquarium-box').appendChild(simObject);
             
             document.getElementById('lab-widget-prompt').style.display = 'none';
@@ -2891,7 +3008,7 @@
             
             if (savedStates.labWidgetCount === 5) {
                 setTimeout(() => {
-                    showCustomAlert("Hoàn thành thử nghiệm!<br><br>Cục đá chìm do nặng hơn nước.<br>Áo phao, can nhựa rỗng, cành cây và khúc gỗ đều giúp cơ thể nổi giữ khoảng cách an toàn sông nước!<br><br>Nhấn ĐÓNG để tiến hành ghi chép vào Sổ tay phóng viên.", "Thử nghiệm thành công", "🔬", () => goToNextSlide());
+                    showCustomAlert("Hoàn thành thử nghiệm!<br><br>Cục đá chìm do nặng hơn nước.<br>Áo phao, can nhựa to màu vàng, cành cây to nhiều lá và khúc gỗ đều giúp cơ thể nổi giữ khoảng cách an toàn sông nước!<br><br>Nhấn ĐÓNG để tiến hành ghi chép vào Sổ tay phóng viên.", "Thử nghiệm thành công", "🔬", () => goToNextSlide());
                 }, 1000);
             }
         }
@@ -2944,6 +3061,12 @@
             savedStates.certName = inputVal;
             const preview = document.getElementById('cert-name-widget-preview');
             preview.innerText = inputVal.trim() !== '' ? inputVal.toUpperCase() : "HỌ TÊN PHÓNG VIÊN";
+            
+            // Show/hide print section
+            const printSec = document.getElementById('print-controls-section');
+            if (printSec) {
+                printSec.style.display = inputVal.trim() !== '' ? 'flex' : 'none';
+            }
         }
 
         function updateCertTextWidget() {
@@ -3043,7 +3166,18 @@
 
             const reader = new FileReader();
             reader.onload = function(e) {
-                const text = e.target.result;
+                const buffer = e.target.result;
+                let text = "";
+                try {
+                    // Try decoding as strict UTF-8 first
+                    const utf8Decoder = new TextDecoder('utf-8', { fatal: true });
+                    text = utf8Decoder.decode(buffer);
+                } catch (err) {
+                    // Fallback to Windows-1258 (Vietnamese ANSI) if UTF-8 fails
+                    const winDecoder = new TextDecoder('windows-1258');
+                    text = winDecoder.decode(buffer);
+                }
+                
                 // Split by newlines or commas, filter out empty lines
                 batchNamesList = text.split(/[\r\n,]+/)
                                      .map(name => name.trim())
@@ -3062,7 +3196,7 @@
                     showCustomAlert("Danh sách trống hoặc định dạng không hợp lệ. Vui lòng kiểm tra lại!", "Lỗi định dạng", "❌");
                 }
             };
-            reader.readAsText(file);
+            reader.readAsArrayBuffer(file);
         }
 
         function printBatchCertificates() {
@@ -3090,7 +3224,7 @@
                 page.innerHTML = `
                     <div style="font-size: 2.2rem; font-weight: 800; border-bottom: 3px double var(--navy-medium); padding-bottom: 0.5rem; width:100%; text-align:center;">CHỨNG NHẬN CAM KẾT</div>
                     <div style="font-size: 1.4rem; margin-top: 1rem; font-style: italic;">Chứng nhận Phóng viên nhí</div>
-                    <div style="font-size: 3.0rem; font-weight: 800; color: var(--navy-medium); margin-top: 1.2rem; border-bottom: 2px dashed #A0AEC0; width: 85%; padding-bottom: 0.5rem; text-align:center;">${name.toUpperCase()}</div>
+                    <div style="font-size: 3.0rem; font-weight: 800; color: var(--navy-medium); margin-top: 1.2rem; border-bottom: 2px dashed #A0AEC0; width: 85%; padding-bottom: 0.5rem; text-align:center; text-transform: uppercase;">${name}</div>
                     <div style="font-size: 1.3rem; line-height: 1.6; max-width: 90%; text-align: left; margin-top: 1.2rem; font-weight: 600; width: 80%; margin-left: auto; margin-right: auto;">
                         Phóng viên nhí <b>${name}</b> đã cam kết thực hiện hành động sông nước an toàn:<br><br>
                         ${commitsHTML}
