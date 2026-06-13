@@ -9,3 +9,9 @@ Thumbs.db
 __pycache__/
 *.pyc
 .vercel
+
+# Scratch files
+screenshot.png
+dumped_dom.html
+index_old.html
+
