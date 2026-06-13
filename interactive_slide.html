@@ -2445,7 +2445,7 @@
         ];
 
         const slidesTiet2 = [
-            // --- PRE-LESSON (0 to 2) ---
+            // --- PRE-LESSON (0 to 1) ---
             {
                 type: 'welcome',
                 stage: 'PRE-LESSON',
@@ -2462,32 +2462,13 @@
             {
                 type: 'big-question',
                 stage: 'PRE-LESSON',
-                title: 'Câu Hỏi Lớn (Big Question)',
+                title: 'Câu Hỏi Lớn & Vai Trò',
                 image: 'big_question_1781236338352.png',
-                question: 'Nếu chỉ có 1 phút để giúp người khác phòng tránh đuối nước, chúng ta nên nói điều gì?'
+                question: 'Nếu chỉ có 1 phút để giúp người khác phòng tránh đuối nước, chúng ta nên nói điều gì?',
+                description: 'Đóng vai biên tập viên tổng hợp của Nova News để chọn lọc, kết nối và chuyển thông tin phòng tránh đuối nước thành bản thảo bản tin.'
             },
-            {
-                type: 'role-intro',
-                stage: 'PRE-LESSON',
-                title: 'Giới Thiệu Vai Trò',
-                image: 'reporter_role_1781236354913.png',
-                description: 'Đóng vai biên tập viên tổng hợp của Nova News để chọn lọc, kết nối và chuyển thông tin phòng tránh đuối nước thành bản thảo bản tin.',
-                tasks: [
-                    "Chọn thông tin đúng và quan trọng.",
-                    "Loại bỏ thông tin không liên quan hoặc trùng lặp.",
-                    "Kết nối dữ kiện thành câu chuyện bản tin.",
-                    "Thống nhất thông điệp chính và hoàn thiện bản thảo bản tin."
-                ]
-            },
-            
-            // --- GIAI ĐOẠN 1 (3 to 8) ---
-            {
-                type: 'stage-intro',
-                stage: 'GIAI ĐOẠN 1',
-                stageName: 'Mở khóa nhiệm vụ',
-                dna: 'Situation',
-                stageNum: 1
-            },
+
+            // --- GIAI ĐOẠN 1 (2 to 4) ---
             {
                 type: 'act-intro',
                 stage: 'GIAI ĐOẠN 1',
@@ -2496,17 +2477,6 @@
                 goal: '• Ôn lại kết quả khám phá\n• Kích hoạt trí nhớ',
                 image: 'solution_table.png',
                 extra: 'Thẻ thông tin từ tiết trước đặt trên bàn biên tập Nova News; có nhãn “Tin nhanh 60 giây”.'
-            },
-            {
-                type: 'act-howto',
-                stage: 'GIAI ĐOẠN 1',
-                stageName: 'Mở khóa nhiệm vụ',
-                actTitle: 'TIN NHANH 60 GIÂY',
-                steps: [
-                    "Nhóm nhận các thẻ thông tin từ tiết trước.",
-                    "Chọn thông tin đúng.",
-                    "Loại bỏ thông tin không liên quan."
-                ]
             },
             {
                 type: 'act-workspace',
@@ -2520,30 +2490,17 @@
                 interactiveId: 'quick-news-60s'
             },
             {
-                type: 'act-debrief',
+                type: 'act-debrief-transition',
                 stage: 'GIAI ĐOẠN 1',
                 stageName: 'Mở khóa nhiệm vụ',
                 actTitle: 'TIN NHANH 60 GIÂY',
                 results: '• Thông tin đúng được chọn\n• Thông tin không liên quan được loại bỏ',
-                message: 'Biên tập viên không thể đưa tất cả thông tin lên bản tin.'
-            },
-            {
-                type: 'act-transition',
-                stage: 'GIAI ĐOẠN 1',
-                stageName: 'Mở khóa nhiệm vụ',
-                actTitle: 'TIN NHANH 60 GIÂY',
+                message: 'Biên tập viên không thể đưa tất cả thông tin lên bản tin.',
                 explored: 'kết quả khám phá từ tiết trước và yêu cầu chọn lọc thông tin.',
                 nextQuestion: 'Nova News cần bản tin giúp người xem hiểu điều gì?'
             },
-            
-            // --- GIAI ĐOẠN 2 (9 to 13) ---
-            {
-                type: 'stage-intro',
-                stage: 'GIAI ĐOẠN 2',
-                stageName: 'Nhận nhiệm vụ tổng hợp',
-                dna: 'Comprehension',
-                stageNum: 2
-            },
+
+            // --- GIAI ĐOẠN 2 (5 to 6) ---
             {
                 type: 'act-intro',
                 stage: 'GIAI ĐOẠN 2',
@@ -2564,31 +2521,8 @@
                 time: '3 phút',
                 interactiveId: 'viewer-needs'
             },
-            {
-                type: 'act-debrief',
-                stage: 'GIAI ĐOẠN 2',
-                stageName: 'Nhận nhiệm vụ tổng hợp',
-                actTitle: 'ĐIỀU NGƯỜI XEM CẦN HIỂU',
-                results: '• Nguy cơ đuối nước\n• Cách phòng tránh\n• Cách xử lý an toàn',
-                message: 'Bản tin cần tập trung vào thông tin thiết thực nhất cho người xem.'
-            },
-            {
-                type: 'act-transition',
-                stage: 'GIAI ĐOẠN 2',
-                stageName: 'Nhận nhiệm vụ tổng hợp',
-                actTitle: 'ĐIỀU NGƯỜI XEM CẦN HIỂU',
-                explored: 'yêu cầu và điều người xem cần hiểu nhanh từ bản tin.',
-                nextQuestion: 'Thông tin nào là quan trọng nhất để đưa vào bản tin?'
-            },
-            
-            // --- GIAI ĐOẠN 3 (14 to 19) ---
-            {
-                type: 'stage-intro',
-                stage: 'GIAI ĐOẠN 3',
-                stageName: 'Chọn lọc thông tin',
-                dna: 'Selection',
-                stageNum: 3
-            },
+
+            // --- GIAI ĐOẠN 3 (7 to 11) ---
             {
                 type: 'act-intro',
                 stage: 'GIAI ĐOẠN 3',
@@ -2604,10 +2538,38 @@
                 stageName: 'Chọn lọc thông tin',
                 actTitle: 'TỔNG HỢP THÔNG TIN',
                 steps: [
-                    "Nhóm hoàn thành bảng: Vấn đề – Nguyên nhân – Cách phòng tránh.",
-                    "Chọn các thông tin quan trọng nhất.",
-                    "Không ghi các thông tin trùng lặp."
+                    "Đọc lại hồ sơ lời kể của các nhân chứng về tình huống nguy hiểm.",
+                    "Hoàn thành bảng ghép nối: Vấn đề – Nguyên nhân – Cách phòng tránh.",
+                    "Chọn các thông tin quan trọng nhất và loại bỏ thông tin trùng lặp."
                 ]
+            },
+            {
+                type: 'witness-detail',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Chọn lọc thông tin',
+                title: 'Hồ sơ Chuột rút & Nước xoáy',
+                subtitle: 'HỒ SƠ NHÂN CHỨNG 1 & 2',
+                quote: 'Nhân chứng 1: "Tôi đang bơi bỗng dưng bắp chân cứng đờ, đau điếng không thể co duỗi... hoảng loạn chìm dần."\nNhân chứng 2: "Có một lực hút cực mạnh dưới lòng nước kéo ghì tôi xuống. Càng bơi thoát ra càng bất lực."',
+                bullets: [
+                    "Nguy cơ 1: Chuột rút bắp cơ do co cơ đột ngột khi chưa khởi động kỹ.",
+                    "Nguy cơ 2: Dòng nước xoáy mạnh gần chân đập thủy điện hoặc khu vực sâu.",
+                    "Đặc điểm chung: Đều làm nạn nhân mất khả năng tự nổi hoặc bơi lội bình thường."
+                ],
+                image: 'cramps_swimmer.png'
+            },
+            {
+                type: 'witness-detail',
+                stage: 'GIAI ĐOẠN 3',
+                stageName: 'Chọn lọc thông tin',
+                title: 'Hồ sơ Lật thuyền đò',
+                subtitle: 'HỒ SƠ NHÂN CHỨNG 3',
+                quote: 'Nhân chứng 3: "Mọi người đùa giỡn làm chiếc đò chòng chành rồi lật úp hẳn. Tôi rơi xuống nước bất ngờ, ngợp ngụa và không có gì để bám vào..."',
+                bullets: [
+                    "Nguy cơ 3: Thuyền/đò bị quá tải hoặc hành khách di chuyển xô lệch làm mất thăng bằng.",
+                    "Hậu quả: Rơi xuống nước bất ngờ trong trạng thái hoảng loạn, không có áo phao cứu sinh.",
+                    "Phòng ngừa: Luôn mặc áo phao tiêu chuẩn suốt chuyến đi và giữ trật tự trên thuyền."
+                ],
+                image: 'overturned_boat.png'
             },
             {
                 type: 'act-workspace',
@@ -2620,31 +2582,8 @@
                 time: '5 phút',
                 interactiveId: 'info-aggregation'
             },
-            {
-                type: 'act-debrief',
-                stage: 'GIAI ĐOẠN 3',
-                stageName: 'Chọn lọc thông tin',
-                actTitle: 'TỔNG HỢP THÔNG TIN',
-                results: '• Bảng Vấn đề – Nguyên nhân – Cách phòng tránh\n• Thông tin quan trọng nhất được chọn\n• Thông tin trùng lặp được loại bỏ',
-                message: 'Chọn lọc thông tin giúp bản tin ngắn gọn, rõ ý và tránh trùng lặp.'
-            },
-            {
-                type: 'act-transition',
-                stage: 'GIAI ĐOẠN 3',
-                stageName: 'Chọn lọc thông tin',
-                actTitle: 'TỔNG HỢP THÔNG TIN',
-                explored: 'bảng tổng hợp thông tin phòng tránh đuối nước.',
-                nextQuestion: 'Làm thế nào kết nối các dữ kiện thành một câu chuyện bản tin hoàn chỉnh?'
-            },
-            
-            // --- GIAI ĐOẠN 4 (20 to 25) ---
-            {
-                type: 'stage-intro',
-                stage: 'GIAI ĐOẠN 4',
-                stageName: 'Kết nối thông tin',
-                dna: 'Connection',
-                stageNum: 4
-            },
+
+            // --- GIAI ĐOẠN 4 (12 to 15) ---
             {
                 type: 'act-intro',
                 stage: 'GIAI ĐOẠN 4',
@@ -2660,8 +2599,8 @@
                 stageName: 'Kết nối thông tin',
                 actTitle: 'XÂY DỰNG CÂU CHUYỆN BẢN TIN',
                 steps: [
-                    "Quan sát mẫu bản tin.",
-                    "Xác định: Chuyện gì đang xảy ra? Vì sao xảy ra? Điều gì cần cảnh báo?",
+                    "Quan sát mẫu bản tin và các thẻ thông tin.",
+                    "Sắp xếp theo logic: Chuyện gì đang xảy ra? Vì sao xảy ra? Điều gì cần cảnh báo?",
                     "Kết nối các dữ kiện thành một câu chuyện hoàn chỉnh."
                 ]
             },
@@ -2677,30 +2616,17 @@
                 interactiveId: 'news-storyboard'
             },
             {
-                type: 'act-debrief',
+                type: 'act-debrief-transition',
                 stage: 'GIAI ĐOẠN 4',
                 stageName: 'Kết nối thông tin',
                 actTitle: 'XÂY DỰNG CÂU CHUYỆN BẢN TIN',
                 results: '• Chuyện đang xảy ra\n• Lý do xảy ra\n• Điều cần cảnh báo',
-                message: 'Bản tin cần có mạch thông tin rõ: sự việc – nguyên nhân – cảnh báo.'
-            },
-            {
-                type: 'act-transition',
-                stage: 'GIAI ĐOẠN 4',
-                stageName: 'Kết nối thông tin',
-                actTitle: 'XÂY DỰNG CÂU CHUYỆN BẢN TIN',
+                message: 'Bản tin cần có mạch thông tin rõ: sự việc – nguyên nhân – cảnh báo.',
                 explored: 'mẫu bản tin và câu chuyện bản tin hoàn chỉnh.',
                 nextQuestion: 'Nếu người xem chỉ nhớ một điều, nhóm nên chọn thông điệp nào?'
             },
-            
-            // --- GIAI ĐOẠN 5 (26 to 31) ---
-            {
-                type: 'stage-intro',
-                stage: 'GIAI ĐOẠN 5',
-                stageName: 'Xác định thông điệp',
-                dna: 'Core Message',
-                stageNum: 5
-            },
+
+            // --- GIAI ĐOẠN 5 (16 to 20) ---
             {
                 type: 'act-intro',
                 stage: 'GIAI ĐOẠN 5',
@@ -2716,8 +2642,9 @@
                 stageName: 'Xác định thông điệp',
                 actTitle: 'THÔNG ĐIỆP CỘNG ĐỒNG',
                 steps: [
-                    "Thảo luận: Nếu người xem chỉ nhớ một điều duy nhất sau bản tin, đó nên là điều gì?",
-                    "Mỗi nhóm thống nhất thông điệp chính cho bản tin."
+                    "Đọc kỹ 3 phương án thông điệp ứng cử viên.",
+                    "Thảo luận nhóm để chọn ra thông điệp thiết thực, dễ nhớ nhất.",
+                    "Thực hiện bình chọn trên bảng điện tử tòa soạn."
                 ]
             },
             {
@@ -2747,15 +2674,8 @@
                 explored: 'thông điệp chính cho bản tin.',
                 nextQuestion: 'Làm thế nào chuyển thông tin đã chọn thành bản thảo bản tin?'
             },
-            
-            // --- GIAI ĐOẠN 6 (32 to 37) ---
-            {
-                type: 'stage-intro',
-                stage: 'GIAI ĐOẠN 6',
-                stageName: 'Biên tập sản phẩm',
-                dna: 'Design',
-                stageNum: 6
-            },
+
+            // --- GIAI ĐOẠN 6 (21 to 25) ---
             {
                 type: 'act-intro',
                 stage: 'GIAI ĐOẠN 6',
@@ -2772,8 +2692,8 @@
                 actTitle: 'VIẾT BẢN THẢO BẢN TIN',
                 steps: [
                     "Nhóm xây dựng bản tin theo cấu trúc: mở đầu, thân tin, kết luận.",
-                    "Vẽ hoặc chọn hình minh họa.",
-                    "Hoàn thiện sản phẩm."
+                    "Chọn hình ảnh minh họa cho bản tin từ kho hình ảnh tòa soạn.",
+                    "Xem trước bản tin hoàn thiện trước khi nộp lên tổng biên tập."
                 ]
             },
             {
@@ -2803,24 +2723,8 @@
                 explored: 'bản thảo bản tin phòng tránh đuối nước.',
                 nextQuestion: 'Thông tin nào quan trọng nhất và cộng đồng cần biết điều gì nhất?'
             },
-            
-            // --- GIAI ĐOẠN 7 (38 to 41) ---
-            {
-                type: 'stage-intro',
-                stage: 'GIAI ĐOẠN 7',
-                stageName: 'Nhật ký phóng viên',
-                dna: 'Reflection',
-                stageNum: 7
-            },
-            {
-                type: 'act-intro',
-                stage: 'GIAI ĐOẠN 7',
-                stageName: 'Nhật ký phóng viên',
-                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
-                goal: '• Phản tư về bài học\n• Xác định cốt lõi truyền thông',
-                image: 'reflection_journal_1781236420017.png',
-                extra: 'Viết nhanh: Thông tin nào quan trọng nhất? Điều gì cộng đồng cần biết nhất?'
-            },
+
+            // --- GIAI ĐOẠN 7 (26 to 27) ---
             {
                 type: 'act-workspace',
                 stage: 'GIAI ĐOẠN 7',
@@ -2833,75 +2737,36 @@
                 interactiveId: 'reporter-journal-t2'
             },
             {
-                type: 'act-debrief',
-                stage: 'GIAI ĐOẠN 7',
-                stageName: 'Nhật ký phóng viên',
-                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
-                results: '• Thông tin quan trọng nhất\n• Điều cộng đồng cần biết nhất',
-                message: 'Reflection giúp học sinh xác định điều cốt lõi cần truyền thông tới cộng đồng.'
-            },
-            {
-                type: 'act-transition',
-                stage: 'GIAI ĐOẠN 7',
-                stageName: 'Nhật ký phóng viên',
-                actTitle: 'NHẬT KÝ PHÓNG VIÊN',
-                explored: 'nhật ký phóng viên dạng viết nhanh, có hai câu hỏi phản tư.',
-                nextQuestion: 'Sau buổi học này, em sẽ chia sẻ điều vừa học với ai?'
-            },
-            
-            // --- NOTEBOOK REVIEW (slide 41) ---
-            {
                 type: 'notebook-review-t2',
-                stage: 'TỔNG KẾT',
-                title: 'Nhìn lại sổ tay phóng viên'
+                stage: 'GIAI ĐOẠN 7',
+                stageName: 'Nhật ký phóng viên',
+                title: 'Nhìn lại sổ tay biên tập'
             },
-            
-            // --- GIAI ĐOẠN 8 (42 to 46) ---
-            {
-                type: 'stage-intro',
-                stage: 'GIAI ĐOẠN 8',
-                stageName: 'Áp dụng ngay',
-                dna: 'Adaptation',
-                stageNum: 8
-            },
-            {
-                type: 'act-intro',
-                stage: 'GIAI ĐOẠN 8',
-                stageName: 'Áp dụng ngay',
-                actTitle: 'TÔI SẼ NHẮC AI?',
-                goal: '• Chuyển nội dung bài học thành hành động cụ thể',
-                image: 'safety_commitment_1781236438910.png',
-                extra: 'Phiếu cam kết chia sẻ với dòng điền tên người em sẽ nhắc và lý do chia sẻ.'
-            },
+
+            // --- GIAI ĐOẠN 8 (28 to 29) ---
             {
                 type: 'act-workspace',
                 stage: 'GIAI ĐOẠN 8',
                 stageName: 'Áp dụng ngay',
                 actTitle: 'TÔI SẼ NHẮC AI?',
-                prompt: 'Hoàn thành câu: Sau buổi học này, em sẽ chia sẻ điều vừa học với __________. Lý do: ____________________.',
+                prompt: 'Sau buổi học này, em sẽ chia sẻ điều vừa học với ai? Lý do: vì sao họ cần biết?',
                 product: 'Cam kết chia sẻ điều vừa học.',
                 format: 'Cá nhân',
                 time: '3 phút',
                 interactiveId: 'remind-who'
             },
             {
-                type: 'act-debrief',
+                type: 'act-debrief-transition',
                 stage: 'GIAI ĐOẠN 8',
                 stageName: 'Áp dụng ngay',
                 actTitle: 'TÔI SẼ NHẮC AI?',
                 results: '• Người em sẽ chia sẻ điều vừa học\n• Lý do chia sẻ',
-                message: 'Kiến thức phòng tránh đuối nước cần được chia sẻ để giúp người khác an toàn hơn.'
-            },
-            {
-                type: 'act-transition',
-                stage: 'GIAI ĐOẠN 8',
-                stageName: 'Áp dụng ngay',
-                actTitle: 'TÔI SẼ NHẮC AI?',
+                message: 'Kiến thức phòng tránh đuối nước cần được chia sẻ để giúp người khác an toàn hơn.',
                 explored: 'cam kết chia sẻ điều vừa học.',
                 nextQuestion: 'Bản tin và cam kết của em có thể giúp ai an toàn hơn?'
             },
-            
-            // --- END LESSON (47 to 49) ---
+
+            // --- END LESSON (30 to 31) ---
             {
                 type: 'end-takeaways-t2',
                 stage: 'END LESSON',
@@ -2912,17 +2777,9 @@
                 stage: 'END LESSON',
                 title: 'Sản Phẩm Cuối Và Cam Kết',
                 image: 'reporter_notebook_1781236401501.png'
-            },
-            {
-                type: 'end-revisit-t2',
-                stage: 'END LESSON',
-                title: 'Quay Lại Câu Hỏi Lớn'
             }
         ];
 
-        // ---------------------------------------------------------------------
-        // STATE MANAGEMENT
-        // ---------------------------------------------------------------------
         let slides = []; // Active slides array
         let currentLesson = null; // null = Selection hub, 1 = Tiet 1, 2 = Tiet 2
         let currentSlideIdx = 0;
@@ -3157,12 +3014,14 @@
             let layoutHTML = '';
 
             if (slide.type === 'welcome') {
+                const roleTitle = (currentLesson === 2) ? 'BIÊN TẬP VIÊN TỔNG HỢP' : 'PHÓNG VIÊN';
+                const startBtnText = (currentLesson === 2) ? 'Bắt đầu biên tập bản tin 📺' : 'Bắt đầu phát phóng sự 📺';
                 layoutHTML = `
                     <div class="slide-content-layout split-layout">
                         <div class="left-column">
                             <div style="font-size: 1.1rem; font-weight: 700; color: var(--cyan-accent);">CHỦ ĐỀ: AN TOÀN CÁ NHÂN</div>
                             <h1 style="font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem;">PHÒNG TRÁNH<br>ĐUỐI NƯỚC</h1>
-                            <div style="display:inline-block; background-color: var(--coral-warning); color: white; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 700; font-size: 0.9rem; align-self: flex-start; margin-bottom: 1rem;">VAI TRÒ HỌC SINH: PHÓNG VIÊN</div>
+                            <div style="display:inline-block; background-color: var(--coral-warning); color: white; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 700; font-size: 0.9rem; align-self: flex-start; margin-bottom: 1rem;">VAI TRÒ HỌC SINH: ${roleTitle}</div>
                             
                             <div class="content-card">
                                 <div class="card-header">🎯 Mục tiêu bài học</div>
@@ -3172,7 +3031,7 @@
                             </div>
                             
                             <div style="margin-top: 1rem; display: flex;">
-                                <button class="story-nav-btn" onclick="goToNextSlide()">Bắt đầu phát phóng sự 📺</button>
+                                <button class="story-nav-btn" onclick="goToNextSlide()">${startBtnText}</button>
                             </div>
                         </div>
                         <div class="right-column">
@@ -3183,6 +3042,11 @@
             } 
             
             else if (slide.type === 'big-question') {
+                const missionHTML = (currentLesson === 2) 
+                    ? `<div>🎤 <b>NHIỆM VỤ BIÊN TẬP VIÊN:</b><br>${slide.description}</div>
+                       <button class="story-nav-btn" onclick="goToNextSlide()">Bắt đầu nhiệm vụ 📋</button>`
+                    : `<div>🚨 <b>TÌNH HUỐNG GỢI SUY NGHĨ:</b><br>Một nhóm học sinh đi chơi gần sông, một bạn bị trượt chân xuống nước, các bạn còn lại chưa biết làm gì.</div>
+                       <button class="story-nav-btn" onclick="goToNextSlide()">Tiếp nhận phóng sự 🎤</button>`;
                 layoutHTML = `
                     <div class="slide-content-layout" style="text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.8rem; align-items: center;">
                         <div style="font-size: 1.2rem; font-weight: 700; color: var(--coral-warning); text-transform: uppercase;">Câu hỏi lớn (Big Question)</div>
@@ -3192,8 +3056,7 @@
                         <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; width: 100%; margin-top: 1rem;">
                             <img src="images/${slide.image}" class="visual-img" style="max-height: 250px;" alt="Big Question Situation">
                             <div style="text-align: left; max-width: 400px; color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; display: flex; flex-direction: column; gap: 1.2rem;">
-                                <div>🚨 <b>TÌNH HUỐNG GỢI SUY NGHĨ:</b><br>Một nhóm học sinh đi chơi gần sông, một bạn bị trượt chân xuống nước, các bạn còn lại chưa biết làm gì.</div>
-                                <button class="story-nav-btn" onclick="goToNextSlide()">Tiếp nhận phóng sự 🎤</button>
+                                ${missionHTML}
                             </div>
                         </div>
                     </div>
@@ -3695,6 +3558,66 @@
                 `;
             }
 
+            else if (slide.type === 'witness-detail') {
+                layoutHTML = `
+                    <div class="slide-content-layout split-layout">
+                        <div class="left-column" style="flex: 1.1;">
+                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--cyan-accent);">${slide.subtitle || 'HỒ SƠ NHÂN CHỨNG'}</div>
+                            <h2 style="border:none; margin:0; padding:0; font-size: 2.4rem; font-weight: 800;">${slide.title}</h2>
+                            <div style="font-style: italic; font-size: 1.1rem; line-height: 1.6; padding: 1rem; background: rgba(255,255,255,0.05); border-left: 4px solid var(--coral-warning); border-radius: 4px; margin: 1rem 0; color: #CBD5E1; white-space: pre-line;">
+                                ${slide.quote}
+                            </div>
+                            <div class="content-card" style="margin-top: 1rem;">
+                                <div class="card-header" style="color: var(--cyan-accent);">📋 Phân tích dữ kiện</div>
+                                <ul class="bullet-list">
+                                    ${slide.bullets.map(b => `<li>${map_icon_to_text(b)}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex;">
+                                <button class="story-nav-btn" onclick="goToNextSlide()">Xem tiếp hồ sơ ➔</button>
+                            </div>
+                        </div>
+                        <div class="right-column" style="flex: 0.9; align-items: center; justify-content: center;">
+                            <img src="images/${slide.image}" class="visual-img" alt="Witness Image" style="border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; max-height: 400px; object-fit: contain;">
+                        </div>
+                    </div>
+                `;
+            }
+            
+            else if (slide.type === 'act-debrief-transition') {
+                layoutHTML = `
+                    <div class="slide-content-layout split-layout">
+                        <div class="left-column" style="flex: 1.2;">
+                            <h2 class="slide-title-bar" style="margin-bottom: 1rem;">Bản tin: <span>${slide.actTitle}</span> • KẾT QUẢ</h2>
+                            <div class="content-card" style="margin-bottom: 1rem;">
+                                <div class="card-header">📈 KẾT QUẢ THU HOẠCH</div>
+                                <ul class="bullet-list" style="margin-top: 0.5rem;">
+                                    ${slide.results.split('\n').map(r => `<li>${map_icon_to_text(r)}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="debrief-callout" style="margin-top: 0;">
+                                <div class="debrief-callout-header">💡 THÔNG ĐIỆP CHÍNH</div>
+                                <div class="debrief-callout-text" style="font-size: 1.05rem;">📢 ${slide.message}</div>
+                            </div>
+                        </div>
+                        <div class="right-column" style="flex: 0.8; justify-content: flex-start; display: flex; flex-direction: column; gap: 1rem;">
+                            <div class="content-card" style="border: 1px solid var(--cyan-accent); background: rgba(0,229,255,0.03); width: 100%;">
+                                <div class="card-header" style="color: var(--cyan-accent); font-size: 0.9rem;">📍 TIẾN TRÌNH BIÊN TẬP</div>
+                                <div style="font-size: 0.95rem; line-height: 1.5; color: var(--text-muted); margin-top: 0.5rem;">
+                                    Chúng ta vừa khám phá:<br>
+                                    <span style="color: white; font-weight: 700;">👉 ${slide.explored}</span>
+                                </div>
+                                <div style="font-size: 0.95rem; line-height: 1.5; color: var(--text-muted); margin-top: 0.8rem;">
+                                    Câu hỏi tiếp theo:<br>
+                                    <span style="color: var(--coral-warning); font-weight: 700;">❓ ${slide.nextQuestion}</span>
+                                </div>
+                            </div>
+                            <button class="story-nav-btn" style="width: 100%; justify-content: center; padding: 1rem;" onclick="goToNextSlide()">TIẾP TỤC HÀNH TRÌNH ➔</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
             else if (slide.type === 'notebook-review-t2') {
                 const s = savedStates;
 
