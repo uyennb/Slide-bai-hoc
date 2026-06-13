@@ -2937,9 +2937,23 @@
         // PRESENTATION CONTROLS
         // ---------------------------------------------------------------------
         function initPresentation() {
+            // Support query parameter ?lesson=1 or ?lesson=2 to load directly
+            const urlParams = new URLSearchParams(window.location.search);
+            const lessonParam = urlParams.get('lesson');
+            if (lessonParam === '1') {
+                currentLesson = 1;
+                slides = slidesTiet1;
+            } else if (lessonParam === '2') {
+                currentLesson = 2;
+                slides = slidesTiet2;
+            }
+
             if (currentLesson === null) {
                 renderLessonSelectorHub();
             } else {
+                // Show bottom navigation controls and menu button
+                document.getElementById('nav-controls').style.display = 'flex';
+                document.querySelector('.logo-container button').style.display = 'block';
                 initPresentationView();
             }
             
